@@ -3,215 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>二刷复盘 · 第X天 | 题目名称</title>
-
+    <title>刷题记录 · 鹅鸭杀（二刷）</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: linear-gradient(145deg, #eef2f7 0%, #e0e8f0 100%);
-            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
-            padding: 2rem 1.5rem;
-            color: #1e2a3e;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                         Roboto, "Helvetica Neue", Arial, "PingFang SC",
+                         "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: #f6f7fb;
+            color: #333;
+            line-height: 1.7;
         }
 
-        .container { max-width: 1000px; margin: 0 auto; }
-
-        .card {
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 2rem;
-            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.12);
-            padding: 2rem 2rem 2.2rem;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(255,255,255,0.6);
-        }
-
-        .problem-header {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: baseline;
-            border-bottom: 2px solid #e9edf2;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.75rem;
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         h1 {
-            font-size: 1.85rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #7c3aed, #4338ca);
-            -webkit-background-clip: text;
-            color: transparent;
-            border-left: 5px solid #7c3aed;
-            padding-left: 1rem;
+            font-size: 28px;
+            margin-bottom: 10px;
         }
 
-        .tag-group {
-            display: flex;
-            gap: 0.7rem;
-            flex-wrap: wrap;
+        .subtitle {
+            color: #666;
+            margin-bottom: 25px;
         }
 
-        .badge {
-            background: #f3e8ff;
-            color: #6b21a8;
-            padding: 0.25rem 0.85rem;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .badge.redo {
-            background: #ecfeff;
-            color: #0e7490;
-        }
-
-        .date {
-            font-size: 0.85rem;
-            color: #5b6e8c;
-            background: #f1f5f9;
-            padding: 0.2rem 0.8rem;
-            border-radius: 30px;
+        h2 {
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-size: 22px;
+            border-left: 5px solid #4f46e5;
+            padding-left: 10px;
         }
 
         h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin: 1.6rem 0 0.8rem 0;
-            color: #0f2b3d;
-            border-bottom: 3px solid #c4b5fd;
-            display: inline-block;
-            padding-bottom: 0.2rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 18px;
         }
 
-        .list-styled {
-            list-style: none;
-            padding-left: 0;
+        p {
+            margin-bottom: 10px;
         }
 
-        .list-styled li {
-            margin-bottom: 0.7rem;
-            padding-left: 1.5rem;
-            position: relative;
-            line-height: 1.6;
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
         }
 
-        .list-styled li::before {
-            content: "🔁";
-            position: absolute;
-            left: 0;
+        li {
+            margin-bottom: 6px;
         }
 
-        .info-tip {
-            background: #fff7ed;
-            border-left: 5px solid #f97316;
-            border-radius: 1rem;
-            padding: 1rem 1.4rem;
-            margin: 1.5rem 0;
-            font-size: 0.95rem;
+        .key {
+            background: #eef2ff;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 15px 0;
         }
 
         pre {
             background: #0f172a;
-            color: #e2e8f0;
-            padding: 1.2rem;
-            border-radius: 1.2rem;
-            font-size: 0.85rem;
-            margin: 1.2rem 0;
+            color: #e5e7eb;
+            padding: 18px;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-size: 14px;
+            line-height: 1.5;
         }
 
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: #ffffffcc;
-            padding: 0.6rem 1.2rem;
-            border-radius: 2rem;
-            color: #1e3a8a;
-            text-decoration: none;
-            border: 1px solid #cbd5e1;
+        code {
+            font-family: Consolas, Monaco, monospace;
         }
 
-        hr {
-            margin: 1rem 0;
-            border: 0;
-            height: 1px;
-            background: linear-gradient(to right, #cbd5e1, transparent);
+        .summary {
+            background: #f1f5f9;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #3730a3;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-right: 8px;
+            margin-top: 5px;
         }
     </style>
 </head>
-
 <body>
 <div class="container">
-    <div class="card">
 
-        <!-- ===== 头部 ===== -->
-        <div class="problem-header">
-            <h1>🔁 二刷复盘 · 第X天【题目名称】</h1>
-            <div class="tag-group">
-                <span class="badge redo">二刷 / 复盘</span>
-                <span class="badge">题型</span>
-                <span class="badge">难度</span>
-                <span class="date">2026-05-XX</span>
-            </div>
-        </div>
-
-        <!-- ===== 一刷回顾 ===== -->
-        <h3>❌ 一刷时的问题回顾</h3>
-        <ul class="list-styled">
-            <li>当时卡住的点（理解 / 建模 / 实现）</li>
-            <li>错误思路或误判条件</li>
-            <li>为什么当时没有想到正确方向</li>
-        </ul>
-
-        <!-- ===== 二刷核心理解 ===== -->
-        <h3>💡 二刷后的核心理解</h3>
-        <ul class="list-styled">
-            <li>本题真正的抽象模型</li>
-            <li>决定解法的关键条件</li>
-            <li>为什么这种贪心 / DP / 思路一定正确</li>
-        </ul>
-
-        <!-- ===== 对比提升 ===== -->
-        <h3>🔍 一刷 vs 二刷 对比</h3>
-        <div class="info-tip">
-            <ul class="list-styled">
-                <li>一刷：思路复杂 / 不稳定 / 偶然 AC</li>
-                <li>二刷：模型清晰 / 一步到位</li>
-                <li>思维层面的升级点</li>
-            </ul>
-        </div>
-
-        <!-- ===== 代码（可选） ===== -->
-        <h3>⚙️ 二刷最终 AC 代码（可选）</h3>
-        <pre><code>// 代码不是重点
-// 可不填，或只保留最终最优版本
-</code></pre>
-
-        <!-- ===== 二刷警示 ===== -->
-        <h3>⚠️ 二刷易错提醒</h3>
-        <ul class="list-styled">
-            <li>下次再遇到容易犯的老错误</li>
-            <li>边界 / 特殊情况</li>
-        </ul>
-
-        <!-- ===== 二刷总结 ===== -->
-        <h3>📈 二刷总结</h3>
-        <ul class="list-styled">
-            <li>这道题沉淀下来的通用解题模板</li>
-            <li>下次看到类似题的第一反应</li>
-        </ul>
-
-        <hr />
-        <div style="display:flex; justify-content:space-between; flex-wrap:wrap;">
-            <a href="dayX.html" class="back-link">← 回到一刷原题</a>
-            <a href="index.html" class="back-link">🏠 返回学习主页</a>
-        </div>
+    <h1>刷题记录 · 鹅鸭杀（二刷）</h1>
+    <div class="subtitle">
+        Problem C · 区间贪心 · 排序 + 小根堆
     </div>
 
-    <footer style="text-align:center; font-size:0.75rem; color:#5b6e8c;">
-        🔁 二刷不是重复，是认知升级
-    </footer>
+    <h2>一、题目回顾</h2>
+    <p>
+        本题来源于竞赛 Problem C（鹅鸭杀）。  
+        给定若干区间，每次选择一个整数点，使得：
+    </p>
+    <ul>
+        <li>每个区间最多使用一次</li>
+        <li>每次选择的点必须落在该区间内</li>
+        <li>所选点互不相同</li>
+    </ul>
+    <p>
+        目标是：<b>最大化被选中的区间数量</b>。
+    </p>
+
+    <h2>二、一刷的问题</h2>
+    <ul>
+        <li>被题目背景（鹅 / 鸭 / 人数）干扰，没有第一时间抽象模型</li>
+        <li>知道要贪心，但不确定贪心的依据</li>
+        <li>小根堆只是“照着写”，不清楚其必要性</li>
+    </ul>
+
+    <h2>三、二刷核心抽象</h2>
+    <div class="key">
+        <p><b>问题本质：</b></p>
+        <p>
+            动态区间选择问题 ——  
+            每次从所有 <code>l ≤ 当前点 ≤ r</code> 的区间中，
+            选择一个区间匹配当前点，使总匹配数最大。
+        </p>
+    </div>
+
+    <h2>四、贪心策略说明</h2>
+    <h3>为什么选右端点最小的区间？</h3>
+    <ul>
+        <li>右端点小的区间更容易“过期”</li>
+        <li>如果现在不用，后面可能再也用不上</li>
+        <li>保留右端点大的区间，能给后续留下更多选择</li>
+    </ul>
+    <p>
+        这是典型的「区间调度 / 最早结束时间优先」思想。
+    </p>
+
+    <h2>五、算法流程</h2>
+    <ol>
+        <li>按区间左端点排序</li>
+        <li>维护一个按右端点排序的小根堆</li>
+        <li>当前点从 1 开始递增</li>
+        <li>将所有 <code>l ≤ 当前点</code> 的区间加入堆</li>
+        <li>弹出右端点最小且仍合法的区间</li>
+    </ol>
+
+    <h2>六、二刷 AC 代码</h2>
+    <pre><code>
+#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n;
+    cin >> n;
+
+    vector<pair<int,int>> a(n);
+    for (int i = 0; i < n; i++) {
+        cin >> a[i].first >> a[i].second;
+    }
+
+    sort(a.begin(), a.end());
+
+    priority_queue<array<int,2>, vector<array<int,2>>, greater<array<int,2>>> pq;
+
+    int cnt = 0, idx = 0;
+    vector<int> ans;
+
+    while (true) {
+        while (idx < n && a[idx].first <= cnt + 1) {
+            pq.push({a[idx].second, idx});
+            idx++;
+        }
+
+        while (!pq.empty() && pq.top()[0] < cnt + 1) {
+            pq.pop();
+        }
+
+        if (pq.empty()) break;
+
+        auto [r, id] = pq.top();
+        pq.pop();
+
+        cnt++;
+        ans.push_back(id + 1);
+    }
+
+    cout << cnt << '\n';
+    for (int i = 0; i < ans.size(); i++) {
+        if (i) cout << ' ';
+        cout << ans[i];
+    }
+    cout << '\n';
+
+    return 0;
+}
+    </code></pre>
+
+    <h2>七、二刷总结</h2>
+    <div class="summary">
+        <p>
+            本题本质是动态区间贪心问题。  
+            二刷的关键不在代码，而在于：
+        </p>
+        <ul>
+            <li>能否快速抽象为区间模型</li>
+            <li>是否明确“右端点最小”贪心的必要性</li>
+            <li>是否真正理解小根堆维护的含义</li>
+        </ul>
+        <div class="tag">区间贪心</div>
+        <div class="tag">小根堆</div>
+        <div class="tag">Problem C</div>
+        <div class="tag">二刷</div>
+    </div>
+
 </div>
 </body>
 </html>
