@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>二刷复盘 · 第X天 | 题目名称</title>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: linear-gradient(145deg, #eef2f7 0%, #e0e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.12);
+            padding: 2rem 2rem 2.2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .problem-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 2px solid #e9edf2;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+        }
+
+        h1 {
+            font-size: 1.85rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7c3aed, #4338ca);
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #7c3aed;
+            padding-left: 1rem;
+        }
+
+        .tag-group {
+            display: flex;
+            gap: 0.7rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: #f3e8ff;
+            color: #6b21a8;
+            padding: 0.25rem 0.85rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .badge.redo {
+            background: #ecfeff;
+            color: #0e7490;
+        }
+
+        .date {
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 1.6rem 0 0.8rem 0;
+            color: #0f2b3d;
+            border-bottom: 3px solid #c4b5fd;
+            display: inline-block;
+            padding-bottom: 0.2rem;
+        }
+
+        .list-styled {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .list-styled li {
+            margin-bottom: 0.7rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .list-styled li::before {
+            content: "🔁";
+            position: absolute;
+            left: 0;
+        }
+
+        .info-tip {
+            background: #fff7ed;
+            border-left: 5px solid #f97316;
+            border-radius: 1rem;
+            padding: 1rem 1.4rem;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        pre {
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 1.2rem;
+            border-radius: 1.2rem;
+            font-size: 0.85rem;
+            margin: 1.2rem 0;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            padding: 0.6rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+        }
+
+        hr {
+            margin: 1rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="card">
+
+        <!-- ===== 头部 ===== -->
+        <div class="problem-header">
+            <h1>🔁 二刷复盘 · 第X天【题目名称】</h1>
+            <div class="tag-group">
+                <span class="badge redo">二刷 / 复盘</span>
+                <span class="badge">题型</span>
+                <span class="badge">难度</span>
+                <span class="date">2026-05-XX</span>
+            </div>
+        </div>
+
+        <!-- ===== 一刷回顾 ===== -->
+        <h3>❌ 一刷时的问题回顾</h3>
+        <ul class="list-styled">
+            <li>当时卡住的点（理解 / 建模 / 实现）</li>
+            <li>错误思路或误判条件</li>
+            <li>为什么当时没有想到正确方向</li>
+        </ul>
+
+        <!-- ===== 二刷核心理解 ===== -->
+        <h3>💡 二刷后的核心理解</h3>
+        <ul class="list-styled">
+            <li>本题真正的抽象模型</li>
+            <li>决定解法的关键条件</li>
+            <li>为什么这种贪心 / DP / 思路一定正确</li>
+        </ul>
+
+        <!-- ===== 对比提升 ===== -->
+        <h3>🔍 一刷 vs 二刷 对比</h3>
+        <div class="info-tip">
+            <ul class="list-styled">
+                <li>一刷：思路复杂 / 不稳定 / 偶然 AC</li>
+                <li>二刷：模型清晰 / 一步到位</li>
+                <li>思维层面的升级点</li>
+            </ul>
+        </div>
+
+        <!-- ===== 代码（可选） ===== -->
+        <h3>⚙️ 二刷最终 AC 代码（可选）</h3>
+        <pre><code>// 代码不是重点
+// 可不填，或只保留最终最优版本
+</code></pre>
+
+        <!-- ===== 二刷警示 ===== -->
+        <h3>⚠️ 二刷易错提醒</h3>
+        <ul class="list-styled">
+            <li>下次再遇到容易犯的老错误</li>
+            <li>边界 / 特殊情况</li>
+        </ul>
+
+        <!-- ===== 二刷总结 ===== -->
+        <h3>📈 二刷总结</h3>
+        <ul class="list-styled">
+            <li>这道题沉淀下来的通用解题模板</li>
+            <li>下次看到类似题的第一反应</li>
+        </ul>
+
+        <hr />
+        <div style="display:flex; justify-content:space-between; flex-wrap:wrap;">
+            <a href="dayX.html" class="back-link">← 回到一刷原题</a>
+            <a href="index.html" class="back-link">🏠 返回学习主页</a>
+        </div>
+    </div>
+
+    <footer style="text-align:center; font-size:0.75rem; color:#5b6e8c;">
+        🔁 二刷不是重复，是认知升级
+    </footer>
+</div>
+</body>
+</html>
