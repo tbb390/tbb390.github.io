@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8"> 
   <title>刷题记录</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
@@ -102,12 +102,12 @@ line-height: 1.5;
 </head>
 <body>
 
-<h1>📘 刷题记录</h1>
+<h1>🎯 近期学习路线</h1>
 
 <div class="container">
   <div class="roadmap-section">
 
-  <h2>🎯 暑期实习冲刺路线</h2>
+  <h2></h2>
 
   <div class="roadmap-grid">
 
@@ -149,7 +149,7 @@ line-height: 1.5;
   </div>
 
 </div>
-
+<h1>📘 刷题记录</h1>
   <div class="day-list" id="dayList"></div>
 </div>
 
@@ -172,7 +172,7 @@ async function exists(file) {
 
 async function loadDays() {
   for (let i = 1; i <= MAX_DAYS; i++) {
-    const file = `day${i}note.html`
+    const file = `daily study/day${i}note.html`
     if (await exists(file)) {
       const div = document.createElement('div')
       div.className = 'day-card'
