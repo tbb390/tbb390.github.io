@@ -5,6 +5,7 @@
   <title>刷题记录</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    
     * {
       box-sizing: border-box;
     }
@@ -53,6 +54,50 @@
       font-size: 13px;
       color: #999;
     }
+    .roadmap-section {
+margin-bottom: 40px;
+}
+
+.roadmap-section h2 {
+text-align: center;
+margin-bottom: 20px;
+font-weight: 600;
+}
+
+.roadmap-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+gap: 18px;
+margin-bottom: 30px;
+}
+
+.roadmap-card {
+text-decoration: none;
+background: #fff;
+border-radius: 14px;
+padding: 18px;
+box-shadow: 0 8px 24px rgba(0,0,0,.06);
+transition: all .2s;
+color: #222;
+}
+
+.roadmap-card:hover {
+transform: translateY(-4px);
+box-shadow: 0 12px 32px rgba(0,0,0,.1);
+}
+
+.roadmap-card .title {
+font-size: 17px;
+font-weight: 600;
+margin-bottom: 8px;
+}
+
+.roadmap-card .desc {
+font-size: 13px;
+color: #666;
+line-height: 1.5;
+}
+
   </style>
 </head>
 <body>
@@ -60,6 +105,53 @@
 <h1>📘 刷题记录</h1>
 
 <div class="container">
+  <div class="roadmap-section">
+
+  <h2>🎯 暑期实习冲刺路线</h2>
+
+  <div class="roadmap-grid">
+
+```
+<a href="roadmap/week-plan.html" class="roadmap-card">
+  <div class="title">📅 本周计划</div>
+  <div class="desc">
+    6.11CPT测验前学习路线
+  </div>
+</a>
+
+<a href="roadmap/agent-roadmap.html" class="roadmap-card">
+  <div class="title">🤖 Agent路线</div>
+  <div class="desc">
+    LLM → Tool → RAG → MCP
+  </div>
+</a>
+
+<a href="roadmap/ragent-roadmap.html" class="roadmap-card">
+  <div class="title">🚀 Ragent项目</div>
+  <div class="desc">
+    项目阅读与简历准备
+  </div>
+</a>
+
+<a href="roadmap/network-roadmap.html" class="roadmap-card">
+  <div class="title">🌐 CPT测验</div>
+  <div class="desc">
+    VLAN、DHCP、NAT、ACL
+  </div>
+</a>
+
+<a href="roadmap/exam-roadmap.html" class="roadmap-card">
+  <div class="title">📚 期末复习</div>
+  <div class="desc">
+    概率统计、数据库、OS、Linux
+  </div>
+</a>
+```
+
+  </div>
+
+</div>
+
   <div class="day-list" id="dayList"></div>
 </div>
 
