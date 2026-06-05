@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>学习概览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            padding: 2rem 2rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f4870, #2b5c8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            border-bottom: 1px dashed #e2edf2;
+            padding-bottom: 1rem;
+        }
+
+        .meta span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .section {
+            margin: 1.8rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f4870;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-box {
+            background: #fafcff;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #eef2ff;
+            line-height: 1.6;
+            color: #2d3e50;
+        }
+
+        .content-box p {
+            margin: 0;
+            min-height: 4rem;
+        }
+
+        hr {
+            margin: 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .back-link:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+            .card {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>📝 每日学习概览</h1>
+        <div class="meta">
+            <span>📅 日期：2026.06.05</span>
+            <span>📚 科目/主题：网络/agent</span>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📖 今天学了什么</div>
+            <div class="content-box">
+                <p>ip地址是网络中设备的唯一标识符。网络掩码是区分一个ip地址中的网络部分以及主机部分，可以判断是否在同一个网段；
+                    几个255（1）就对应ip地址的前几段为网络位个数，0的比特对应ip地址的主机位。默认网关：通往外部网络的出口。访问互联网（不同网络）通过网关发送数据包
+                    DNS：域名解析系统，将域名转换为ip地址。代理服务器：充当客户端和目标服务器之间的中介，转发请求和响应。
+                    正向代理：客户端知道代理服务器，目标服务器不知道；反向代理：目标服务器知道代理服务器，客户端不知道。
+                    ARP协议：地址解析协议，将ip地址映射到物理地址（MAC地址）请求报文为广播
+                    ping本质为ICMP协议。1：DNS解析域名为IP，2：判断是否同网段，不同：3：ARP获取网关MAC若缓存没有就广播
+                    4，封装数据包：构造ICMP请求形成数据帧5，发送给路由器6，服务器回复7，显示结果            </p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">💡 agent</div>
+            <div class="content-box">
+                <p>LLM: 大语言模型大模型只有训练时学到的知识。所以需要：联网，查数据库，调用工具，这就引出了Agent。
+                    Agent：智能体，能够自主决策和执行任务的系统。Agent的核心能力：感知模块（输入处理）、决策模块（推理引擎）、执行模块（行动执行）、多模态。
+                    Agent的组成：LLM大脑，Prompt提示词，Memory记忆，Tools工具，Workflow工作流，Environment环境
+                    agent典型应用分类：规划：提示prompt（LLM多角色赋能，充分上下文，从memory获取，学习策略，思维链CoT）代理agent（工具调用，API接口，插件）
+                    交互agent（多模态输入输出，环境交互）学习agent（持续学习和适应环境变化）
+                    prompt（提示词）优化设计：清晰、具体、上下文相关、引导式
+                   Retrieval-Augmented Generation：检索增强生成（RAG）：结合检索和生成的技术，利用外部知识库增强生成能力。通过检索相关信息来补充生成模型的知识，从而提高回答的准确性和丰富性。
+                </p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">🤔 待解决</div>
+            <div class="content-box">
+                <p>readme</p>
+            </div>
+        </div>
+
+        <div class="section">
+        <hr />
+        <a href="index.html" class="back-link">← 返回学习主页</a>
+    </div>
+</div>
+</body>
+</html>
