@@ -146,8 +146,12 @@
                     <li>Bootstrap 负责接收用户请求，调用 Infra-AI 模块处理，并返回结果。</li>
                     <li>Infra-AI 模块提供多种 AI 能力，如意图识别、问题重写、知识检索、会话记忆、工具调用和大模型接口。</li>
                     <li>Framework 模块提供日志、链路追踪、限流、异常处理等基础设施支持。</li>
+                    <div style="max-width: 100%;">
+            <img src="prtsc/fourmudel.png" style="width:100%; height:auto; border-radius:8px;">
+        </div>
+        
                     <li>知识类问题 → RAG。业务类问题 → MCP</li>
-                    <p> 
+                    <pre> 
                用户
                  │
                  ▼
@@ -198,17 +202,17 @@
 │ 异常处理                             │
 │ ID生成                               │
 │ 线程池                               │
-└──────────────────────────────────────┘</p>
+└──────────────────────────────────────┘</pre>
 <br/>
 
 <div style="max-width: 100%;">
-            <img src="prtsc/核心设计.png" style="width:100%; height:auto; border-radius:8px;">
+            <img src="prtsc/maindesign.png" style="width:100%; height:auto; border-radius:8px;">
         </div>
         
 <ul>
     <li>如果是知识库中问题</li>
 </ul>
-<p>用户提问
+<pre>用户提问
     │
     ▼
 Controller接收请求
@@ -237,7 +241,7 @@ Controller接收请求
 生成答案
     │
     ▼
-流式返回前端</p>
+流式返回前端</pre>
 <ul>
     <li>如果不是知识库中问题</li>
 </ul>
@@ -262,12 +266,17 @@ MCP Tool
 LLM整理答案
   │
   ▼
-用户</p>
+用户</pre>
 
         
 <div style="max-width: 100%;">
-            <img src="prtsc/核心流程.png" style="width:100%; height:auto; border-radius:8px;">
+            <img src="prtsc/mainflow.png" style="width:100%; height:auto; border-radius:8px;">
+           
         </div>
+        <div style="max-width: 100%;">
+            <img src="prtsc/workflower.png" style="width:100%; height:auto; border-radius:8px;">
+        </div>
+        
         
                 </ul>
 
