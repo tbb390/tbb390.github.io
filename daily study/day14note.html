@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>学习概览</title>
+    <title>每日学习概览</title>
     <style>
         * {
             margin: 0;
@@ -132,62 +132,58 @@
 </head>
 <body>
 <div class="container">
-    <div class="card">
-        <h1>📝 每日学习概览</h1>
-        <div class="meta">
-            <span>📅 日期：2026.06.05</span>
-            <span>📚 科目/主题：网络/agent</span>
-        </div>
-
-        <div class="section">
-            <div class="section-title">📖 今天学了什么</div>
+<div class="section">
+            <div class="section-title">💡readme</div>
             <div class="content-box">
-                <ul>
-                <li>ip地址是网络中设备的唯一标识符。网络掩码是区分一个ip地址中的网络部分以及主机部分，可以判断是否在同一个网段；
-                    几个255（1）就对应ip地址的前几段为网络位个数，0的比特对应ip地址的主机位。默认网关：通往外部网络的出口。访问互联网（不同网络）通过网关发送数据包
-                </li>
-                <li>DNS：域名解析系统，将域名转换为ip地址。
-                </li>
-                <li>代理服务器：充当客户端和目标服务器之间的中介，转发请求和响应。</li>
-                 <li> 正向代理：客户端知道代理服务器，目标服务器不知道；反向代理：目标服务器知道代理服务器，客户端不知道。</li>
-                  <li> ARP协议：地址解析协议，将ip地址映射到物理地址（MAC地址）请求报文为广播</li>
-                 <li> ping本质为ICMP协议。1：DNS解析域名为IP，2：判断是否同网段，不同：3：ARP获取网关MAC若缓存没有就广播
-                    4，封装数据包：构造ICMP请求形成数据帧5，发送给路由器6，服务器回复7，显示结果            
-                </li>
-                </ul>
+                <p><li>传统项目：用户 → Controller → Service → 数据库</li>
+                    <li>Ragent：用户 → Agent → 意图识别 → RAG/MCP → 大模型 → 返回结果</li>
+                    <li>Ragent 不是教怎么调用大模型 API，是包括检索、意图识别、记忆管理、工具调用、模型路由、限流熔断等完整工程体系。</li>
+                </p>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-title">Ragent(2h)</div>
+            <div class="content-box">
+                <p>pom.xml结构,bootstrap模块,framework模块
+<ul>用户提问
+↓
+RAGChatController
+↓
+RAGChatServiceImpl
+↓
+StreamChatPipeline
+↓
+RetrievalEngine
+↓
+向量库检索
+↓
+大模型
+↓
+SSE返回</ul>
+                </p>
+                   <div style="max-width: 100%;">
+            <img src="prtsc/bootstrap.png" style="width:100%; height:auto; border-radius:8px;">
+        </div>
             </div>
         </div>
 
         <div class="section">
-            <div class="section-title">💡 agent</div>
+            <div class="section-title">agent</div>
             <div class="content-box">
-                <ul>
-                    <li>LLM: 大语言模型。大模型只有训练时学到的知识。所以需要：联网，查数据库，调用工具，这就引出了Agent。</li>
-                    <li>Agent：智能体，能够自主决策和执行任务的系统。Agent的核心能力：感知模块（输入处理）、决策模块（推理引擎）、执行模块（行动执行）、多模态。
-                        Agent的组成：LLM大脑，Prompt提示词，Memory记忆，Tools工具，Workflow工作流，Environment环境</li> 
-                     <li> agent典型应用分类：规划：提示prompt（LLM多角色赋能，充分上下文，从memory获取，学习策略，思维链CoT）代理agent（工具调用，API接口，插件）
-                        交互agent（多模态输入输出，环境交互）学习agent（持续学习和适应环境变化）</li>
-                     <li>   prompt（提示词）优化设计：清晰、具体、上下文相关、引导式</li>
-                      <li>
-                   Retrieval-Augmented Generation：检索增强生成（RAG）：结合检索和生成的技术，利用外部知识库增强生成能力。通过检索相关信息来补充生成模型的知识，从而提高回答的准确性和丰富性。
-                </li>
                 <div style="max-width: 100%;">
-            <img src="prtsc/topic RAG.png" style="width:100%; height:auto; border-radius:8px;">
+            <img src="prtsc/agent基于智能程度分类.png" style="width:100%; height:auto; border-radius:8px;">
         </div>
-                </ul>
+                <p></p>
             </div>
         </div>
 
         <div class="section">
-            <div class="section-title">🤔待解决</div>
+            <div class="section-title">📌cpt</div>
             <div class="content-box">
-               <p>
-ragent.reademe
-               </p>
+                <p></p>
             </div>
         </div>
 
-        <div class="section">
         <hr />
         <a href="index.html" class="back-link">← 返回学习主页</a>
     </div>

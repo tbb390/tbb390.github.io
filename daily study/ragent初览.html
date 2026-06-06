@@ -1,0 +1,275 @@
+    <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            padding: 2rem 2rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f4870, #2b5c8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            border-bottom: 1px dashed #e2edf2;
+            padding-bottom: 1rem;
+        }
+
+        .meta span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .section {
+            margin: 1.8rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f4870;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-box {
+            background: #fafcff;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #eef2ff;
+            line-height: 1.6;
+            color: #2d3e50;
+        }
+
+        .content-box p {
+            margin: 0;
+            min-height: 4rem;
+        }
+
+        hr {
+            margin: 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .back-link:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+            .card {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>📝 框架</h1>
+        <div class="meta">
+            <span>📚 科目/主题：readme/</span>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📖reademe</div>
+            <div class="content-box">
+                <ul>
+                    <li>Ragent 是一个企业级 Agentic RAG 平台，覆盖从文档入库到智能问答的完整链路。</li>
+                    <li>核心模块包括：Bootstrap（业务流程）、Infra-AI（AI能力封装）、Framework（基础设施）。</li>
+                    <li>Bootstrap 负责接收用户请求，调用 Infra-AI 模块处理，并返回结果。</li>
+                    <li>Infra-AI 模块提供多种 AI 能力，如意图识别、问题重写、知识检索、会话记忆、工具调用和大模型接口。</li>
+                    <li>Framework 模块提供日志、链路追踪、限流、异常处理等基础设施支持。</li>
+                    <li>知识类问题 → RAG。业务类问题 → MCP</li>
+                    <p> 
+               用户
+                 │
+                 ▼
+        ┌─────────────────┐
+        │   React 前端     │
+        │   聊天界面       │
+        └─────────────────┘
+                 │ HTTP
+                 ▼
+
+┌──────────────────────────────────────┐
+│          Bootstrap 模块              │
+│                                      │
+│ Controller                           │
+│ Service                              │
+│ Chat业务流程                         │
+└──────────────────────────────────────┘
+                 │
+                 ▼
+
+┌──────────────────────────────────────┐
+│          Infra-AI 模块               │
+│                                      │
+│ Intent（意图识别）                   │
+│ Query Rewrite（问题重写）            │
+│ RAG Search（知识检索）               │
+│ Memory（会话记忆）                   │
+│ MCP（工具调用）                      │
+│ ChatModel（大模型）                  │
+└──────────────────────────────────────┘
+                 │
+      ┌──────────┼──────────┐
+      ▼          ▼          ▼
+
+┌────────┐ ┌────────┐ ┌────────┐
+│向量数据库│ │MCP工具 │ │大模型API│
+└────────┘ └────────┘ └────────┘
+
+                 ▲
+                 │
+
+┌──────────────────────────────────────┐
+│         Framework 模块               │
+│                                      │
+│ 日志                                 │
+│ Trace链路追踪                        │
+│ 限流                                 │
+│ 异常处理                             │
+│ ID生成                               │
+│ 线程池                               │
+└──────────────────────────────────────┘</p>
+<br/>
+
+<div style="max-width: 100%;">
+            <img src="prtsc/核心设计.png" style="width:100%; height:auto; border-radius:8px;">
+        </div>
+        
+<ul>
+    <li>如果是知识库中问题</li>
+</ul>
+<p>用户提问
+    │
+    ▼
+Controller接收请求
+    │
+    ▼
+意图识别
+    │
+    ├──知识库问题
+    │
+    ▼
+问题重写
+    │
+    ▼
+知识库检索
+    │
+    ▼
+拿到相关文档
+    │
+    ▼
+组装Prompt
+    │
+    ▼
+调用大模型
+    │
+    ▼
+生成答案
+    │
+    ▼
+流式返回前端</p>
+<ul>
+    <li>如果不是知识库中问题</li>
+</ul>
+用户
+  │
+  ▼
+意图识别
+  │
+  ▼
+发现需要调用工具
+  │
+  ▼
+MCP Tool
+  │
+  ▼
+查询工单系统
+  │
+  ▼
+返回结果
+  │
+  ▼
+LLM整理答案
+  │
+  ▼
+用户</p>
+
+        
+<div style="max-width: 100%;">
+            <img src="prtsc/核心流程.png" style="width:100%; height:auto; border-radius:8px;">
+        </div>
+        
+                </ul>
+
+            </div>
+        </div>
