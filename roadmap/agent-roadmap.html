@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>agent</title>
+<title>Ragent 学习路线</title>
 
 <style>
 *{
@@ -36,6 +36,14 @@ h1{
     margin-bottom:40px;
 }
 
+.tip{
+    background:#eef6ff;
+    border-left:4px solid #4a90e2;
+    padding:16px;
+    border-radius:10px;
+    margin-bottom:30px;
+}
+
 .day-card{
     background:#fff;
     border-radius:18px;
@@ -52,7 +60,7 @@ h1{
 }
 
 .section{
-    margin-bottom:20px;
+    margin-bottom:18px;
 }
 
 .section h3{
@@ -70,9 +78,9 @@ h1{
 }
 
 .goal{
-    margin-top:10px;
+    margin-top:15px;
     background:#f7f9fc;
-    padding:12px;
+    padding:14px;
     border-radius:10px;
     color:#555;
 }
@@ -88,18 +96,6 @@ h1{
     box-shadow:0 8px 24px rgba(0,0,0,.06);
 }
 
-.back-btn:hover{
-    transform:translateY(-2px);
-}
-
-.tip{
-    background:#eef6ff;
-    border-left:4px solid #4a90e2;
-    padding:16px;
-    border-radius:10px;
-    margin-bottom:30px;
-}
-
 footer{
     margin-top:40px;
     text-align:center;
@@ -107,80 +103,315 @@ footer{
     font-size:13px;
 }
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
-<h1>🤖 Agent学习路线</h1>
 
-<p class="subtitle">
-目标：6月18日前<br>
-能看懂课程、看懂Ragent项目
-</p>
+<h1>🚀 Ragent 项目学习路线</h1>
+
+<!-- 第一阶段 -->
 
 <div class="day-card">
-<div class="day-title">阶段1（6.6 ~ 6.8）Agent入门</div>
 
+<div class="day-title">① 项目全景与启动</div>
+
+<div class="section">
+<h3>阅读内容</h3>
 <ul>
-<li>LLM是什么</li>
-<li>Token是什么</li>
-<li>Prompt是什么</li>
-<li>Agent是什么</li>
-<li>Agent和ChatGPT区别</li>
+<li>README.md</li>
+<li>pom.xml</li>
+<li>bootstrap</li>
+<li>framework</li>
+<li>infra-ai</li>
+<li>mcp-server</li>
 </ul>
+</div>
+
+<div class="section">
+<h3>需要搞懂</h3>
+<ul>
+<li>Ragent是什么</li>
+<li>解决什么问题</li>
+<li>企业为什么需要RAG平台</li>
+<li>整体模块划分</li>
+<li>主服务和MCP服务关系</li>
+</ul>
+</div>
 
 <div class="goal">
-成果：
-能够向别人解释什么是Agent。
+输出：画出项目总体架构图
 </div>
+
 </div>
+
+<!-- 第二阶段 -->
 
 <div class="day-card">
-<div class="day-title">阶段2（6.9 ~ 6.12）Agent工作流程</div>
 
+<div class="day-title">② Agent基础补齐</div>
+
+<div class="section">
+<h3>学习内容</h3>
 <ul>
+<li>LLM</li>
+<li>Prompt</li>
+<li>Agent</li>
 <li>Function Calling</li>
 <li>Tool Calling</li>
-<li>Tool Schema</li>
-<li>Agent执行流程</li>
+<li>RAG</li>
+<li>Embedding</li>
+<li>向量数据库</li>
+<li>MCP协议</li>
 </ul>
+</div>
+
+<div class="section">
+<h3>必须回答的问题</h3>
+<ul>
+<li>为什么Agent能调用工具？</li>
+<li>为什么RAG比纯LLM更准确？</li>
+<li>Embedding是什么？</li>
+<li>MCP解决什么问题？</li>
+</ul>
+</div>
 
 <div class="goal">
-成果：
-能够画出 用户→Agent→Tool→返回 过程。
+输出：建立完整Agent知识框架
 </div>
+
 </div>
+
+<!-- 第三阶段 -->
 
 <div class="day-card">
-<div class="day-title">阶段3（6.13 ~ 6.18）项目结合</div>
 
+<div class="day-title">③ 一次RAG请求怎么跑</div>
+
+<div class="section">
+<h3>阅读文件</h3>
 <ul>
-<li>RAG是什么</li>
-<li>为什么需要知识库</li>
-<li>MCP是什么（了解概念即可）</li>
-<li>结合Ragent理解Agent</li>
+<li>RAGChatController</li>
+<li>RAGChatServiceImpl</li>
+<li>StreamChatPipeline</li>
+<li>StreamChatContext</li>
 </ul>
+</div>
+
+<div class="section">
+<h3>搞懂流程</h3>
+<ul>
+<li>用户发送消息</li>
+<li>Controller接收请求</li>
+<li>Pipeline创建上下文</li>
+<li>进入检索阶段</li>
+<li>调用LLM</li>
+<li>SSE流式返回</li>
+</ul>
+</div>
 
 <div class="goal">
-成果：简历可写
+输出：画出一次聊天请求流程图
 </div>
+
 </div>
+
+<!-- 第四阶段 -->
 
 <div class="day-card">
-<div class="day-title">后续</div>
 
+<div class="day-title">④ Memory · Rewrite · Intent</div>
+
+<div class="section">
+<h3>Memory</h3>
 <ul>
-<li>LangChain</li>
-<li>LangGraph</li>
-<li>高级RAG</li>
-<li>MCP开发</li>
-<li>Agent框架源码</li>
+<li>聊天记录存储</li>
+<li>历史消息加载</li>
+<li>会话摘要</li>
 </ul>
+</div>
+
+<div class="section">
+<h3>Rewrite</h3>
+<ul>
+<li>Query Rewrite</li>
+<li>问题改写</li>
+<li>问题拆分</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>Intent</h3>
+<ul>
+<li>意图识别</li>
+<li>意图树</li>
+<li>Redis缓存</li>
+</ul>
+</div>
 
 <div class="goal">
-不优先
+面试表达：支持多轮记忆、问题改写、意图识别
 </div>
+
+</div>
+
+<!-- 第五阶段 -->
+
+<div class="day-card">
+
+<div class="day-title">⑤ RAG核心（最重要）</div>
+
+<div class="section">
+<h3>阅读模块</h3>
+<ul>
+<li>RetrievalEngine</li>
+<li>MultiChannelRetrievalEngine</li>
+<li>PgRetrieverService</li>
+<li>PgVectorStoreService</li>
+<li>RerankPostProcessor</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>必须搞懂</h3>
+<ul>
+<li>文档如何向量化</li>
+<li>Embedding生成</li>
+<li>向量库存储</li>
+<li>向量检索</li>
+<li>多路检索</li>
+<li>Rerank重排</li>
+<li>最终召回文档</li>
+</ul>
+</div>
+
+<div class="goal">
+输出：画出完整RAG流程图
+</div>
+
+</div>
+
+<!-- 第六阶段 -->
+
+<div class="day-card">
+
+<div class="day-title">⑥ 文档入库Pipeline</div>
+
+<div class="section">
+<h3>阅读模块</h3>
+<ul>
+<li>IngestionEngine</li>
+<li>FetcherNode</li>
+<li>ParserNode</li>
+<li>ChunkerNode</li>
+<li>IndexerNode</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>理解流程</h3>
+<ul>
+<li>文档获取</li>
+<li>文档解析</li>
+<li>Chunk切分</li>
+<li>Embedding生成</li>
+<li>向量索引写入</li>
+</ul>
+</div>
+
+<div class="goal">
+面试亮点：自动化文档入库Pipeline
+</div>
+
+</div>
+
+<!-- 第七阶段 -->
+
+<div class="day-card">
+
+<div class="day-title">⑦ MCP与Agent工具调用</div>
+
+<div class="section">
+<h3>阅读模块</h3>
+<ul>
+<li>McpToolExecutor</li>
+<li>DefaultMcpToolRegistry</li>
+<li>McpClientToolExecutor</li>
+<li>WeatherMcpExecutor</li>
+<li>TicketMcpExecutor</li>
+<li>SalesMcpExecutor</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>理解流程</h3>
+<ul>
+<li>LLM发现需要工具</li>
+<li>提取参数</li>
+<li>调用MCP工具</li>
+<li>执行结果返回</li>
+<li>结果注入Prompt</li>
+<li>LLM生成最终回答</li>
+</ul>
+</div>
+
+<div class="goal">
+输出：Agent调用工具流程图
+</div>
+
+</div>
+
+<!-- 第八阶段 -->
+
+<div class="day-card">
+
+<div class="day-title">⑧ 工程化能力与简历整理</div>
+
+<div class="section">
+<h3>了解模块</h3>
+<ul>
+<li>Redis限流</li>
+<li>公平排队</li>
+<li>任务取消</li>
+<li>Trace链路追踪</li>
+<li>RocketMQ</li>
+<li>幂等控制</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>整理内容</h3>
+<ul>
+<li>项目亮点</li>
+<li>项目架构图</li>
+<li>RAG流程图</li>
+<li>MCP流程图</li>
+<li>简历项目描述</li>
+</ul>
+</div>
+</div>
+
+<!-- 最终成果 -->
+
+<div class="day-card">
+
+<div class="day-title">🎯 最终/div>
+
+<div class="section">
+<ul>
+<li>讲清楚Ragent整体架构</li>
+<li>讲清楚RAG工作流程</li>
+<li>讲清楚Embedding与向量检索</li>
+<li>讲清楚Query Rewrite和Intent</li>
+<li>讲清楚MCP工具调用流程</li>
+<li>讲清楚项目亮点与技术栈</li>
+</ul>
+</div>
+
+<div class="goal">
+技术栈：SpringBoot + PostgreSQL + Redis + RocketMQ + pgvector + OpenAI兼容模型
 </div>
 
 </div>
@@ -190,7 +421,7 @@ footer{
 </a>
 
 <footer>
-One day at a time.
+Understand the architecture, not every line of code.
 </footer>
 
 </div>
