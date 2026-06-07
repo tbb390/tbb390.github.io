@@ -136,14 +136,66 @@
         <h1>📝 每日学习概览</h1>
         <div class="meta">
             <span>📅 日期：2026/06/07</span>
-            <span>⏱️ 时长：____小时</span>
-            <span>📚 科目/主题：ragent/agent/计网/os</span>
+            <span>⏱️ 时长：2+3+2.5小时</span>
+            <span>📚 科目/主题：ragent/agent/计网</span>
         </div>
 
         <div class="section">
             <div class="section-title">📖agent</div>
             <div class="content-box">
-                <p></p>
+                <ul>
+    <li><strong>Function Calling / Tools：</strong>执行层机制，负责生成结构化工具调用请求。</li>
+
+    <li><strong>Tool Schema：</strong>工具说明书，包含 name、description、parameters。</li>
+
+    <li><strong>Tool Calling：</strong>Function Calling 的通用名称，本质一致。</li>
+
+    <li><strong>Agent执行流程：</strong>
+        用户 → Agent → Tool → Tool Result → LLM → 用户
+    </li>
+
+    <li><strong>ReAct：</strong>Reason + Act，通过「思考→行动→观察」循环完成任务。</li>
+
+    <li><strong>RAG：</strong>Retrieval Augmented Generation（检索增强生成）。</li>
+
+    <li><strong>为什么需要RAG：</strong>解决知识过时、幻觉问题，让回答基于真实知识库。</li>
+
+    <li><strong>Embedding：</strong>将文本转换为向量表示。</li>
+
+    <li><strong>向量数据库：</strong>存储Embedding，实现语义检索。</li>
+
+    <li><strong>检索增强生成流程：</strong>
+        问题 → Embedding → 向量检索 → 知识召回 → LLM生成答案
+    </li>
+
+    <li><strong>MCP：</strong>Model Context Protocol，工具标准化接入协议。</li>
+
+    <li><strong>MCP作用：</strong>统一工具接入方式，降低系统与工具耦合。</li>
+
+    <li><strong>Skill：</strong>策略文档（Prompt），告诉模型如何思考、如何使用工具。</li>
+
+    <li><strong>Skill与MCP区别：</strong>
+        MCP负责接入能力；
+        Skill负责使用能力。
+    </li>
+
+    <li><strong>三层结构：</strong>
+        Skill（策略层） →
+        MCP（接入层） →
+        Function Calling / Tools（执行层）
+    </li>
+
+    <li><strong>三句话记忆：</strong>
+        Function Calling 是机制；
+        MCP 是接入协议；
+        Skill 是策略文档。
+    </li>
+
+    <li><strong>结合Ragent理解Agent：</strong>
+        Agent = LLM + Prompt + Tool + RAG + MCP。
+    </li>
+
+</ul>
             </div>
         </div>
 
@@ -164,8 +216,7 @@
         <div style="max-width: 100%;">
             <img src="/prtsc/threestate.png" style="width:100%; height:auto; border-radius:8px;">
         </div>
-        <li>Infra-AI 模块学习</li>
-
+l
             </div>
         </div>
 
@@ -173,14 +224,72 @@
         <div class="section">
             <div class="section-title">🤔计网</div>
             <div class="content-box">
-                <p></p>
-            </div>
-        </div>
+                <div class="network-summary">
+  <h2>计算机网络笔记：静态路由、VLAN与三层交换机</h2>
 
-        <div class="section">
-            <div class="section-title">📌 os</div>
-            <div class="content-box">
-                <p></p>
+  <ul>
+    <li><strong>静态路由</strong>
+      <ul>
+        <li>管理员手动配置路由表，适用于小型网络。</li>
+        <li>优点：简单、开销小。</li>
+        <li>缺点：无法自动适应网络拓扑或流量变化。</li>
+        <li>错误配置可能导致网络故障或路由环路。</li>
+      </ul>
+      <img src="/prtsc/staticlu.png" alt="静态路由示例图" style="max-width:100%;"/>
+    </li>
+
+    <li><strong>默认路由</strong>
+      <ul>
+        <li>路由条目：0.0.0.0/0</li>
+        <li>当路由表中没有匹配路由时使用</li>
+        <li>通常用于访问外网或未知网络</li>
+      </ul>
+      <img src="/prtsc/moren.png" alt="默认路由示例图" style="max-width:100%;"/>
+    </li>
+
+    <li><strong>特定主机路由</strong>
+      <ul>
+        <li>配置/32路由，如192.168.2.1/32</li>
+        <li>遵循最长前缀匹配原则，优先级高于网络路由和默认路由</li>
+      </ul>
+      <img src="/prtsc/special.png" alt="特定主机路由示例图" style="max-width:100%;"/>
+    </li>
+
+    <li><strong>路由环路</strong>
+      <ul>
+        <li>数据包在多个路由器之间循环转发</li>
+        <li>常见原因：静态路由配置错误</li>
+        <li>防止永久循环：TTL字段每经过路由器减1，TTL=0时丢弃数据包</li>
+      </ul>
+      <img src="/prtsc/question.png" alt="静态路由环路示例图" style="max-width:100%;"/>
+    </li>
+
+    <li><strong>VLAN作用</strong>
+      <ul>
+        <li>划分广播域，实现网络隔离</li>
+        <li>减少广播流量，提高网络效率</li>
+        <li>同一VLAN内主机可直接二层通信，不同VLAN默认不能通信</li>
+      </ul>
+    </li>
+
+    <li><strong>SVI（Switch Virtual Interface / VLANIF）</strong>
+      <ul>
+        <li>三层交换机创建VLAN后自动生成逻辑三层接口</li>
+        <li>配置IP地址后产生直连路由</li>
+        <li>通常作为该VLAN主机的默认网关</li>
+        <li>用于实现不同VLAN之间通信</li>
+      </ul>
+    </li>
+
+    <li><strong>三层交换机</strong>
+      <ul>
+        <li>同时具备交换机和路由器功能</li>
+        <li>负责不同VLAN之间的数据转发</li>
+        <li>性能通常高于传统路由器</li>
+      </ul>
+    </li>
+  </ul>
+</div>
             </div>
         </div>
 
