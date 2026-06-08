@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>每日学习概览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            padding: 2rem 2rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f4870, #2b5c8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            border-bottom: 1px dashed #e2edf2;
+            padding-bottom: 1rem;
+        }
+
+        .meta span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .section {
+            margin: 1.8rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f4870;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-box {
+            background: #fafcff;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #eef2ff;
+            line-height: 1.6;
+            color: #2d3e50;
+        }
+
+        .content-box p {
+            margin: 0;
+            min-height: 4rem;
+        }
+
+        hr {
+            margin: 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .back-link:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+            .card {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>📝 每日学习概览</h1>
+        <div class="meta">
+            <span>📅 日期：2026/6/8</span>
+            <span>⏱️ 时长：5小时</span>
+            <span>📚 科目/主题：ragent/agent/计网</span>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📖 ragent大框架与streamchatpipeline</div>
+            <div class="content-box">
+              <ul>
+  <li><strong>全局架构理解</strong>
+    <ul>
+      <li>Ragent 前端：React + TypeScript + Vite，提供聊天界面和管理后台。</li>
+      <li>Bootstrap：主业务服务，包含 RAG、知识库、入库 Pipeline、用户/后台模块。</li>
+      <li>StreamChatPipeline：Agent 核心流水线，负责处理用户问题到 LLM 输出。</li>
+      <li>Memory：会话历史和摘要，存储在 PostgreSQL + Redis。</li>
+      <li>Retrieval：向量检索，支持 pgvector 和 Milvus。</li>
+      <li>MCP：工具服务，独立 MCP Server 提供 Weather、Ticket、Sales。</li>
+      <li>LLM + Prompt：通过 infra-ai 层统一调用模型（Qwen、DeepSeek、Ollama、BaiLian 等）。</li>
+      <li>Framework：提供基础能力，包括 Redis、RocketMQ、Trace、幂等、ID、异常处理、Sa-Token。</li>
+    </ul>
+  </li>
+
+  <li><strong>StreamChatPipeline 流水线概览</strong>
+    <ul>
+      <li>主要阶段：
+        <ul>
+          <li>Memory → Rewrite → Intent → Guidance → System → Retrieval → Prompt → LLM → SSE</li>
+        </ul>
+      </li>
+      <li>阶段内部并行：
+        <ul>
+          <li>Memory：历史消息 + 摘要并发加载</li>
+          <li>Rewrite：拆分后的子问题并行改写</li>
+          <li>Intent：多个子问题并行意图识别</li>
+          <li>Retrieval：
+            <ul>
+              <li>KB检索内部并行（多知识库、多个子意图）</li>
+              <li>MCP工具调用内部并行（多个工具 + 参数抽取）</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>短路机制：
+        <ul>
+          <li>Guidance：意图置信度低 → 短路 → SSE 返回澄清问题</li>
+          <li>System：命中 SYSTEM 意图 → 跳过 KB/MCP → 直接 LLM 生成答案 → SSE 返回</li>
+          <li>Retrieval：KB+MCP 都为空 → 短路 → SSE 返回空答或降级提示</li>
+        </ul>
+      </li>
+      <li>Prompt 与 LLM 输出：
+        <ul>
+          <li>如果 KB/MCP 有结果 → 汇总 KB Context + MCP Context → Prompt 编排 → LLM → SSE</li>
+          <li>System Intent 也会经过 Prompt + LLM → SSE，只是跳过检索</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+
+  <li><strong>第五步 System Intent</strong>
+    <ul>
+      <li>作用：无需外部知识或工具即可回答问题</li>
+      <li>流程：Memory → Rewrite → Intent → System → LLM → SSE</li>
+      <li>例如：
+        <ul>
+          <li>闲聊（你好、谢谢）</li>
+          <li>常识性问题（TCP三次握手）</li>
+        </ul>
+      </li>
+      <li>仍然会经过 Prompt 和 LLM，只是跳过检索阶段</li>
+    </ul>
+  </li>
+
+  <li><strong>KB/MCP 并行处理</strong>
+    <ul>
+      <li>KB：多知识库/多collection/子问题并行检索 → 去重 → Rerank → KB Context</li>
+      <li>MCP：多工具并行调用 → 参数抽取 → MCP Context</li>
+      <li>汇总：
+        <ul>
+          <li>KB+MCP 都为空 → SSE快速返回空答或降级提示</li>
+          <li>有结果 → Prompt 编排 → LLM → SSE</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+
+  <li><strong>总结理解</strong>
+    <ul>
+      <li>StreamChatPipeline 主流程串行，但阶段内部可并行</li>
+      <li>第四步 Guidance 和第五步 System 主要是条件判断和短路，不并行</li>
+      <li>检索阶段（第六步）是真正的并行处理阶段，KB 和 MCP 可同时执行</li>
+      <li>整个 Pipeline 可以理解成一个带条件分支和短路机制的状态流</li>
+      <li>官方接入层 → 编排层（Pipeline） → 模型层（infra-ai LLM/Embedding/Rerank） → 数据层（PostgreSQL/Redis/Milvus/MCP Server）</li>
+    </ul>
+  </li>
+</ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">💡计算机网络</div>
+            <div class="content-box">
+              <ul>
+  <li>
+    <strong>DHCP（动态主机配置协议）</strong>
+    <ul>
+      <li>作用：自动为主机分配 IP 地址、子网掩码、默认网关、DNS 等网络参数。</li>
+      <li>工作流程：Discover（发现）→ Offer（提供）→ Request（请求）→ ACK（确认）。</li>
+      <li>优点：减少手动配置，提高地址管理效率。</li>
+      <li>重点理解：设备开机后能够自动获取 IP 并接入网络。</li>
+    </ul>
+  </li>
+
+  <li>
+    <strong>DNS（域名系统）</strong>
+    <ul>
+      <li>作用：将域名解析为 IP 地址。</li>
+      <li>例如：访问 www.example.com 时，DNS 负责找到对应服务器 IP。</li>
+      <li>相当于互联网中的“电话簿”或“翻译器”。</li>
+      <li>重点理解：用户记域名，计算机通过 IP 通信。</li>
+    </ul>
+  </li>
+
+  <li>
+    <strong>FTP（文件传输协议）</strong>
+    <ul>
+      <li>作用：在客户端与服务器之间传输文件。</li>
+      <li>支持文件上传、下载和管理。</li>
+      <li>常用端口：21（控制连接）。</li>
+      <li>重点理解：实现网络中的文件共享与传输。</li>
+    </ul>
+  </li>
+
+  <li>
+    <strong>HTTP（超文本传输协议）</strong>
+    <ul>
+      <li>作用：浏览器与 Web 服务器之间传输网页数据。</li>
+      <li>访问网站时主要使用 HTTP/HTTPS 协议。</li>
+      <li>常用端口：80（HTTP）、443（HTTPS）。</li>
+      <li>重点理解：网页访问本质上是浏览器与服务器之间的数据交换。</li>
+    </ul>
+  </li>
+
+  <li>
+    <strong>Trunk</strong>
+    <ul>
+      <li>用于在一条物理链路上传输多个 VLAN 的数据。</li>
+      <li>常见于交换机与交换机之间的连接。</li>
+      <li>通过 VLAN 标签区分不同 VLAN 的数据帧。</li>
+      <li>重点理解：一根网线承载多个 VLAN 的通信。</li>
+    </ul>
+  </li>
+
+  <li>
+    <strong>SVI（交换虚拟接口）</strong>
+    <ul>
+      <li>是三层交换机上对应 VLAN 的虚拟接口。</li>
+      <li>每个 VLAN 可以拥有自己的网关地址。</li>
+      <li>用于实现不同 VLAN 之间的三层通信。</li>
+      <li>重点理解：SVI 是 VLAN 的逻辑网关。</li>
+    </ul>
+  </li>
+
+  <li>
+    <strong>学习目标</strong>
+    <ul>
+      <li>理解 DHCP 自动分配 IP 的工作原理。</li>
+      <li>理解 DNS 域名解析过程。</li>
+      <li>了解 FTP 与 HTTP 的应用场景。</li>
+      <li>理解 Trunk 在 VLAN 间传输数据的作用。</li>
+      <li>理解 SVI 作为 VLAN 网关实现跨 VLAN 通信。</li>
+    </ul>
+  </li>
+</ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">🤔agent</div>
+            <div class="content-box">
+                <ul>
+  <li><strong>Agent 概念</strong>
+    <ul>
+      <li>Agent = LLM + Memory + Planning + Tool + Execution。</li>
+      <li>能够自主完成任务，而不仅仅是回答问题。</li>
+    </ul>
+  </li>
+
+  <li><strong>Memory（记忆）</strong>
+    <ul>
+      <li>保存历史对话和上下文。</li>
+      <li>支持长期记忆和短期记忆。</li>
+    </ul>
+  </li>
+
+  <li><strong>Intent（意图识别）</strong>
+    <ul>
+      <li>理解用户真正想做什么。</li>
+      <li>决定后续执行方向。</li>
+    </ul>
+  </li>
+
+  <li><strong>Planning（任务规划）</strong>
+    <ul>
+      <li>将复杂任务拆分为多个步骤。</li>
+      <li>决定执行顺序和策略。</li>
+    </ul>
+  </li>
+
+  <li><strong>Routing（路由决策）</strong>
+    <ul>
+      <li>根据任务选择知识库、工具或直接回答。</li>
+      <li>属于 Agent 的决策能力。</li>
+    </ul>
+  </li>
+
+  <li><strong>Retrieval（知识检索）</strong>
+    <ul>
+      <li>从外部知识库获取信息。</li>
+      <li>解决大模型知识时效性问题。</li>
+    </ul>
+  </li>
+
+  <li><strong>Tool Calling（工具调用）</strong>
+    <ul>
+      <li>调用外部 API、数据库或系统工具。</li>
+      <li>扩展大模型能力边界。</li>
+    </ul>
+  </li>
+
+  <li><strong>Execution（任务执行）</strong>
+    <ul>
+      <li>执行检索、工具调用或工作流。</li>
+      <li>获取执行结果。</li>
+    </ul>
+  </li>
+
+  <li><strong>Reflection（反思）</strong>
+    <ul>
+      <li>检查结果是否正确。</li>
+      <li>必要时重新规划和执行。</li>
+    </ul>
+  </li>
+
+  <li><strong>Agent 基本流程</strong>
+    <ul>
+      <li>Memory → Intent → Planning → Routing → Retrieval/Tool → Execution → Reflection → Response</li>
+    </ul>
+  </li>
+</ul>
+            </div>
+        </div>
+
+        <hr />
+        <a href="index.html" class="back-link">← 返回学习主页</a>
+    </div>
+</div>
+</body>
+</html>
