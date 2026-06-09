@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>每日学习概览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            padding: 2rem 2rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f4870, #2b5c8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            border-bottom: 1px dashed #e2edf2;
+            padding-bottom: 1rem;
+        }
+
+        .meta span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .section {
+            margin: 1.8rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f4870;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-box {
+            background: #fafcff;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #eef2ff;
+            line-height: 1.6;
+            color: #2d3e50;
+        }
+
+        .content-box p {
+            margin: 0;
+            min-height: 4rem;
+        }
+
+        hr {
+            margin: 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .back-link:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+            .card {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>📝 每日学习概览</h1>
+        <div class="meta">
+            <span>📅 日期：2026/6/9</span>
+            <span>⏱️ 时长：6h</span>
+            <span>📚 科目/主题：ragent/agent/计网</span>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📖 ragent</div>
+            <div class="content-box">
+                <h3>Retrieval 检索链路</h3>
+<ul>
+    <li><strong>RetrievalEngine</strong>：检索总入口，负责根据意图组织知识库检索流程。</li>
+    <li><strong>MultiChannelRetrievalEngine</strong>：多通道检索引擎，可同时从多个检索通道召回知识。</li>
+    <li><strong>SearchChannel</strong>：检索通道抽象，主要包括意图定向检索和全局向量检索。</li>
+    <li><strong>EmbeddingService</strong>：将用户问题转换为向量（QuestionVector）。</li>
+    <li><strong>PgRetrieverService</strong>：使用问题向量在 pgvector 中执行向量相似度搜索。</li>
+    <li><strong>TopK Chunk</strong>：从向量库中召回最相关的若干文本块（Chunk）。</li>
+    <li><strong>DeduplicationPostProcessor</strong>：对召回结果进行去重，减少重复内容。</li>
+    <li><strong>RerankPostProcessor</strong>：调用 Rerank 模型重新排序，提高检索结果质量。</li>
+    <li><strong>检索链路</strong>：Question → Embedding → Vector Search → TopK Chunk → Dedup → Rerank。</li>
+    <li><strong>作用</strong>：为后续 Prompt 构建提供最相关、最精炼的知识上下文。</li>
+</ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">💡 计网</div>
+            <div class="content-box">
+               <ul>
+  <li>
+    <strong>NAT（网络地址转换）</strong>
+    <ul>
+      <li>作用：将私有 IP 地址转换为公网 IP 地址，实现内网访问互联网。</li>
+      <li>解决公网 IP 不足的问题，提高网络地址利用率。</li>
+      <li>内网用户访问外网时，数据包会经过 NAT 转换。</li>
+      <li>重点理解：隐藏内部网络结构，实现私网与公网通信。</li>
+    </ul>
+  </li>
+
+  <li>
+    <strong>PAT（端口地址转换）</strong>
+    <ul>
+      <li>是 NAT 的一种特殊形式，也称为 NAPT 或端口复用。</li>
+      <li>多个内网主机共享同一个公网 IP 地址访问互联网。</li>
+      <li>通过不同的端口号区分不同主机的连接。</li>
+      <li>重点理解：一个公网 IP 支持多个设备同时上网。</li>
+    </ul>
+  </li>
+
+  <li>
+    <strong>ACL（访问控制列表）</strong>
+    <ul>
+      <li>作用：根据规则允许或拒绝网络流量通过。</li>
+      <li>可基于源 IP、目标 IP、协议类型、端口号等进行控制。</li>
+      <li>常用于流量过滤、访问限制和安全策略配置。</li>
+      <li>重点理解：ACL 本质上是一组“允许/拒绝”规则。</li>
+    </ul>
+  </li>
+
+  <li>
+    <strong>DMZ（隔离区）</strong>
+    <ul>
+      <li>位于内网与互联网之间的缓冲区域。</li>
+      <li>通常部署 Web、FTP、DNS 等对外提供服务的服务器。</li>
+      <li>即使 DMZ 服务器被攻击，也能降低对内部网络的影响。</li>
+      <li>重点理解：DMZ 用于隔离公网与内网，提高安全性。</li>
+    </ul>
+  </li>
+
+            </div>
+        </div>
+
+
+        <div class="section">
+            <div class="section-title">🤔 agent</div>
+            <div class="content-box">
+                <h3>Agent：检索增强生成（RAG）核心知识</h3>
+<ul>
+    <li><strong>Embedding</strong>：将自然语言转换为向量表示，便于语义检索。</li>
+    <li><strong>Vector Search</strong>：通过向量相似度而非关键词匹配寻找相关知识。</li>
+    <li><strong>Recall（召回）</strong>：从大量知识中快速找出候选结果。</li>
+    <li><strong>Rerank（重排）</strong>：对召回结果进行二次排序，提高准确率。</li>
+    <li><strong>Chunk</strong>：知识库中的最小检索单元，通常是一段文本。</li>
+    <li><strong>TopK</strong>：保留相似度最高的 K 条结果进入后续处理流程。</li>
+    <li><strong>Dedup</strong>：去除重复或高度相似内容，节省上下文窗口。</li>
+    <li><strong>Embedding 与 Rerank 的区别</strong>：Embedding 负责召回，Rerank 负责精排。</li>
+    <li><strong>RAG 检索流程</strong>：Question → Embedding → Vector Search → Recall → Dedup → Rerank → Prompt → LLM。</li>
+</ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📌概率论</div>
+            <div class="content-box">
+                <h3>📚 第一章：随机事件与概率</h3>
+
+<ul>
+    <li><strong>随机试验：</strong>结果不确定但可重复进行的试验。</li>
+
+    <li><strong>样本空间 Ω：</strong>随机试验所有可能结果组成的集合。</li>
+
+    <li><strong>样本点：</strong>样本空间中的一个基本结果。</li>
+
+    <li><strong>随机事件：</strong>样本空间的子集。</li>
+
+    <li><strong>必然事件：</strong>Ω，一定发生。</li>
+
+    <li><strong>不可能事件：</strong>∅，一定不发生。</li>
+
+    <li><strong>事件运算：</strong>并(∪)、交(∩)、差(-)、对立(Ā)。</li>
+
+    <li><strong>互斥事件：</strong>A∩B=∅，不能同时发生。</li>
+
+    <li><strong>对立事件：</strong>A∩B=∅ 且 A∪B=Ω。</li>
+
+    <li><strong>古典概率：</strong>在有限且等可能条件下，
+        P(A)=有利情况数/总情况数。
+    </li>
+
+    <li><strong>常用计数方法：</strong>加法原理、乘法原理、排列、组合。</li>
+
+    <li><strong>解题步骤：</strong>先求样本空间，再求有利情况数，最后利用古典概率公式计算。</li>
+</ul>
+            </div>
+        </div>
+
+        <hr />
+        <a href="index.html" class="back-link">← 返回学习主页</a>
+    </div>
+</div>
+</body>
+</html>
