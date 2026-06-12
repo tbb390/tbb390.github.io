@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>每日学习概览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            padding: 2rem 2rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f4870, #2b5c8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            border-bottom: 1px dashed #e2edf2;
+            padding-bottom: 1rem;
+        }
+
+        .meta span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .section {
+            margin: 1.8rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f4870;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-box {
+            background: #fafcff;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #eef2ff;
+            line-height: 1.6;
+            color: #2d3e50;
+        }
+
+        .content-box p {
+            margin: 0;
+            min-height: 4rem;
+        }
+
+        hr {
+            margin: 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .back-link:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+            .card {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>📝 每日学习概览</h1>
+        <div class="meta">
+            <span>📅 日期：2026/6/12</span>
+            <span>⏱️ 时长：2+3+3小时</span>
+            <span>📚 科目/主题：os/ragent/agent/概率论</span>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📖 os</div>
+            <div class="content-box">
+               <h2>操作系统期末复习笔记</h2>
+
+<h3>第一章 操作系统引论</h3>
+
+<ul>
+    <li>
+        <strong>操作系统定义</strong>
+        <ul>
+            <li>操作系统（OS）是管理计算机硬件和软件资源的软件。</li>
+            <li>是用户与计算机硬件之间的接口。</li>
+            <li>操作系统位于用户与硬件之间。</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>操作系统发展过程</strong>
+        <ul>
+            <li>无操作系统</li>
+            <li>单道批处理系统</li>
+            <li>多道批处理系统（操作系统成熟标志）</li>
+            <li>分时系统</li>
+            <li>实时系统</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>分时系统特点</strong>
+        <ul>
+            <li>多路性：多个用户同时使用系统。</li>
+            <li>独占性：用户感觉独占主机。</li>
+            <li>及时性：短时间内获得响应。</li>
+            <li>交互性：边运行边操作程序。</li>
+            <li><strong>考试重点：交互性。</strong></li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>实时系统特点</strong>
+        <ul>
+            <li>在规定时间内完成任务。</li>
+            <li>广泛用于工业控制、航空航天等领域。</li>
+            <li><strong>考试重点：及时性。</strong></li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>操作系统四大特征</strong>
+        <ul>
+            <li>并发性（最重要）</li>
+            <li>共享性</li>
+            <li>虚拟性</li>
+            <li>异步性</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>并发与并行</strong>
+        <ul>
+            <li>并发：多个任务在同一时间段内交替执行。</li>
+            <li>并行：多个任务在同一时刻同时执行。</li>
+            <li>记忆：并发是假同时，并行是真同时。</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>共享性</strong>
+        <ul>
+            <li>多个进程共同使用系统资源。</li>
+            <li>并发与共享互为存在条件。</li>
+            <li>没有并发就没有共享。</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>操作系统五大功能</strong>
+        <ul>
+            <li>进程管理（管理CPU）</li>
+            <li>存储管理（管理内存）</li>
+            <li>设备管理（管理I/O设备）</li>
+            <li>文件管理（管理文件）</li>
+            <li>用户接口（人机交互）</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>第一章考试速记</strong>
+        <ul>
+            <li>成熟标志：多道批处理系统。</li>
+            <li>分时系统重点：交互性。</li>
+            <li>实时系统重点：及时性。</li>
+            <li>四大特征：并发、共享、虚拟、异步。</li>
+            <li>五大功能：进程、存储、设备、文件、接口。</li>
+        </ul>
+    </li>
+</ul>
+
+<hr>
+
+<h3>第二章 进程管理（第一部分）</h3>
+
+<ul>
+
+    <li>
+        <strong>进程（Process）</strong>
+        <ul>
+            <li>进程是程序的一次执行过程。</li>
+            <li>进程是资源分配和调度的基本单位。</li>
+            <li>每个进程拥有唯一PID（进程标识符）。</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>程序与进程区别</strong>
+        <ul>
+            <li>程序是静态的，进程是动态的。</li>
+            <li>程序长期保存在外存，进程具有生命周期。</li>
+            <li>程序不是资源分配单位，进程是资源分配单位。</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>进程组成</strong>
+        <ul>
+            <li>PCB（进程控制块）</li>
+            <li>程序段</li>
+            <li>数据段</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>PCB（Process Control Block）</strong>
+        <ul>
+            <li>PCB是进程存在的唯一标志。</li>
+            <li>操作系统通过PCB管理进程。</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>PCB主要内容</strong>
+        <ul>
+            <li>进程标识符PID</li>
+            <li>进程状态信息</li>
+            <li>程序计数器PC</li>
+            <li>寄存器信息</li>
+            <li>资源分配信息</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>程序计数器（PC）</strong>
+        <ul>
+            <li>记录下一条即将执行的指令地址。</li>
+            <li>CPU依靠PC实现程序顺序执行。</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>进程特征</strong>
+        <ul>
+            <li>动态性（最基本特征）</li>
+            <li>并发性</li>
+            <li>独立性</li>
+            <li>异步性</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>进程三种基本状态</strong>
+        <ul>
+            <li>运行态（Running）—— 正在占用CPU。</li>
+            <li>就绪态（Ready）—— 已具备运行条件，只缺CPU。</li>
+            <li>阻塞态（Blocked）—— 等待某事件发生。</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>状态转换</strong>
+        <ul>
+            <li>就绪 → 运行：获得CPU。</li>
+            <li>运行 → 就绪：时间片用完。</li>
+            <li>运行 → 阻塞：请求I/O或等待资源。</li>
+            <li>阻塞 → 就绪：I/O完成或资源到达。</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>进程控制原语</strong>
+        <ul>
+            <li>创建原语：建立PCB，创建进程。</li>
+            <li>撤销原语：终止进程并回收资源。</li>
+            <li>阻塞原语：运行态→阻塞态。</li>
+            <li>唤醒原语：阻塞态→就绪态。</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>原语特点</strong>
+        <ul>
+            <li>执行过程不可中断。</li>
+            <li>具有原子性。</li>
+            <li>通常通过关中断实现。</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>进程切换（Context Switch）</strong>
+        <ul>
+            <li>保存当前进程运行现场。</li>
+            <li>选择新的进程运行。</li>
+            <li>恢复新进程运行环境。</li>
+            <li>本质：保存现场 + 恢复现场。</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>第二章前半部分考试速记</strong>
+        <ul>
+            <li>PCB是进程存在的唯一标志。</li>
+            <li>动态性是进程最基本特征。</li>
+            <li>就绪态：除CPU外资源全部满足。</li>
+            <li>阻塞态不能直接获得CPU。</li>
+            <li>运行→阻塞：等待I/O。</li>
+            <li>阻塞→就绪：I/O完成。</li>
+            <li>原语执行不可中断。</li>
+            <li>进程切换：保存现场 + 恢复现场。</li>
+        </ul>
+    </li>
+
+</ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">💡ragent</div>
+            <div class="content-box">
+                <h2>📅 Ragent 学习记录（Prompt → LLM → SSE）</h2>
+
+<h3>Prompt 阶段</h3>
+<ul>
+    <li>Retrieval 负责检索资料，不负责生成答案。</li>
+    <li>系统会收集 Question、Memory、KB Context、MCP Context。</li>
+    <li>所有上下文统一进入 PromptContext。</li>
+</ul>
+
+<h3>RAGPromptService</h3>
+<ul>
+    <li>负责组织上下文并生成最终 Prompt。</li>
+    <li>根据场景选择对应 PromptTemplate。</li>
+</ul>
+
+<h3>PromptTemplate</h3>
+<ul>
+    <li>定义 Prompt 格式。</li>
+    <li>常见场景：KB、MCP、KB+MCP、System。</li>
+    <li>RAGPromptService 负责向模板填充数据。</li>
+</ul>
+
+<h3>Memory 管理</h3>
+<ul>
+    <li>Memory 最终会进入 Prompt。</li>
+    <li>保留最近几轮对话。</li>
+    <li>历史内容通过 Summary 压缩。</li>
+    <li>最终以「摘要 + 最近对话」形式参与生成。</li>
+</ul>
+
+<h3>LLMService</h3>
+<ul>
+    <li>模型调用统一入口。</li>
+    <li>负责发起 streamChat 请求。</li>
+</ul>
+
+<h3>RoutingLLMService</h3>
+<ul>
+    <li>负责模型路由。</li>
+    <li>支持多模型选择、降级和切换。</li>
+</ul>
+
+<h3>ChatClient</h3>
+<ul>
+    <li>真正调用模型 API 的组件。</li>
+    <li>负责发送 HTTP 请求并接收模型返回。</li>
+    <li>屏蔽不同模型厂商接口差异。</li>
+</ul>
+
+<h3>Streaming</h3>
+<ul>
+    <li>模型按 Token 流式生成内容。</li>
+    <li>用户无需等待完整回答生成。</li>
+</ul>
+
+<h3>SSE</h3>
+<ul>
+    <li>Server-Sent Events，服务器主动推送消息。</li>
+    <li>适用于大模型流式输出场景。</li>
+</ul>
+
+<h3>SseEmitterSender</h3>
+<ul>
+    <li>基于 Spring SseEmitter 的业务封装。</li>
+    <li>负责将模型生成的 Token 实时推送给前端。</li>
+</ul>
+            </div>
+        </div>
+
+        
+        <div class="section">
+            <div class="section-title">🤔 概率</div>
+            <div class="content-box">
+             <h3>📚 第一章：概率论基本概念（重点公式）</h3>
+
+<ul>
+    <li>
+        <strong>概率加法公式</strong><br>
+        P(A∪B)=P(A)+P(B)-P(AB)
+    </li>
+
+    <li>
+        <strong>概率乘法公式</strong><br>
+        P(AB)=P(A)P(B|A)
+    </li>
+
+    <li>
+        <strong>条件概率</strong><br>
+        P(B|A)=P(AB)/P(A)，其中 P(A)>0
+    </li>
+
+    <li>
+        <strong>完备事件组</strong><br>
+        A₁,A₂,...,Aₙ两两互斥，且A₁∪A₂∪...∪Aₙ=Ω。
+    </li>
+
+    <li>
+        <strong>全概率公式</strong><br>
+        当A₁,A₂,...,Aₙ构成完备事件组时：<br>
+        P(B)=ΣP(Aᵢ)P(B|Aᵢ)
+    </li>
+
+    <li>
+        <strong>贝叶斯公式</strong><br>
+        P(Aᵢ|B)=P(Aᵢ)P(B|Aᵢ)/P(B)
+    </li>
+
+    <li>
+        <strong>划分思想</strong><br>
+        遇到“来源不明确”的问题，优先寻找完备事件组进行划分，再使用全概率或贝叶斯公式求解。
+    </li>
+
+    <li>
+        <strong>典型题型</strong><br>
+        三个厂家、三条生产线、三家医院等来源分类问题。
+    </li>
+</ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📌agent</div>
+            <div class="content-box">
+  <h2>🤖 Agent 通用知识（Prompt 与模型调用）</h2>
+
+<ul>
+    <li>Agent 前半段负责收集上下文，后半段负责生成答案。</li>
+    <li>Prompt 是大模型真正接收到的输入。</li>
+    <li>PromptTemplate 用于规范 Prompt 格式。</li>
+    <li>Memory 通常需要摘要压缩后再进入 Prompt。</li>
+    <li>模型调用层通常通过统一接口屏蔽供应商差异。</li>
+    <li>Model Routing 用于实现多模型切换与故障转移。</li>
+    <li>ChatClient 本质是模型 API 适配器。</li>
+    <li>Streaming 是现代 Agent 的标准能力。</li>
+    <li>SSE 是流式回答最常见的前后端通信方案之一。</li>
+</ul>
+            </div>
+        </div>
+        </div>
+        <hr />
+        <a href="index.html" class="back-link">← 返回学习主页</a>
+    </div>
+</div>
+</body>
+</html>
