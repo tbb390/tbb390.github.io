@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>每日学习概览 </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            padding: 2rem 2rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f4870, #2b5c8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            border-bottom: 1px dashed #e2edf2;
+            padding-bottom: 1rem;
+        }
+
+        .meta span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .section {
+            margin: 1.8rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f4870;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-box {
+            background: #fafcff;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #eef2ff;
+            line-height: 1.6;
+            color: #2d3e50;
+        }
+
+        .content-box p {
+            margin: 0;
+            min-height: 4rem;
+        }
+
+        hr {
+            margin: 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .back-link:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+            .card {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>📝 每日学习概览</h1>
+        <div class="meta">
+            <span>📅 日期：2026年6月18日</span>
+            <span>⏱️ 时长：3+2小时</span>
+            <span>📚 科目/主题：概率论/os</span>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📖 概率论</div>
+            <div class="content-box">
+               <h2>📚 今日学习总结（概率论·强化版）</h2>
+
+<h3>🎯 一、分布函数 F(x)</h3>
+
+<ul>
+    <li>定义：F(x)=P(X≤x)</li>
+    <li>性质：单调不减、右连续</li>
+    <li>范围：0≤F(x)≤1</li>
+    <li>极限：F(-∞)=0，F(+∞)=1</li>
+</ul>
+
+<p><strong>核心用途：</strong></p>
+<ul>
+    <li>P(a<X<b)=F(b)-F(a)</li>
+    <li>统一处理概率问题（连续型最常用）</li>
+</ul>
+
+---
+
+<h3>🎯 二、离散型随机变量</h3>
+
+<ul>
+    <li>分布律：P(X=xᵢ)=pᵢ</li>
+    <li>性质：pᵢ≥0，Σpᵢ=1</li>
+    <li>本质：用概率描述每个取值</li>
+</ul>
+
+<p><strong>常见题型：</strong></p>
+<ul>
+    <li>补全分布</li>
+    <li>验证合法性</li>
+    <li>求函数分布（Y=g(X)）</li>
+</ul>
+
+---
+
+<h3>🎯 三、连续型随机变量</h3>
+
+<ul>
+    <li>密度函数：f(x)</li>
+    <li>性质：f(x)≥0</li>
+    <li>归一条件：∫f(x)dx=1</li>
+</ul>
+
+<p><strong>常见步骤：</strong></p>
+<ul>
+    <li>① 求未知常数 k</li>
+    <li>② 求分布函数 F(x)</li>
+    <li>③ 求概率 P(a<X<b)</li>
+</ul>
+
+---
+
+<h3>🎯 四、常见分布</h3>
+
+<h4>① 均匀分布 U(a,b)</h4>
+<ul>
+    <li>区间内等概率</li>
+    <li>概率 = 长度比例</li>
+</ul>
+
+<h4>② 正态分布 N(μ,σ²)</h4>
+<ul>
+    <li>钟形对称分布</li>
+    <li>标准化：Z=(X-μ)/σ</li>
+    <li>用标准正态表查概率</li>
+</ul>
+
+---
+
+<h3>🎯 五、随机变量函数</h3>
+
+<ul>
+    <li>离散：重新列值 + 概率合并</li>
+    <li>连续：用分布函数或变量代换</li>
+    <li>本质：变量变换后的分布问题</li>
+</ul>
+
+<p><strong>关键点：</strong>不是“算函数”，而是“重新找分布”</p>
+
+---
+
+<h3>🎯 六、二维随机变量</h3>
+
+<ul>
+    <li>联合分布：描述(X,Y)整体概率结构</li>
+    <li>联合分布函数：F(x,y)=P(X≤x,Y≤y)</li>
+</ul>
+
+<p><strong>边缘分布：</strong></p>
+<ul>
+    <li>离散：按行/列求和</li>
+    <li>连续：积分消元</li>
+</ul>
+
+<p><strong>核心性质：</strong></p>
+<ul>
+    <li>独立性：P(X,Y)=P(X)P(Y)</li>
+</ul>
+
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">💡 os</div>
+            <div class="content-box">
+               <h3>第二章 进程管理（中段核心：PV + 线程 + 进程控制）</h3>
+
+<ul>
+
+    <li>
+        <strong>PV操作核心思想</strong>
+        <ul>
+            <li>P操作（wait）：申请资源，使信号量S = S - 1</li>
+            <li>V操作（signal）：释放资源，使信号量S = S + 1</li>
+            <li>PV操作用于实现：互斥与同步</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>PV操作标准模板（必须掌握）</strong>
+
+        <ul>
+            <li><strong>互斥访问（临界区）</strong></li>
+        </ul>
+
+        <pre>
+P(mutex);
+
+// 临界区代码
+
+V(mutex);
+        </pre>
+
+        <ul>
+            <li><strong>生产者消费者模型（必考大题）</strong></li>
+        </ul>
+
+        <pre>
+生产者：
+P(empty);
+P(mutex);
+
+// 放入数据
+
+V(mutex);
+V(full);
+
+
+消费者：
+P(full);
+P(mutex);
+
+// 取出数据
+
+V(mutex);
+V(empty);
+        </pre>
+
+        <ul>
+            <li>信号量含义：</li>
+            <ul>
+                <li>mutex：互斥锁（初值1）</li>
+                <li>empty：空缓冲区数量（初值n）</li>
+                <li>full：已有数据数量（初值0）</li>
+            </ul>
+        </ul>
+    </li>
+
+    <li>
+        <strong>进程控制（四大原语）</strong>
+        <ul>
+            <li>创建：创建PCB + 分配资源</li>
+            <li>撤销：释放资源 + 删除PCB</li>
+            <li>阻塞：运行态 → 阻塞态（等待事件）</li>
+            <li>唤醒：阻塞态 → 就绪态</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>进程控制核心理解</strong>
+        <ul>
+            <li>本质：进程状态的改变 + PCB管理</li>
+            <li>所有操作围绕进程状态转换进行</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>线程（Thread）概念</strong>
+        <ul>
+            <li>线程是CPU调度的基本单位</li>
+            <li>进程是资源分配单位</li>
+            <li>线程共享进程资源（地址空间、文件等）</li>
+            <li>线程切换开销小于进程</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>进程 vs 线程）</strong>
+        <ul>
+            <li>进程：资源分配单位</li>
+            <li>线程：CPU调度单位</li>
+            <li>线程共享进程资源</li>
+            <li>进程切换开销大，线程切换开销小</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>线程实现方式</strong>
+        <ul>
+            <li>用户级线程：由用户空间管理</li>
+            <li>内核级线程：由操作系统管理</li>
+            <li>混合线程：两者结合</li>
+            <li><strong>考试重点：内核级线程由OS调度</strong></li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>信号（Signal）机制</strong>
+        <ul>
+            <li>信号是一种异步通知机制</li>
+            <li>用于进程间通信或事件通知</li>
+            <li>Ctrl + C 终止进程</li>
+        </ul>
+    </li>
+
+    <li>
+        <strong>第二章核心总结</strong>
+        <ul>
+            <li>PV操作 = 同步 + 互斥核心（必考大题）</li>
+            <li>生产者消费者 = PV经典模型</li>
+            <li>进程控制 = 状态转换 + PCB管理</li>
+            <li>线程 = CPU调度单位</li>
+            <li>进程 = 资源分配单位</li>
+        </ul>
+    </li>
+
+</ul>
+            </div>
+        </div>
+
+        <hr />
+        <a href="index.html" class="back-link">← 返回学习主页</a>
+    </div>
+</div>
+</body>
+</html>
