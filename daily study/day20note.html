@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>每日学习概览 · 通用模板</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            padding: 2rem 2rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f4870, #2b5c8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #4b627d;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 4px solid #93c5fd;
+            line-height: 1.5;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            border-bottom: 1px dashed #e2edf2;
+            padding-bottom: 1rem;
+        }
+
+        .meta span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .section {
+            margin: 1.8rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f4870;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-box {
+            background: #fafcff;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #eef2ff;
+            line-height: 1.6;
+            color: #2d3e50;
+        }
+
+        .content-box p {
+            margin: 0;
+            min-height: 4rem;
+        }
+
+        hr {
+            margin: 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .back-link:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+            .card {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>📝 每日学习概览</h1>
+        <div class="meta">
+            <span>📅 日期：2026/08/06</span>
+            
+        </div>
+
+        <p class="subtitle">📌 agent</p>
+
+        <div class="section">
+            <div class="section-title">📖 prompt engineering 提示词工程</div>
+            <div class="content-box">
+                <p>定义：Prompt Engineering 是指通过精心设计和优化提示词（Prompts）来引导 AI 模型产生更准确、更有用的输出的一门技术。</p>
+                <li>好的prompt需要不断迭代和优化，才能得到更好的结果，需要具体，准确，方法论，细节。</li>
+                <li>由instructions,context,examples,input,output format构成</li>
+                <p>code实现角度：</p>
+                <code>prompt =f"""类似rag的知识库效果"""
+                    response =general_model.generate(prompt)
+                    instructions = f"""你是一个有经验的AI专家，精通prompt engineering，帮助我优化prompt"""
+                    context = f"""背景部分"""
+                    query = f"""提问部分"""
+                    examples = f"""示例部分"""
+                    #添加格式
+                    以JSON格式输出：{"[具体问题]":"[答案]"},
+                </code>
+                <code>
+                    #定义llm
+                    from langchain.chat_models import chatOpenAI
+
+                    llm = chatOpenAI(model_name="gpt-5.5", 
+                    temperature=0.2, 
+                    max_tokens=200)
+                    #serpai是一个聚合搜索引擎,llm-math是一个封装好的数学计算链
+                    </code>
+           </div>
+        </div>
+<p class="subtitle">📌深度学习 </p>
+<div class="section">
+    <div class="section-title">💡导论</div>
+    <div class="content-box">
+        <p><strong>核心理解</strong></p>
+        <p>
+            深度学习是机器学习的一个分支，通过多层神经网络自动学习数据中的特征表示。
+            与传统机器学习相比，深度学习能够减少人工特征工程，直接从大量数据中学习复杂模式。
+        </p>
+
+        <p><strong>人工智能发展关系</strong></p>
+        <p>
+            人工智能包含机器学习（Machine Learning），机器学习中包含深度学习（Deep Learning）。
+            深度学习依靠神经网络、大规模数据和计算能力的发展快速突破。
+        </p>
+
+        <p><strong>神经网络基本思想</strong></p>
+        <p>
+            神经网络模拟人脑神经元连接方式，由输入层、隐藏层和输出层组成。
+            每个神经元通过加权求和和激活函数进行计算，逐层提取数据特征。
+        </p>
+
+        <p><strong>深度学习为什么有效</strong></p>
+        <p>
+            1. 数据规模提升：
+            更多数据能够帮助模型学习更复杂的规律。
+        </p>
+        <p>
+            2. 算力提升：
+            GPU 等硬件提高了大规模神经网络训练效率。
+        </p>
+        <p>
+            3. 网络结构优化：
+            更深层的网络能够学习更加抽象、高级的特征。
+        </p>
+
+        <p><strong>深度学习常见应用</strong></p>
+        <p>
+            计算机视觉（CV）：图像分类、目标检测、人脸识别；
+            <br>
+            自然语言处理（NLP）：机器翻译、文本生成、智能问答；
+            <br>
+            语音识别：语音转文字、语音助手。
+        </p>
+
+        <p><strong>机器学习与深度学习区别</strong></p>
+        <p>
+            传统机器学习：
+            需要人工设计特征，再使用模型进行预测。
+        </p>
+        <p>
+            深度学习：
+            通过神经网络自动学习特征，适合处理图像、文本等复杂数据。
+        </p>
+
+        <p><strong>深度学习核心</strong></p>
+        <p>
+            深度学习的核心不是简单增加网络层数，而是通过多层结构自动学习数据中的特征表示。
+            数据、模型结构和计算能力共同决定模型效果。
+            深度学习是 AI Agent 的底层基础，大模型（LLM）基于深度学习训练，Agent 则是在大模型之上增加记忆、规划、工具调用等能力，实现复杂任务自动执行。
+        </p>
+    </div>
+</div><p class="subtitle">📌 英语单词和语法</p>
+        <div class="section">
+    <div class="section-title">💡语法课 · 英语时态梳理</div>
+    <div class="content-box">
+        <p><strong>时态核心</strong></p>
+        <p>
+            英语时态 = 时间（过去/现在/将来） + 状态（一般/进行/完成）。
+            分析长难句时，先找谓语，再判断时态，确定动作发生的时间关系。
+        </p>
+
+        <p><strong>重点时态</strong></p>
+        <p>
+            1. 一般现在时（do/does）：
+            表示客观事实、规律、习惯。阅读中常用于表达作者观点和科学事实。
+        </p>
+        <p>
+            2. 一般过去时（did）：
+            表示过去发生的动作或事件，注意结合上下文判断时间关系。
+        </p>
+        <p>
+            3. 现在进行时（be doing）：
+            表示正在发生的动作，也常用于描述发展趋势和变化。
+        </p>
+        <p>
+            4. 现在完成时（have/has done）：
+            表示过去动作对现在的影响，或从过去持续到现在。
+        </p>
+        <p>
+            5. 过去完成时（had done）：
+            表示“过去的过去”，用于判断多个动作发生的先后顺序。
+        </p>
+
+        <p><strong>应用</strong></p>
+        <p>
+            阅读长难句中，时态主要帮助判断：
+            <br>① 作者描述的是事实还是事件；
+            <br>② 不同动作之间的先后关系；
+            <br>③ 事情是否持续、是否产生影响。
+        </p>
+
+        <p><strong>重点</strong></p>
+        <p>
+            时态不是单纯背公式，而是理解句子的时间逻辑。
+            找准谓语和时态，可以快速拆解长难句。
+        </p>
+
+        <p><strong>易错点</strong></p>
+        <p>
+            不要只根据时间词判断时态，要结合句意；
+            注意现在完成时强调“过去与现在的联系”，不是简单表示过去。
+        </p>
+    </div>
+</div>
+        <div class="section">
+            <div class="section-title">🤔 疑问 / 待解决</div>
+            <div class="content-box">
+                <p>（有哪些地方还没搞懂，需要查资料或下次重点复习）</p>
+            </div>
+        </div>
+
+         <p class="subtitle">📌 教资科二</p>
+<div class="section">
+    <div class="section-title">二三节</div>
+    <div class="content-box">
+        <p><strong>教育学发展</strong></p>
+        <p>
+            夸美纽斯：
+            《大教学论》——教育学成为独立学科标志；“教育学之父”；班级授课制。
+        </p>
+        <p>
+            赫尔巴特：
+            《普通教育学》；“现代教育学之父”；教师中心、教材中心、课堂中心。
+        </p>
+        <p>
+            杜威：
+            儿童中心、经验中心、活动中心；“从做中学”。
+        </p>
+
+        <p><strong>教育与社会发展</strong></p>
+        <p>
+            生产力 → 决定教育发展水平；教育 → 促进生产力发展。
+        </p>
+        <p>
+            政治经济制度 → 决定教育性质、领导权、受教育权。
+        </p>
+        <p>
+            文化 → 教育具有传承、选择、创新文化功能。
+        </p>
+        <p>
+            人口 → 影响教育规模和质量；教育提高人口素质。
+        </p>
+
+        <p><strong>必背：</strong>
+            夸美纽斯=教育学之父；
+            赫尔巴特=教师中心；
+            杜威=儿童中心。
+        </p>
+    </div>
+</div>
+<div style="max-width: 100%;">
+            <img src="/prtsc/establish.png" style="width:100%; height:auto; border-radius:8px;">
+            <img src="/prtsc/develop.png" style="width:100%; height:auto; border-radius:8px;">
+            
+        </div>
+        
+       <div class="section">
+    <div class="section-title">📌 明日计划</div>
+    <div class="content-box">
+
+        <p><strong>🌅 上午</strong></p>
+
+        <p><strong>📖 英语单词 + 长难句（1小时）</strong></p>
+        <li>完成考研单词积累，学习长难句语法课程。</li>
+
+        <p><strong>🧠 深度学习（1-1.5小时）</strong></p>
+        <li>学习下一节课程内容，整理核心知识点。</li>
+
+        <p><strong>💼 实习投递（10-20分钟）</strong></p>
+        <li>完成岗位筛选与简历投递。</li>
+
+
+        <p><strong>🌇 下午</strong></p>
+
+        <p><strong>🤖 Agent理论学习（1.5-2小时）</strong></p>
+        <li>开始生成式 AI 课程学习，了解大模型相关基础知识。</li>
+
+        <p><strong>📚 教资科二（2小时）</strong></p>
+        <li>继续学习下一章节内容，整理高频考点。</li>
+
+        <p><strong>💼 实习投递（10-20分钟）</strong></p>
+        <li>完成第二轮岗位投递，记录投递情况。</li>
+
+
+        <p><strong>🌙 晚上</strong></p>
+
+        <p><strong>📝 真题训练（1小时）</strong></p>
+        <li>完成教资真题练习，整理错题。</li>
+
+        <p><strong>📊 Kaggle探索（弹性时间）</strong></p>
+        <li>根据当天完成情况，探索比赛方向和优秀案例。</li>
+
+        <p><strong>🌐 学习整理与复盘（1小时）</strong></p>
+        <li>更新个人博客，整理学习笔记。</li>
+        <li>总结当天完成情况，记录问题与收获。</li>
+        <li>规划第二天学习任务。</li>
+
+    </div>
+</div>
+
+        <hr />
+        <a href="index.html" class="back-link">← 返回学习主页</a>
+    </div>
+</div>
+</body>
+</html>
