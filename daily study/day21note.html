@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>每日学习概览 · 通用模板</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            padding: 2rem 2rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f4870, #2b5c8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            border-bottom: 1px dashed #e2edf2;
+            padding-bottom: 1rem;
+        }
+
+        .meta span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .section {
+            margin: 1.8rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f4870;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-box {
+            background: #fafcff;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #eef2ff;
+            line-height: 1.6;
+            color: #2d3e50;
+        }
+
+        .content-box p {
+            margin: 0;
+            min-height: 4rem;
+        }
+
+        hr {
+            margin: 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .back-link:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+            .card {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>📝 每日学习概览</h1>
+        <div class="meta">
+            <span>📅 日期：____年__月__日</span>
+            <span>⏱️ 时长：____小时</span>
+            <span>📚 科目/主题：__________</span>
+        </div>
+
+       <p class="subtitle">📌 agent</p>
+
+<div class="section">
+<div class="section-title">📖 生成式 AI 第一讲：基础</div>
+<div class="content-box">
+
+<p><strong>生成式AI与判别式AI</strong></p>
+
+<p>
+判别式AI（Discriminative AI）：
+主要任务是进行判断和分类，即学习输入数据与标签之间的关系。
+例如判断图片是猫还是狗、判断邮件是否为垃圾邮件。
+</p>
+
+<p>
+生成式AI（Generative AI）：
+主要任务是创造新的内容，通过学习数据分布生成具有结构的信息。
+例如生成文章、图片、音乐等。
+</p>
+
+<p>
+一句话理解：
+判别式AI负责“判断是什么”，生成式AI负责“创造应该是什么样”。
+</p>
+
+
+<p><strong>生成式AI本质：一个复杂函数</strong></p>
+
+<p>
+机器学习本质是在寻找一个复杂数学函数：
+输入X经过模型计算得到输出Y。
+</p>
+
+<p>
+大模型之所以强大，是因为模型内部包含大量参数（Parameters），
+训练过程就是不断调整参数，使模型能够学习输入与输出之间的规律。
+</p>
+
+
+<p><strong>大语言模型（LLM）生成机制</strong></p>
+
+<p>
+LLM生成文本并不是像人一样提前思考完整答案，
+而是基于自回归（Auto-regressive）机制，
+不断预测下一个Token。
+</p>
+
+<p>
+例如输入：
+“今天天气”
+模型会计算下一个Token出现的概率，
+预测“很好”等可能结果，
+然后继续基于新的文本预测下一个Token。
+</p>
+
+<p>
+本质上，大语言模型是一种经过海量数据训练后的“超级文字接龙模型”。
+</p>
+
+
+<p><strong>生成式AI学习目标</strong></p>
+
+<p>
+理解生成式AI底层原理，而不仅仅是调用AI工具。
+掌握模型能力边界，可以更好地进行Prompt Engineering、
+模型微调以及Agent应用开发。
+</p>
+
+
+<p><strong>生成式AI与Agent关系</strong></p>
+
+<p>
+LLM是生成式AI的核心能力，
+Agent是在LLM基础上增加记忆、规划、工具调用和任务执行能力，
+使模型能够完成更加复杂的自动化任务。
+</p>
+
+</div>
+</div>
+
+        <p class="subtitle">📌 深度学习</p>
+
+<div class="section">
+<div class="section-title">📖 吴恩达 CS230 第一讲：监督学习与非监督学习</div>
+<div class="content-box">
+
+
+<p><strong>监督学习（Supervised Learning）</strong></p>
+
+<p>
+监督学习使用带标签的数据进行训练，
+目标是学习输入X和输出Y之间的映射关系。
+</p>
+
+<p>
+案例：
+</p>
+
+<li>
+昼夜图像分类：
+输入图片，判断图片属于白天还是夜晚。
+</li>
+
+<li>
+触发词检测：
+输入音频，检测是否包含指定关键词。
+</li>
+
+<li>
+人脸验证：
+通过学习人脸特征判断身份。
+</li>
+
+
+<p>
+监督学习常见任务：
+</p>
+
+<li>
+分类任务：预测类别，如图片分类、垃圾邮件检测。
+</li>
+
+<li>
+回归任务：预测连续值，如房价预测。
+</li>
+
+
+
+<p><strong>自监督学习（Self-Supervised Learning）</strong></p>
+
+<p>
+自监督学习通过数据自身生成标签，
+减少人工标注成本。
+</p>
+
+<p>
+典型应用：
+通过Embedding将数据转换成向量表示，
+让相似数据在向量空间中距离更近。
+</p>
+
+
+
+<p><strong>弱监督学习（Weakly Supervised Learning）</strong></p>
+
+<p>
+弱监督学习使用不完全准确或者带噪声的数据标签进行训练，
+降低数据标注成本。
+</p>
+
+<p>
+例如多模态Embedding：
+将图片和文本映射到同一个向量空间，
+实现跨模态理解。
+</p>
+
+
+
+<p><strong>深度学习核心概念</strong></p>
+
+<p>
+模型（Model）= 架构（Architecture）+ 参数（Parameters）
+</p>
+
+<li>
+架构：
+神经网络的结构设计。
+</li>
+
+<li>
+参数：
+模型训练过程中学习得到的权重和偏置。
+</li>
+
+
+<p><strong>重要术语</strong></p>
+
+<li>
+特征工程：
+人工设计数据特征。
+</li>
+
+<li>
+特征学习：
+模型自动学习数据特征。
+</li>
+
+<li>
+Embedding：
+将数据转换为向量表示，向量距离代表相似程度。
+</li>
+
+<li>
+One-hot：
+只有一个位置为1的向量表示。
+</li>
+
+<li>
+Multi-hot：
+多个位置同时为1的向量表示。
+</li>
+
+
+<p><strong>与Agent关系</strong></p>
+
+<p>
+深度学习是大模型发展的基础，
+LLM通过深度神经网络学习语言规律，
+Agent则基于LLM实现任务规划和工具调用。
+</p>
+
+
+</div>
+</div>
+
+<p class="subtitle">📌 教资科二</p>
+
+<div class="section">
+<div class="section-title">📖第三节、第四节：教育与社会发展、教育与人的发展</div>
+<div class="content-box">
+
+
+<p><strong>教育与生产力</strong></p>
+
+<p>
+生产力决定教育发展水平：
+</p>
+
+<li>
+决定教育发展的规模和速度。
+</li>
+
+<li>
+影响人才培养规格和教育结构。
+</li>
+
+<li>
+影响教学内容、课程设置和教学方式。
+</li>
+
+<p>
+教育促进生产力发展：
+</p>
+
+<li>
+教育再生产劳动力，将潜在劳动力转化为现实劳动力。
+</li>
+
+<li>
+教育再生产科学知识，促进知识传播和应用。
+</li>
+
+
+<p><strong>教育与政治经济制度</strong></p>
+
+<p>
+政治经济制度决定教育性质和发展方向。
+</p>
+
+<li>
+决定教育目的和宗旨。
+</li>
+
+<li>
+决定教育领导权。
+</li>
+
+<li>
+决定受教育权。
+</li>
+
+<li>
+影响教育内容和管理体制。
+</li>
+
+<p>
+教育具有政治功能：
+培养政治人才、传播思想、促进政治民主化。
+</p>
+
+
+
+<p><strong>教育与文化</strong></p>
+
+<p>
+文化影响教育目的、教育内容以及教学方法。
+</p>
+
+<p>
+教育具有文化功能：
+</p>
+
+<li>
+传递和保存文化。
+</li>
+
+<li>
+传播和交流文化。
+</li>
+
+<li>
+选择和整理文化。
+</li>
+
+<li>
+更新和创造文化。
+</li>
+
+
+<p><strong>影响人的发展的因素（重点）</strong></p>
+
+<li>
+遗传：
+提供发展的可能性，是发展的生物基础，但不能决定发展。
+</li>
+
+<li>
+环境：
+使遗传提供的发展可能性转化为现实。
+</li>
+
+<li>
+学校教育：
+在人发展中起主导作用。
+</li>
+
+<li>
+个体主观能动性：
+人的发展的内在动力和决定性因素。
+</li>
+
+
+<p><strong>人的身心发展规律（高频考点）</strong></p>
+
+<li>
+顺序性：
+发展具有一定顺序，教育要循序渐进。
+</li>
+
+<li>
+阶段性：
+不同年龄阶段特点不同，教育要因阶段施教。
+</li>
+
+<li>
+不平衡性：
+发展速度存在差异，要抓住关键期。
+</li>
+
+<li>
+互补性：
+利用优势弥补不足，做到长善救失。
+</li>
+
+<li>
+个别差异性：
+个体发展存在差异，要因材施教。
+</li>
+
+
+<p><strong>高频人物</strong></p>
+
+<li>
+夸美纽斯：教育学之父。
+</li>
+
+<li>
+赫尔巴特：教师中心。
+</li>
+
+<li>
+杜威：儿童中心。
+</li>
+
+
+</div>
+</div>
+<div style="max-width: 100%;">
+            <img src="/prtsc/peopledev.png" style="width:100%; height:auto; border-radius:8px;">
+            <img src="/prtsc/dev2.png" style="width:100%; height:auto; border-radius:8px;">
+            <img src="/prtsc/devjianda.png" style="width:100%; height:auto; border-radius:8px;">
+       
+        </div>
+         <div class="section">
+            <div class="section-title">📖 英语学习</div>
+            <div class="content-box">
+                <p>百词斩70</p>
+            </div>
+        </div>
+            <p><strong>🌅 上午</strong></p>
+
+    <p><strong>📖 英语单词 + 长难句（1小时）</strong></p>
+    <li>完成考研单词复习，继续学习长难句分析方法，积累阅读理解句型。</li>
+
+    <p><strong>🧠 深度学习（1-1.5小时）</strong></p>
+    <li>继续学习吴恩达 CS230 课程，学习神经网络基础知识，整理模型、参数、训练过程等核心概念。</li>
+
+    <p><strong>💼 实习准备（10-20分钟）</strong></p>
+    <li>查看 AI Agent 相关岗位，完善岗位匹配技能点，记录目标公司。</li>
+
+
+    <p><strong>🌇 下午</strong></p>
+
+    <p><strong>🤖 Agent理论学习（1.5-2小时）</strong></p>
+    <li>继续学习李宏毅生成式 AI 课程，深入理解 Transformer、LLM训练流程以及大模型能力来源。</li>
+
+    <p><strong>📚 教资科二（2小时）</strong></p>
+    <li>继续学习教育基础知识章节，整理重点知识点和高频考点，完成对应章节练习。</li>
+
+    <p><strong>💼 实习投递（10-20分钟）</strong></p>
+    <li>筛选合适的 AI Agent / 大模型应用开发岗位，完成投递并记录进度。</li>
+
+
+    <p><strong>🌙 晚上</strong></p>
+
+    <p><strong>📝 教资真题训练（1小时）</strong></p>
+    <li>完成科二章节练习题，整理错题和易混淆知识点。</li>
+
+    <p><strong>📊 Kaggle比赛准备（弹性时间）</strong></p>
+    <li>继续了解适合 AI 应用方向的 Kaggle 比赛，学习优秀 Notebook 思路。</li>
+
+    <p><strong>🌐 学习整理与复盘（1小时）</strong></p>
+    <li>更新学习网站，整理 Agent、深度学习和教资笔记。</li>
+    <li>总结当天学习成果，记录遇到的问题和解决方案。</li>
+    <li>规划下一天学习任务。</li>
+
+        <hr />
+        <a href="index.html" class="back-link">← 返回学习主页</a>
+    </div>
+</div>
+</body>
+</html>
