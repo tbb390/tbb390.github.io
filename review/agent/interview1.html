@@ -1,0 +1,2663 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>AI Agent一面复盘</title>
+
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+padding:15px;
+background:#f5f7fa;
+font-family:"Microsoft YaHei";
+font-size:15px;
+line-height:1.55;
+color:#222;
+}
+
+
+.container{
+max-width:1200px;
+margin:auto;
+}
+
+
+.header{
+background:white;
+padding:12px 18px;
+border-radius:8px;
+margin-bottom:8px;
+}
+
+
+.header h1{
+margin:0;
+font-size:24px;
+}
+
+
+.info{
+font-size:13px;
+color:#666;
+}
+
+
+.card{
+background:white;
+padding:12px 16px;
+border-radius:8px;
+margin-bottom:8px;
+box-shadow:0 1px 5px rgba(0,0,0,.05);
+}
+
+
+h2{
+font-size:18px;
+margin:5px 0 8px;
+padding-left:8px;
+border-left:4px solid #2563eb;
+color:#2563eb;
+}
+
+
+h3{
+font-size:16px;
+margin:8px 0 5px;
+}
+
+
+.question{
+background:#eff6ff;
+padding:6px 10px;
+border-radius:5px;
+font-weight:bold;
+}
+
+
+.answer{
+margin-top:6px;
+}
+
+
+.follow{
+background:#f9fafb;
+padding:6px 10px;
+margin-top:6px;
+border-left:3px solid #9ca3af;
+}
+
+
+.key{
+color:#dc2626;
+font-weight:bold;
+}
+
+
+pre{
+background:#111827;
+color:#eee;
+padding:8px;
+margin:8px 0;
+border-radius:5px;
+font-size:13px;
+}
+
+
+.tag{
+display:inline-block;
+background:#dbeafe;
+color:#2563eb;
+padding:2px 8px;
+border-radius:15px;
+font-size:12px;
+}
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+<div class="container">
+
+
+<div class="header">
+
+<h1>
+🤖 AI Agent开发实习一面复盘
+</h1>
+
+<div class="info">
+
+项目：
+Ragentic RAG 企业级Agent平台
+
+<br>
+
+方向：
+RAG / Agent / MCP / 大模型应用开发
+
+<br>
+
+时间：
+2026.08.11
+
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>
+1. 项目整体介绍
+</h2>
+
+
+<div class="question">
+Q：介绍一下你的Ragent项目？
+</div>
+
+
+<div class="answer">
+
+Ragent是一个企业级 Agentic RAG 平台，
+目标是让大模型结合企业私有知识完成更加准确的智能问答。
+
+
+传统大模型存在：
+
+<br>
+
+1. 不知道企业内部私有数据。
+
+<br>
+
+2. 容易产生幻觉。
+
+
+因此通过RAG方式，将企业知识作为外部上下文提供给LLM。
+
+
+核心流程：
+
+<pre>
+文档上传
+ ↓
+文档解析
+ ↓
+Chunk切分
+ ↓
+Embedding向量化
+ ↓
+向量数据库存储
+ ↓
+检索
+ ↓
+Rerank
+ ↓
+Prompt构建
+ ↓
+LLM生成
+</pre>
+
+
+技术栈：
+
+Java Spring Boot 3、
+Redis、
+PostgreSQL + pgvector、
+RocketMQ、
+Embedding模型、
+MCP。
+
+
+</div>
+
+
+<div class="follow">
+
+追问：为什么叫Agentic RAG？
+
+
+普通RAG：
+
+用户问题 → 检索 → LLM回答。
+
+
+Agentic RAG：
+
+LLM具备任务判断能力，
+可以决定：
+
+<br>
+- 是否需要检索
+<br>
+- 是否调用工具
+<br>
+- 如何组合能力。
+
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h2>
+2. RAG完整流程
+</h2>
+
+
+<div class="question">
+
+Q：你的RAG流程是什么？
+
+</div>
+
+
+<div class="answer">
+
+分为两个阶段：
+
+
+<b>① 离线知识库构建</b>
+
+
+<pre>
+Document
+
+↓
+
+解析
+
+↓
+
+文本切分Chunk
+
+↓
+
+Embedding模型生成向量
+
+↓
+
+保存Vector DB
+</pre>
+
+
+Chunk设计考虑：
+
+过大：
+
+- 检索粒度下降
+- Prompt长度增加
+
+
+过小：
+
+- 上下文信息不足。
+
+
+需要根据文档类型调整。
+
+
+<br><br>
+
+
+<b>② 在线问答流程</b>
+
+
+<pre>
+用户Query
+
+↓
+
+Query Embedding
+
+↓
+
+向量检索
+
++
+
+关键词检索
+
+↓
+
+结果融合
+
+↓
+
+Rerank排序
+
+↓
+
+Prompt组装
+
+↓
+
+LLM生成
+
+↓
+
+SSE返回
+</pre>
+
+
+</div>
+
+
+<div class="follow">
+
+追问：为什么需要Rerank？
+
+
+Retriever主要保证召回覆盖率。
+
+但是TopK结果可能存在：
+
+- 相关性不足
+- 重复Chunk
+
+
+Rerank使用更强模型重新排序，提高最终上下文质量。
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+<h2>
+3. 用户提问完整链路
+</h2>
+
+
+<div class="question">
+
+Q：用户发送一个问题，系统内部发生什么？
+
+</div>
+
+
+<div class="answer">
+
+
+例如：
+
+用户：
+
+“公司的退款流程是什么？”
+
+
+流程：
+
+<pre>
+
+用户请求
+
+↓
+
+Controller接收
+
+↓
+
+判断是否需要知识库
+
+↓
+
+Query向量化
+
+↓
+
+Retriever检索
+
+↓
+
+Dedup去重
+
+↓
+
+Rerank排序
+
+↓
+
+Prompt组装
+
+↓
+
+调用LLM
+
+↓
+
+SSE流式返回
+
+</pre>
+
+
+</div>
+
+
+<div class="follow">
+
+追问：
+
+为什么不用直接把用户问题给LLM？
+
+
+因为LLM不知道企业私有数据。
+
+RAG通过检索外部知识增强模型能力。
+
+</div>
+
+
+</div><div class="card">
+
+<h2>
+4. 上下文控制设计
+</h2>
+
+
+<div class="question">
+
+Q：你的项目怎么设计上下文控制？
+
+</div>
+
+
+<div class="answer">
+
+上下文控制主要解决两个问题：
+
+<br>
+
+1. Prompt长度限制
+
+<br>
+
+2. 无关历史信息干扰模型
+
+
+我的设计主要包括：
+
+<br><br>
+
+
+<b>① 检索内容控制</b>
+
+
+不是把整个知识库塞给LLM。
+
+流程：
+
+<pre>
+Query
+
+↓
+
+Retriever召回TopK
+
+↓
+
+Rerank重新排序
+
+↓
+
+选择高相关Chunk
+
+↓
+
+进入Prompt
+</pre>
+
+
+控制：
+
+- Chunk数量
+- Token长度
+- 相关性阈值
+
+
+避免上下文过长。
+
+
+<br><br>
+
+
+<b>② 历史对话控制</b>
+
+
+多轮对话不会无限保存。
+
+
+会根据：
+
+- 最近对话窗口
+- 用户问题相关性
+
+选择需要保留的信息。
+
+
+</div>
+
+
+
+<div class="follow">
+
+追问：
+
+为什么不保存全部历史？
+
+
+回答：
+
+因为LLM上下文窗口有限。
+
+历史过长：
+
+1. Token增加
+
+2. 推理成本增加
+
+3. 旧信息可能干扰当前任务。
+
+
+所以采用窗口控制和摘要机制。
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+5. 多轮上下文存储设计
+</h2>
+
+
+<div class="question">
+
+Q：多轮上下文你怎么设计？
+
+</div>
+
+
+<div class="answer">
+
+
+设计分为短期记忆和长期记忆。
+
+
+<b>短期记忆：</b>
+
+
+保存当前会话上下文。
+
+
+例如：
+
+<pre>
+conversationId
+
+{
+
+ user:"北京天气怎么样",
+
+ assistant:"今天晴天"
+
+}
+
+</pre>
+
+
+存储：
+
+Redis。
+
+
+特点：
+
+- 快速访问
+- 生命周期短
+
+
+<br>
+
+
+<b>长期记忆：</b>
+
+
+对于用户长期偏好或者重要信息，
+
+可以进行：
+
+Embedding向量化。
+
+
+保存到向量数据库。
+
+
+下一次：
+
+通过相似度检索召回。
+
+
+</div>
+
+
+
+<div class="follow">
+
+追问：
+
+为什么不用数据库保存全部聊天记录？
+
+
+回答：
+
+关系数据库适合结构化查询。
+
+但是历史对话中需要根据语义找到相关内容。
+
+
+例如：
+
+用户：
+
+“继续刚才那个方案。”
+
+
+需要理解语义关联。
+
+
+所以短期使用Redis，
+
+语义记忆使用向量检索。
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+6. Embedding Pipeline性能优化
+</h2>
+
+
+<div class="question">
+
+Q：你项目里面耗时优化怎么实现？
+
+</div>
+
+
+<div class="answer">
+
+
+主要优化知识库构建阶段的Embedding流程。
+
+
+原始流程：
+
+<pre>
+
+for(chunk){
+
+调用Embedding API
+
+等待返回
+
+保存结果
+
+}
+
+</pre>
+
+
+问题：
+
+- 请求串行
+- 网络等待时间浪费
+- 吞吐较低
+
+
+优化方案：
+
+<b>
+Batch分片 + 4路有界并发 + 异常快速取消 + 结果保序合并
+</b>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+7. 为什么设计Batch分片？
+</h2>
+
+
+<div class="question">
+
+Q：为什么不用单个Chunk调用Embedding？
+
+</div>
+
+
+<div class="answer">
+
+
+单Chunk调用：
+
+<pre>
+chunk1
+
+等待
+
+chunk2
+
+等待
+
+chunk3
+
+等待
+
+</pre>
+
+
+大量时间消耗在网络等待。
+
+
+Batch之后：
+
+<pre>
+[
+chunk1,
+chunk2,
+chunk3,
+...
+chunkN
+]
+
+↓
+
+一次Embedding请求
+
+</pre>
+
+
+优势：
+
+1. 减少API请求次数。
+
+2. 提高模型计算利用率。
+
+3. 提高整体吞吐。
+
+
+但是Batch不能无限增大。
+
+
+过大：
+
+- 请求超限制
+- 内存增加
+- 单次失败影响更多任务。
+
+
+所以需要测试选择平衡点。
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+8. 为什么选择4路并发？
+</h2>
+
+
+<div class="question">
+
+Q：为什么是4路？为什么不是8路或者16路？
+
+</div>
+
+
+<div class="answer">
+
+
+4路并不是固定理论值，
+
+而是根据实际测试得到的平衡点。
+
+
+Embedding任务属于：
+
+IO等待 + 计算混合任务。
+
+
+并发太低：
+
+资源利用不足。
+
+
+例如：
+
+1路：
+
+<pre>
+请求
+
+等待API
+
+CPU空闲
+
+</pre>
+
+
+并发太高：
+
+会出现：
+
+- API限流
+
+- 网络压力增加
+
+- 内存占用提高
+
+- 线程切换增加
+
+
+因此设计：
+
+<pre>
+
+任务队列
+
+↓
+
+4个Worker线程
+
+↓
+
+Embedding
+
+</pre>
+
+
+保证吞吐和稳定性的平衡。
+
+
+</div>
+
+
+<div class="follow">
+
+追问：
+
+你的4路并发怎么实现？
+
+
+回答：
+
+通过线程池控制。
+
+
+核心思想：
+
+限制同时执行的Embedding任务数量。
+
+
+例如：
+
+ExecutorService线程池：
+
+核心线程数=4
+
+最大线程数=4
+
+
+超过任务进入等待队列。
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+9. 异常快速取消和结果保序
+</h2>
+
+
+<div class="question">
+
+Q：如果其中一个Embedding任务失败怎么办？
+
+</div>
+
+
+<div class="answer">
+
+
+如果Batch任务执行过程中：
+
+某个任务失败。
+
+
+不会继续等待所有任务。
+
+
+流程：
+
+<pre>
+
+任务失败
+
+↓
+
+触发取消信号
+
+↓
+
+cancel其他Future任务
+
+↓
+
+释放资源
+
+↓
+
+返回异常
+
+</pre>
+
+
+实现思想：
+
+通过Future管理任务状态。
+
+
+失败后：
+
+调用：
+
+cancel(true)
+
+取消未完成任务。
+
+
+</div>
+
+
+
+<div class="question">
+
+Q：为什么需要结果保序？
+
+</div>
+
+
+<div class="answer">
+
+
+因为并发执行完成顺序是不确定的。
+
+
+例如输入：
+
+<pre>
+chunk0
+chunk1
+chunk2
+chunk3
+</pre>
+
+
+完成：
+
+<pre>
+chunk2
+chunk0
+chunk3
+chunk1
+</pre>
+
+
+如果直接保存：
+
+可能出现：
+
+chunk0文本对应chunk2向量。
+
+
+这是错误的。
+
+
+所以每个任务保存index：
+
+<pre>
+{
+ index:0,
+ text:"chunk0",
+ vector:[]
+}
+
+</pre>
+
+
+最终按照index排序合并。
+
+
+</div>
+
+
+</div><div class="card">
+
+
+<h2>
+10. Embedding优化效果如何验证？
+</h2>
+
+
+<div class="question">
+
+Q：你的510ms优化到136ms怎么测出来的？
+
+</div>
+
+
+<div class="answer">
+
+
+我设计了基准测试。
+
+
+保证测试条件一致：
+
+<br>
+
+- 相同文档
+
+<br>
+
+- 相同Chunk数量
+
+<br>
+
+- 相同Embedding模型
+
+<br>
+
+- 相同运行环境
+
+
+对比：
+
+优化前：
+
+串行Embedding。
+
+
+优化后：
+
+Batch + 4路并发。
+
+
+统计指标：
+
+<pre>
+Total Time
+
+平均Chunk耗时
+
+吞吐量
+
+失败率
+
+</pre>
+
+
+测试结果：
+
+<pre>
+
+优化前：
+
+510ms
+
+
+优化后：
+
+136ms
+
+
+提升：
+
+约3.75倍吞吐
+
+</pre>
+
+
+优化主要来自：
+
+<br>
+
+1. Batch减少请求次数
+
+<br>
+
+2. 并发减少等待时间
+
+<br>
+
+3. 线程池控制资源
+
+
+</div>
+
+
+
+<div class="follow">
+
+追问：
+
+是不是只是接口调用变快？
+
+
+回答：
+
+不是。
+
+
+主要优化的是任务调度方式。
+
+
+原流程：
+
+串行等待。
+
+
+优化后：
+
+多个Embedding任务并行执行。
+
+
+通过提高资源利用率降低整体耗时。
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+11. RAG召回率如何测试？
+</h2>
+
+
+<div class="question">
+
+Q：你的召回率怎么测试？
+
+</div>
+
+
+<div class="answer">
+
+
+我采用离线评测方式。
+
+
+准备：
+
+<pre>
+
+Query集合
+
++
+
+标准答案文档Chunk
+
+</pre>
+
+
+例如：
+
+问题：
+
+“公司的退款流程是什么？”
+
+
+人工标注：
+
+正确答案位于：
+
+chunk_023。
+
+
+然后执行：
+
+Query检索。
+
+
+判断：
+
+正确Chunk是否出现在TopK结果中。
+
+
+</div>
+
+
+
+<div class="follow">
+
+
+追问：
+
+你的答案是单个Chunk还是多个Chunk？
+
+
+回答：
+
+实际企业RAG中，一个问题可能对应多个相关Chunk。
+
+
+所以评测不是简单判断一个Chunk。
+
+
+通常建立：
+
+Query → Relevant Chunks集合。
+
+
+例如：
+
+<pre>
+
+Query1
+
+正确:
+
+chunk10
+
+chunk15
+
+chunk20
+
+</pre>
+
+
+检索结果：
+
+Top5：
+
+chunk10
+
+chunk30
+
+chunk15
+
+...
+
+
+那么：
+
+chunk10和chunk15都命中。
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+12. Recall@K怎么理解？
+</h2>
+
+
+<div class="question">
+
+Q：Top5、Top20召回率是什么意思？
+
+</div>
+
+
+<div class="answer">
+
+
+Recall@K表示：
+
+正确答案是否出现在前K个召回结果中。
+
+
+公式：
+
+<pre>
+
+Recall@K
+
+=
+
+命中的相关文档数量
+
+/
+
+全部相关文档数量
+
+</pre>
+
+
+例如：
+
+
+一个Query有：
+
+3个正确Chunk：
+
+<pre>
+
+A
+
+B
+
+C
+
+</pre>
+
+
+检索Top5：
+
+<pre>
+
+A
+
+X
+
+Y
+
+Z
+
+W
+
+</pre>
+
+
+命中：
+
+1个。
+
+
+Recall@5：
+
+<pre>
+
+1/3
+
+=33.3%
+
+</pre>
+
+
+如果Top20：
+
+包含：
+
+A、B、C。
+
+
+Recall@20：
+
+<pre>
+
+3/3
+
+=100%
+
+</pre>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+13. 如果正确答案一个在Top5，一个在Top20怎么算？
+</h2>
+
+
+<div class="question">
+
+Q：假如正确答案在Top5，另一个在Top20，这种怎么计算？
+
+</div>
+
+
+<div class="answer">
+
+
+需要看评测指标定义。
+
+
+如果计算Recall@5：
+
+只看Top5。
+
+
+例如：
+
+相关Chunk：
+
+<pre>
+
+A
+
+B
+
+</pre>
+
+
+检索：
+
+Top5:
+
+包含A
+
+
+Top20:
+
+包含B
+
+
+那么：
+
+Recall@5：
+
+<pre>
+
+1/2=50%
+
+</pre>
+
+
+Recall@20：
+
+<pre>
+
+2/2=100%
+
+</pre>
+
+
+所以：
+
+K越大，
+
+召回覆盖率越高。
+
+
+但是K越大：
+
+进入Prompt的信息越多，
+
+可能增加噪声。
+
+
+所以实际系统需要平衡。
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+14. MRR指标是什么？
+</h2>
+
+
+<div class="question">
+
+Q：除了Recall还看什么指标？
+
+</div>
+
+
+<div class="answer">
+
+
+MRR：
+
+Mean Reciprocal Rank。
+
+
+关注：
+
+第一个正确答案出现的位置。
+
+
+公式：
+
+<pre>
+
+MRR=
+
+1 / 第一个相关结果排名
+
+</pre>
+
+
+例如：
+
+第一个正确答案：
+
+Top1：
+
+MRR=1
+
+
+Top5：
+
+MRR=0.2
+
+
+说明：
+
+越靠前越好。
+
+
+Recall关注：
+
+有没有召回。
+
+
+MRR关注：
+
+排序质量。
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+15. 为什么采用混合检索？
+</h2>
+
+
+<div class="question">
+
+Q：为什么不用纯向量检索？
+
+</div>
+
+
+<div class="answer">
+
+
+因为企业知识场景中：
+
+语义匹配和关键词匹配都有价值。
+
+
+向量检索优势：
+
+理解语义。
+
+
+例如：
+
+“员工离职流程”
+
+和：
+
+“人员退出手续”
+
+可以匹配。
+
+
+但是：
+
+对于：
+
+<pre>
+
+订单编号
+
+错误码
+
+产品型号
+
+法律条款编号
+
+</pre>
+
+
+关键词检索更准确。
+
+
+所以采用：
+
+<pre>
+
+向量检索
+
++
+
+关键词检索
+
+↓
+
+结果融合
+
+↓
+
+Rerank
+
+</pre>
+
+
+结合两者优势。
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+16. 向量数据库有什么价值？
+</h2>
+
+
+<div class="question">
+
+Q：为什么需要向量数据库？普通数据库不行吗？
+
+</div>
+
+
+<div class="answer">
+
+
+普通数据库：
+
+例如MySQL。
+
+
+主要适合：
+
+结构化查询。
+
+
+例如：
+
+<pre>
+
+select *
+
+where id=100
+
+</pre>
+
+
+但是RAG需要：
+
+语义相似度搜索。
+
+
+例如：
+
+用户：
+
+“怎么申请退款？”
+
+知识库：
+
+“售后退货流程”
+
+
+关键词不同，
+
+但是语义相关。
+
+
+向量数据库存储：
+
+<pre>
+
+文本
+
+↓
+
+Embedding
+
+↓
+
+高维向量
+
+</pre>
+
+
+然后通过：
+
+余弦相似度、
+
+向量距离
+
+
+找到语义接近内容。
+
+
+</div>
+
+
+<div class="follow">
+
+
+追问：
+
+为什么项目使用pgvector？
+
+
+回答：
+
+因为项目已有PostgreSQL基础设施。
+
+
+pgvector可以：
+
+1. 保存业务数据
+
+2. 保存向量数据
+
+3. 支持向量相似度搜索
+
+
+降低系统复杂度。
+
+
+</div>
+
+
+</div><div class="card">
+
+
+<h2>
+17. 项目中的Tool调用怎么实现？
+</h2>
+
+
+<div class="question">
+
+Q：你的项目Function Calling怎么实现？
+
+</div>
+
+
+<div class="answer">
+
+
+我的项目没有直接使用OpenAI原生Function Calling。
+
+
+而是采用：
+
+<span class="key">
+MCP Tool Schema + LLM参数抽取
+</span>
+
+
+实现Agent工具调用。
+
+
+整体流程：
+
+
+<pre>
+
+用户问题
+
+↓
+
+意图识别
+
+↓
+
+携带mcpToolId
+
+↓
+
+RetrievalEngine查找工具
+
+↓
+
+读取Tool Schema
+
+↓
+
+LLM抽取参数
+
+↓
+
+McpClientToolExecutor调用MCP Server
+
+↓
+
+返回工具结果
+
+↓
+
+格式化为mcpContext
+
+↓
+
+重新进入LLM上下文
+
+↓
+
+生成答案
+
+</pre>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+18. MCP Tool具体有哪些核心类？
+</h2>
+
+
+<div class="question">
+
+Q：代码里面怎么实现的？
+
+</div>
+
+
+<div class="answer">
+
+
+主要涉及：
+
+
+<br>
+
+
+<b>① DefaultMcpToolRegistry</b>
+
+
+负责MCP工具注册和管理。
+
+
+保存：
+
+<pre>
+
+toolId
+
+tool名称
+
+description
+
+input schema
+
+</pre>
+
+
+类似一个工具中心。
+
+
+<br><br>
+
+
+<b>② RetrievalEngine</b>
+
+
+根据用户意图找到对应工具。
+
+
+例如：
+
+用户：
+
+“查询北京天气”
+
+
+意图识别：
+
+需要weather工具。
+
+
+返回：
+
+<pre>
+
+mcpToolId = weather_tool
+
+</pre>
+
+
+<br><br>
+
+
+<b>③ LLMMcpParameterExtractor</b>
+
+
+负责参数生成。
+
+
+因为用户输入是自然语言。
+
+
+例如：
+
+用户：
+
+“查一下北京天气”
+
+
+Tool Schema：
+
+<pre>
+
+{
+ city:string
+}
+
+</pre>
+
+
+LLM生成：
+
+<pre>
+
+{
+ city:"北京"
+}
+
+</pre>
+
+
+<br><br>
+
+
+<b>④ McpClientToolExecutor</b>
+
+
+负责调用远程MCP Server。
+
+
+通过：
+
+<pre>
+
+callTool()
+
+</pre>
+
+
+执行工具。
+
+
+<br><br>
+
+
+<b>⑤ McpToolExecutor</b>
+
+
+作为工具执行抽象层。
+
+
+负责：
+
+- 工具调度
+
+- 执行流程管理
+
+- 结果返回
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+19. 为什么不用OpenAI Function Calling？
+</h2>
+
+
+<div class="question">
+
+Q：为什么不用原生Function Calling？
+
+</div>
+
+
+<div class="answer">
+
+
+两者目标类似：
+
+都是让LLM调用外部能力。
+
+
+区别：
+
+
+<table border="1" cellspacing="0" cellpadding="5">
+
+
+<tr>
+
+<td>
+OpenAI Function Calling
+</td>
+
+<td>
+MCP Tool
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Function Schema
+</td>
+
+<td>
+MCP Tool Schema
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+本地函数调用
+</td>
+
+<td>
+远程工具服务调用
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+应用自行维护工具
+</td>
+
+<td>
+Registry统一管理
+</td>
+
+</tr>
+
+
+</table>
+
+
+企业Agent场景中：
+
+工具可能来自：
+
+- 微服务
+
+- 第三方系统
+
+- 外部能力平台
+
+
+MCP提供统一协议，
+
+扩展性更好。
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+20. 为什么工具结果需要转成mcpContext？
+</h2>
+
+
+<div class="question">
+
+Q：工具返回结果为什么不直接给LLM？
+
+</div>
+
+
+<div class="answer">
+
+
+因为工具返回的数据通常是机器格式。
+
+
+例如API返回：
+
+
+<pre>
+
+{
+ code:200,
+
+ data:{
+ temperature:30
+ }
+
+}
+
+</pre>
+
+
+直接输入：
+
+会增加模型理解成本。
+
+
+所以格式化成：
+
+<pre>
+
+mcpContext:
+
+北京天气查询结果：
+
+温度30℃
+
+天气晴
+
+</pre>
+
+
+然后重新加入Prompt。
+
+
+提高模型生成质量。
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+21. Agent运行错误怎么排查？
+</h2>
+
+
+<div class="question">
+
+Q：如果Agent执行失败，你怎么定位？
+
+</div>
+
+
+<div class="answer">
+
+
+我会按照链路逐层排查。
+
+
+<pre>
+
+用户请求
+
+↓
+
+Controller
+
+↓
+
+Agent流程
+
+↓
+
+Retrieval
+
+↓
+
+Tool调用
+
+↓
+
+LLM
+
+↓
+
+返回
+
+</pre>
+
+
+具体：
+
+
+<b>① 查看应用日志</b>
+
+
+确认：
+
+- 请求是否进入
+
+- 哪个节点失败
+
+
+<br>
+
+
+<b>② 检查LLM调用</b>
+
+
+例如：
+
+- Prompt是否正确
+
+- 参数是否异常
+
+- Token是否超限
+
+
+<br>
+
+
+<b>③ 检查RAG链路</b>
+
+
+确认：
+
+- 是否召回
+
+- Chunk是否为空
+
+- Rerank结果
+
+
+<br>
+
+
+<b>④ 检查MCP Tool</b>
+
+
+确认：
+
+- mcpToolId是否存在
+
+- 参数是否符合Schema
+
+- MCP Server是否正常
+
+
+<br>
+
+
+<b>⑤ 检查基础设施</b>
+
+
+例如：
+
+Redis、
+
+RocketMQ、
+
+PostgreSQL连接状态。
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+22. 企业RAG的实际价值？
+</h2>
+
+
+<div class="question">
+
+Q：RAG在企业里面有什么价值？
+
+</div>
+
+
+<div class="answer">
+
+
+企业内部存在大量：
+
+- 文档
+
+- 制度
+
+- 产品资料
+
+- 客服知识
+
+
+传统方式：
+
+人工搜索效率低。
+
+
+RAG结合大模型后：
+
+用户可以自然语言查询。
+
+
+价值：
+
+
+<b>① 知识沉淀</b>
+
+
+将企业知识数字化。
+
+
+<br>
+
+
+<b>② 降低人工成本</b>
+
+
+客服、内部问答自动化。
+
+
+<br>
+
+
+<b>③ 提升信息获取效率</b>
+
+
+从关键词搜索升级为语义理解。
+
+
+<br>
+
+
+<b>④ 保证回答可靠性</b>
+
+
+通过检索企业真实数据，
+
+降低幻觉。
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+23. 面试总结关键词
+</h2>
+
+
+<div class="answer">
+
+
+<div class="tag">
+Agentic RAG
+</div>
+
+
+<div class="tag">
+Retrieval Pipeline
+</div>
+
+
+<div class="tag">
+Hybrid Search
+</div>
+
+
+<div class="tag">
+Rerank
+</div>
+
+
+<div class="tag">
+Embedding Optimization
+</div>
+
+
+<div class="tag">
+Batch
+</div>
+
+
+<div class="tag">
+4路并发
+</div>
+
+
+<div class="tag">
+Recall@K
+</div>
+
+
+<div class="tag">
+MRR
+</div>
+
+
+<div class="tag">
+MCP Tool
+</div>
+
+
+<div class="tag">
+Tool Schema
+</div>
+
+
+<div class="tag">
+LLM Parameter Extraction
+</div>
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+</div>
+
+
+</body>
+
+
+</html>
