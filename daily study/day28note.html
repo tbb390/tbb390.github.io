@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>每日学习概览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            padding: 2rem 2rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f4870, #2b5c8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            border-bottom: 1px dashed #e2edf2;
+            padding-bottom: 1rem;
+        }
+
+        .meta span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .section {
+            margin: 1.8rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f4870;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-box {
+            background: #fafcff;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #eef2ff;
+            line-height: 1.6;
+            color: #2d3e50;
+        }
+
+        .content-box p {
+            margin: 0;
+            min-height: 4rem;
+        }
+
+        hr {
+            margin: 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .back-link:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+            .card {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>📝 每日学习概览</h1>
+        <div class="meta">
+            <span>📅 日期：2026/08/17</span>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📖english</div>
+            <div class="content-box">
+                <p>unit 7 复习456</p>
+
+            </div>
+        </div>
+
+        <p class="subtitle">📌 AI+智能体开发比赛</p>
+
+
+<div class="section">
+<div class="section-title">🤖 操作系统AI+智能体开发学习复盘</div>
+
+<div class="content-box">
+
+
+<p><strong>一、智能体系统验收与设计思路</strong></p>
+
+
+<p>
+评价一个Agent系统时，需要关注完整闭环，而不仅是模型输出效果。
+</p>
+
+
+<li>
+输入是什么：明确用户任务、文件、数据来源以及系统接收的信息。
+</li>
+
+<li>
+系统执行了什么：说明Agent如何理解任务，调用哪些模型、工具或工作流完成任务。
+</li>
+
+<li>
+结果保存在哪里：明确生成内容、结构化数据或执行状态的存储位置。
+</li>
+
+<li>
+如何验证成功：通过运行日志、结果文件、接口返回、任务状态等方式验证系统是否达到预期。
+</li>
+
+
+<p>
+核心思想：一个完整Agent不仅需要“能回答”，还需要“可执行、可追踪、可验证”。
+</p>
+
+
+
+<p><strong>二、智能写作系统核心架构</strong></p>
+
+
+<li>
+用户上传本地素材，系统首先进行多格式文档解析。
+</li>
+
+<li>
+解析过程中提取标题、正文、表格、图片等结构信息，将非结构化数据转化为可处理内容。
+</li>
+
+<li>
+当知识规模较大时，引入RAG架构：
+对文档进行Chunk切分，生成Embedding向量并建立索引。
+</li>
+
+<li>
+用户提出需求后，通过向量检索找到相关知识片段，并结合引用来源构造增强上下文。
+</li>
+
+<li>
+将用户需求、检索结果以及任务要求共同输入大模型，生成符合要求的文本内容。
+</li>
+
+<li>
+通过编辑器插件、应用SDK或者Agent工具，将生成结果写入目标文档，实现自动化办公。
+</li>
+
+
+<p>
+关键价值：
+</p>
+
+<li>
+减少模型幻觉，提高生成内容的准确性。
+</li>
+
+<li>
+利用企业内部知识库，让模型具备领域能力。
+</li>
+
+<li>
+通过引用来源增强结果可信度。
+</li>
+
+
+<p>
+同时需要关注数据安全：
+</p>
+
+<li>
+采用本地部署或私有化方案，保证敏感数据不离开本地环境。
+</li>
+
+<li>
+限制模型访问范围，避免数据泄露。
+</li>
+
+
+
+<p><strong>三、智能办公Agent核心设计</strong></p>
+
+
+<p>
+智能办公系统区别于普通问答系统，更强调任务执行能力。
+</p>
+
+
+<li>
+采用Agent闭环模式：
+任务规划 → 工具调用 → 获取反馈 → 调整计划 → 完成任务。
+</li>
+
+
+<li>
+通过“计划一步，执行一步”的方式，让Agent根据执行结果动态调整，而不是一次性生成固定流程。
+</li>
+
+
+<li>
+构建完整可观察链路：
+记录任务状态、模型调用、工具调用、执行结果等信息。
+</li>
+
+
+<li>
+根据工具风险等级划分权限：
+普通查询可以自动执行，高风险操作需要权限确认。
+</li>
+
+
+<li>
+保存完整日志，方便审计、调试和问题定位。
+</li>
+
+
+<p>
+核心目标：
+让Agent具备自主执行能力，同时保证过程透明、安全、可控。
+</p>
+
+
+
+<p><strong>四、MCP（Model Context Protocol）模型上下文协议</strong></p>
+
+
+<p>
+MCP是一种连接大模型与外部工具、数据源、应用系统的标准化协议。
+</p>
+
+
+<p>
+它解决的问题：
+</p>
+
+
+<li>
+模型如何稳定调用外部能力。
+</li>
+
+<li>
+工具如何统一描述输入输出格式。
+</li>
+
+<li>
+Agent如何安全访问外部资源。
+</li>
+
+
+<p>
+常见应用：</p>
+
+
+<li>
+定义工具能力，让模型知道有哪些工具可以调用。
+</li>
+
+<li>
+规范工具参数和返回结果。
+</li>
+
+<li>
+连接本地文件、数据库、API等外部资源。
+</li>
+
+<li>
+结合权限控制和日志记录，实现安全调用。
+</li>
+
+
+<p>
+理解：
+MCP相当于给大模型提供了一套标准“接口层”，让模型能够可靠地使用外部世界的能力。
+</p>
+
+
+
+<p><strong>五、Skill能力模块设计</strong></p>
+
+
+<p>
+Skill是Agent中的可复用能力单元，用于封装具体业务能力。
+</p>
+
+
+<li>
+将任务流程、输入输出格式、执行条件进行标准化封装。
+</li>
+
+<li>
+提高Agent能力复用性，避免每次重新设计流程。
+</li>
+
+
+<p>
+常见Skill：</p>
+
+
+<li>
+文档总结。
+</li>
+
+<li>
+表格数据抽取。
+</li>
+
+<li>
+代码生成。
+</li>
+
+<li>
+网页信息检索。
+</li>
+
+
+<p>
+多个Skill可以组合形成更复杂的Agent工作流，提高系统扩展能力。
+</p>
+
+
+
+<p><strong>六、本节总结</strong></p>
+
+
+<p>
+本阶段学习重点是理解企业级Agent系统的整体设计思路：
+</p>
+
+
+<li>
+RAG负责增强知识获取能力，让模型能够利用外部知识。
+</li>
+
+<li>
+MCP负责连接模型与工具，实现标准化调用。
+</li>
+
+<li>
+Skill负责封装复用能力，提高Agent扩展性。
+</li>
+
+<li>
+Agent工作流负责任务规划、执行和反馈闭环。
+</li>
+
+
+<p>
+最终目标是构建一个具备知识增强、工具调用、自主执行、安全可控能力的智能体系统。
+</p>
+
+
+</div>
+</div>
+
+<div style="max-width: 100%;">
+            <img src="/prtsc/大模型agent架构.png" style="width:100%; height:auto; border-radius:8px;">
+        </div>
+        
+        <div style="max-width: 100%;">
+            <img src="/prtsc/决赛要点.png" style="width:100%; height:auto; border-radius:8px;">
+        </div>
+       
+        <p class="subtitle">📌 教资科一</p>
+
+
+<div class="section">
+<div class="section-title">📖 第一章 第一节：素质教育与新课改教育观复盘</div>
+
+<div class="content-box">
+
+
+<p><strong>一、素质教育的内涵（高频考点）</strong></p>
+
+
+<p>
+素质教育是以提高国民素质为根本宗旨，以促进学生全面发展为核心，培养学生创新精神和实践能力的教育。
+</p>
+
+
+<li>
+<strong>面向全体学生：</strong>
+教育对象不是少数优秀学生，而是所有学生。
+</li>
+
+
+<li>
+<strong>促进学生全面发展：</strong>
+关注德、智、体、美、劳等方面协调发展。
+</li>
+
+
+<li>
+<strong>促进学生个性发展：</strong>
+尊重学生差异，因材施教，发展学生特长。
+</li>
+
+
+<li>
+<strong>培养创新精神和实践能力：</strong>
+重视学生主动探索、解决问题和实际应用能力。
+</li>
+
+
+<p>
+核心：
+</p>
+
+<li>
+根本宗旨：提高国民素质。
+</li>
+
+<li>
+重点：培养创新精神和实践能力。
+</li>
+
+<li>
+灵魂：创新精神。
+</li>
+
+
+
+<p><strong>二、新课改下的教育观（选择题、材料题高频）</strong></p>
+
+
+<p><strong>1. 教育从“以教师为中心”转向“以学生发展为中心”</strong></p>
+
+
+<li>
+关注学生的主体地位，调动学生学习主动性。
+</li>
+
+<li>
+由知识传授者转变为学生学习的促进者和引导者。
+</li>
+
+
+<p>
+材料关键词：
+</p>
+
+<li>
+尊重学生主体性。
+</li>
+
+<li>
+鼓励自主学习。
+</li>
+
+<li>
+关注学生发展需求。
+</li>
+
+
+
+<p><strong>2. 教育从“重结果”转向“重发展”</strong></p>
+
+
+<li>
+不仅关注学生成绩，还关注学生能力、兴趣和综合素质发展。
+</li>
+
+<li>
+关注学生成长过程中的变化。
+</li>
+
+
+<p>
+材料关键词：
+</p>
+
+<li>
+促进学生全面发展。
+</li>
+
+<li>
+发展性评价。
+</li>
+
+<li>
+不以成绩作为唯一标准。
+</li>
+
+
+
+<p><strong>3. 教育从“关注学科知识”转向“关注学生能力培养”</strong></p>
+
+
+<li>
+不仅传授知识，还培养学生创新能力、实践能力和解决问题能力。
+</li>
+
+
+<p>
+材料关键词：
+</p>
+
+<li>
+探究学习。
+</li>
+
+<li>
+实践活动。
+</li>
+
+<li>
+综合能力培养。
+</li>
+
+
+
+<p><strong>4. 教育从“统一标准”转向“尊重个体差异”</strong></p>
+
+
+<li>
+承认学生之间存在差异，实施因材施教。
+</li>
+
+
+<p>
+材料关键词：
+</p>
+
+<li>
+分层教学。
+</li>
+
+<li>
+个性化指导。
+</li>
+
+<li>
+发现学生特长。
+</li>
+
+
+
+<p><strong>三、新课改提倡的教育方式（教学方式）</strong></p>
+
+
+<p><strong>1. 自主学习</strong></p>
+
+
+<li>
+学生主动参与学习过程，发挥主体作用。
+</li>
+
+
+<p>
+关键词：
+主动探索、自我学习、自我管理。
+</p>
+
+
+
+<p><strong>2. 合作学习</strong></p>
+
+
+<li>
+通过小组合作、交流讨论共同完成学习任务。
+</li>
+
+
+<p>
+关键词：
+小组讨论、团队合作、交流互动。
+</p>
+
+
+
+<p><strong>3. 探究学习</strong></p>
+
+
+<li>
+学生通过发现问题、提出问题、分析问题、解决问题获取知识。
+</li>
+
+
+<p>
+关键词：
+问题情境、实践探究、发现规律。
+</p>
+
+
+
+<p><strong>四、材料题判断重点</strong></p>
+
+
+<p><strong>出现以下行为 → 对应考点：</strong></p>
+
+
+<li>
+教师只关注成绩排名、忽视学生其他发展 → 违背素质教育全面发展理念。
+</li>
+
+
+<li>
+教师采用灌输式教学，不让学生思考 → 违背学生主体性，未体现新课改理念。
+</li>
+
+
+<li>
+教师鼓励学生讨论、实验、探究 → 体现自主、合作、探究学习方式。
+</li>
+
+
+<li>
+教师根据学生特点安排不同任务 → 体现因材施教和个性发展。
+</li>
+
+
+<li>
+教师评价学生不仅看成绩，还关注能力和进步 → 体现发展性评价。
+</li>
+
+
+
+<p><strong>本节总结</strong></p>
+
+
+<p>
+本节重点掌握素质教育的核心内涵、新课改下教育观以及倡导的教学方式。选择题重点考查概念对应关系，材料分析题重点识别教师行为是否体现“学生主体、全面发展、创新实践、个性培养”等教育理念。
+</p>
+
+
+</div>
+</div>
+
+        <div class="section">
+            <div class="section-title">📌 明日计划</div>
+            <div class="content-box">
+                <p>unit 8 复习567 语法
+                    投简历
+                    agent学习，项目重温
+                    自动化一面
+                    投简历
+                    深度学习逻辑回归
+                    教资科一科二
+                    整理
+
+</p>
+            </div>
+        </div>
+
+        <hr />
+        <a href="index.html" class="back-link">← 返回学习主页</a>
+    </div>
+</div>
+</body>
+</html>
+
+
+验收可以写成四句话：输入是什么，系统实际执行了什么，结果保存在哪里，怎么验证成功
+智能写作系统：本地素材进入系统，不同格式文档解析：提取标题，正文，表格等要素构造上下文，素材很多时要用到rag检索：
+把文档写成chunk，简历向量索引，检索片段，标记引用来源，把要求和片段一起发给大模型，生成后可用编辑器插件，应用SDK，或者agent工具把模型输出写入文档对象
+还要安全可控，保证数据不出机。
+智能办公系统：闭环动态循环：计划一步，做一步。需要做成可观察全链条，区分工具权限，对高风险操作设置权限，保存完整条日志。mcp是Model Context Protocol（模型上下文协议），它是让大模型与外部工具、数据源、应用系统之间进行标准化上下文交互的协议。它解决的是“模型如何安全、稳定、可控地调用工具、读取资源、执行动作”的问题。常见用法包括：定义工具能力、统一参数输入输出、让Agent在工作流中调用本地文件、数据库、API等，并保留操作日志和权限边界。
+skill 是指可复用的能力单元，通常是对某项任务的封装，比如“文档总结”“表格抽取”“代码生成”“网页检索”等。它把具体步骤、输入输出格式和调用条件标准化，让大模型或Agent可以按模块组合、复用和扩展，形成更稳定的业务能力.
+
+
+
