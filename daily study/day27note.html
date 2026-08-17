@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>每日学习概览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            padding: 2rem 2rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f4870, #2b5c8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            border-bottom: 1px dashed #e2edf2;
+            padding-bottom: 1rem;
+        }
+
+        .meta span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .section {
+            margin: 1.8rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f4870;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-box {
+            background: #fafcff;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #eef2ff;
+            line-height: 1.6;
+            color: #2d3e50;
+        }
+
+        .content-box p {
+            margin: 0;
+            min-height: 4rem;
+        }
+
+        hr {
+            margin: 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .back-link:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+            .card {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>📝 每日学习概览</h1>
+        <div class="meta">
+            <span>📅 日期：2026年8月15,16日</span>
+        </div>
+
+        <p class="subtitle">📌 深度学习（李宏毅课程）</p>
+
+<div class="section">
+<div class="section-title">🧠 Classification Case Study：从概率生成模型理解分类问题</div>
+
+<div class="content-box">
+
+
+<p><strong>本节定位：从回归到分类，建立分类问题的数学框架</strong></p>
+
+<p>
+前几节课程主要研究 Regression（回归）问题，即通过输入特征 x 预测连续数值 y，例如预测宝可梦进化后的 CP 值。
+</p>
+
+<p>
+本节将任务转换为 Classification（分类）问题：
+</p>
+
+<li>
+输入：样本特征 x。
+</li>
+
+<li>
+输出：样本所属类别。
+</li>
+
+
+<p>
+例如判断一只宝可梦属于水系还是普通系。
+</p>
+
+
+<p>
+虽然表面上只是输出形式由数字变成类别，但分类问题的数学建模方式发生了根本变化。本节通过概率生成模型（Generative Model），建立分类任务的完整推导过程。
+</p>
+
+
+
+<p><strong>一、为什么不能直接使用回归解决分类问题？</strong></p>
+
+
+<p>
+直觉上可能认为：
+</p>
+
+<p>
+“分类只需要把类别编号，然后套用回归模型即可。”
+</p>
+
+<p>
+例如：
+</p>
+
+<li>
+类别A标记为1。
+</li>
+
+<li>
+类别B标记为-1。
+</li>
+
+
+<p>
+然后训练模型预测输出值。
+</p>
+
+
+<p>
+但是这种方法存在两个核心问题。
+</p>
+
+
+
+<p><strong>1. 回归目标与分类目标不一致</strong></p>
+
+
+<p>
+回归希望预测值无限接近真实数字。
+</p>
+
+
+<p>
+例如真实标签为1：
+</p>
+
+<li>
+预测1.1，Loss较小。
+</li>
+
+<li>
+预测10，Loss很大。
+</li>
+
+
+<p>
+但对于分类问题：
+</p>
+
+<p>
+只要模型判断属于类别A即可，预测10和预测1没有本质区别。
+</p>
+
+
+<p>
+因此回归会强迫模型关注数值距离，而分类真正关注的是类别边界。
+</p>
+
+
+<p>
+二者优化目标不同，所以不能简单套用。
+</p>
+
+
+
+<p><strong>2. 分类标签的数字没有实际意义</strong></p>
+
+
+<p>
+分类标签中的数字通常只是人为编码。
+</p>
+
+
+<li>
+水系 = 1。
+</li>
+
+<li>
+普通系 = -1。
+</li>
+
+
+<p>
+如果重新编号：
+</p>
+
+<li>
+水系 = -1。
+</li>
+
+<li>
+普通系 = 1。
+</li>
+
+
+<p>
+回归模型得到的参数可能完全不同。
+</p>
+
+
+<p>
+这说明回归方法依赖标签数字本身，而分类问题中数字只是类别符号，不应该影响模型结果。
+</p>
+
+
+
+<p><strong>二、概率生成模型的核心思想</strong></p>
+
+
+<p>
+既然不能直接预测类别，那么换一种思路：
+</p>
+
+
+<p>
+不直接学习：
+</p>
+
+<p>
+“这个样本属于哪个类别？”
+</p>
+
+
+<p>
+而是学习：
+</p>
+
+
+<li>
+每个类别的数据分布是什么样？
+</li>
+
+<li>
+观察到一个新样本后，它更像哪个类别？
+</li>
+
+
+<p>
+因此需要计算：
+</p>
+
+
+<p>
+P(C|x)
+</p>
+
+
+<p>
+即：
+<strong>已知样本特征 x 后，它属于类别 C 的概率。</strong>
+</p>
+
+
+
+<p><strong>三、贝叶斯公式：连接类别与特征</strong></p>
+
+
+<p>
+贝叶斯公式：
+</p>
+
+
+<p>
+P(C|x)=P(x|C)P(C)/P(x)
+</p>
+
+
+<p>
+其中：</p>
+
+
+<li>
+P(C)：先验概率，表示类别本身出现的概率。
+</li>
+
+<li>
+P(x|C)：似然概率，表示某类别下出现这种特征的可能性。
+</li>
+
+<li>
+P(C|x)：后验概率，根据观察到的特征判断类别。
+</li>
+
+
+<p>
+模型的核心任务就是比较：
+</p>
+
+<p>
+这个样本更符合哪个类别的数据分布。
+</p>
+
+
+
+<p><strong>四、为什么需要假设高斯分布？</strong></p>
+
+
+<p>
+计算 P(x|C) 时，需要知道每个类别的数据分布。
+</p>
+
+
+<p>
+但是现实中：
+</p>
+
+<li>
+训练数据数量有限。
+</li>
+
+<li>
+特征空间可能无限。
+</li>
+
+
+<p>
+如果不对分布进行假设，就无法计算任意位置出现样本的概率。
+</p>
+
+
+<p>
+因此引入高斯分布（Gaussian Distribution）作为数学模型。
+</p>
+
+
+<p>
+高斯分布由两个核心参数决定：</p>
+
+
+<li>
+均值 μ：表示数据中心位置。
+</li>
+
+<li>
+协方差 Σ：表示数据分布范围和方向。
+</li>
+
+
+<p>
+几何意义：</p>
+
+<li>
+μ 决定类别中心在哪里。
+</li>
+
+<li>
+Σ 决定数据呈圆形还是椭圆形，以及扩散方向。
+</li>
+
+
+<p>
+高斯分布不是唯一选择，只是一种数学性质良好、容易计算的假设。
+</p>
+
+
+
+<p><strong>五、最大似然估计（Maximum Likelihood Estimation）</strong></p>
+
+
+<p>
+确定使用高斯分布后，需要从训练数据中估计 μ 和 Σ。
+</p>
+
+
+<p>
+最大似然估计的目标：</p>
+
+
+<p>
+找到一组参数，使当前观察到的数据出现概率最大。
+</p>
+
+
+<p>
+最终得到：</p>
+
+
+<li>
+μ 等于该类别所有样本的平均值。
+</li>
+
+<li>
+Σ 等于样本的协方差矩阵。
+</li>
+
+
+<p>
+因此不需要复杂迭代优化，直接根据数据计算即可。
+</p>
+
+
+
+<p><strong>六、共享协方差矩阵：降低复杂度并得到线性分类器</strong></p>
+
+
+<p>
+如果每个类别拥有自己的协方差矩阵：</p>
+
+
+<li>
+类别越多，需要学习的参数越多。
+</li>
+
+<li>
+特征维度越高，参数数量按照平方增长。
+</li>
+
+<li>
+容易产生过拟合。
+</li>
+
+
+<p>
+因此引入共享协方差矩阵：</p>
+
+
+<p>
+所有类别使用同一个 Σ，只保留不同类别中心 μ 的差异。
+</p>
+
+
+<p>
+这样既减少参数数量，又提高泛化能力。
+</p>
+
+
+<p>
+更重要的是：
+</p>
+
+
+<p>
+经过数学推导后，后验概率可以化简为：
+</p>
+
+
+<p>
+P(C|x)=σ(w·x+b)
+</p>
+
+
+<p>
+即：
+</p>
+
+
+<p>
+最终得到一个线性的决策边界。
+</p>
+
+
+<p>
+虽然前面使用了概率分布模型，但最终分类边界仍然是一条直线（超平面）。
+</p>
+
+
+
+<p><strong>七、本节与逻辑回归的关系</strong></p>
+
+
+<p>
+本节最后引出了一个重要问题：
+</p>
+
+
+<p>
+既然最终得到：
+</p>
+
+
+<p>
+P(C|x)=σ(w·x+b)
+</p>
+
+
+<p>
+为什么不直接学习 w 和 b？
+</p>
+
+
+<p>
+这就是下一节 Logistic Regression（逻辑回归）的核心思想。
+</p>
+
+
+<p>
+区别在于：</p>
+
+
+<li>
+生成模型：
+先假设数据分布，再通过贝叶斯推导类别概率。
+</li>
+
+<li>
+判别模型：
+直接学习类别概率边界。
+</li>
+
+
+<p>
+生成模型更关注数据如何产生，判别模型更关注如何区分类别。
+</p>
+
+
+
+<p><strong>八、本节完整逻辑链</strong></p>
+
+
+<li>
+分类问题输出类别，不能直接使用回归思想。
+</li>
+
+<li>
+转换为概率问题，计算 P(C|x)。
+</li>
+
+<li>
+利用贝叶斯公式拆分为先验和似然。
+</li>
+
+<li>
+为了计算似然，引入高斯分布假设。
+</li>
+
+<li>
+利用最大似然估计得到分布参数。
+</li>
+
+<li>
+共享协方差减少参数，并推导出线性决策边界。
+</li>
+
+<li>
+最终得到 Sigmoid 形式。
+</li>
+
+<li>
+自然引出下一节逻辑回归：直接学习 Sigmoid 参数。
+</li>
+
+
+
+<p><strong>本节核心理解总结</strong></p>
+
+<p>
+这一节并不是简单介绍一个分类算法，而是在展示机器学习建模的一种思想转变：
+</p>
+
+
+<p>
+从“直接预测类别”转变为“学习不同类别的数据分布，再根据概率进行判断”。
+</p>
+
+
+<p>
+概率生成模型通过贝叶斯公式、高斯分布和最大似然估计建立分类框架，同时最终推导出了 Sigmoid 形式，为后续逻辑回归和神经网络分类任务奠定数学基础。
+</p>
+
+
+</div>
+</div>
+
+        
+<p class="subtitle">📌 英语</p>
+
+
+<div class="section">
+<div class="section-title">📖 英语语法基础：核心复盘</div>
+
+<div class="content-box">
+
+
+<p><strong>谓语结构</strong></p>
+
+<li>
+情态动词 + do 共同构成谓语。
+</li>
+
+<li>
+一般现在时第三人称单数，谓语动词加 s。
+</li>
+
+
+<p><strong>系动词结构</strong></p>
+
+<li>
+系动词后接表语，常见形式：
+adj、n、介词短语、doing、done。
+</li>
+
+
+<p><strong>非谓语结构</strong></p>
+
+<li>
+动词不定式 to do 常表示目的。
+</li>
+
+
+<p><strong>副词（Adv）</strong></p>
+
+<li>
+副词主要修饰动词、形容词、副词、介词。
+</li>
+
+<li>
+副词具有比较级变化。
+</li>
+
+
+<p><strong>介词结构</strong></p>
+
+<li>
+介词 + 宾语（名词、doing）构成介词短语。
+</li>
+
+<li>
+介词短语可作定语修饰名词。
+</li>
+
+<li>
+介词短语可作状语修饰动词。
+</li>
+
+
+<p><strong>常见介词</strong></p>
+
+<li>
+in：在……中
+</li>
+
+<li>
+against：反对、靠着
+</li>
+
+<li>
+by：通过、凭借
+</li>
+
+<li>
+on：关于、在……上
+</li>
+
+<li>
+to：到、对于
+</li>
+
+
+<p><strong>本节总结</strong></p>
+
+<p>
+复习英语句子基础结构，重点掌握谓语判断、系动词搭配、非谓语形式、副词修饰关系以及介词短语在句中的作用，为后续长难句分析打基础。
+</p>
+
+
+</div>
+</div>
+
+        <p class="subtitle">📌 教资科二</p>
+
+
+<div class="section">
+<div class="section-title">📖 第一章、第二章：高频简答题复盘</div>
+
+<div class="content-box">
+
+
+<p><strong>第一章：教育基础知识</strong></p>
+
+
+<p><strong>教育目的的基本理论</strong></p>
+
+<li>
+个人本位论：教育目的由人的本性和需要决定，强调个人价值发展。
+</li>
+
+<li>
+社会本位论：教育目的由社会需要决定，强调培养社会所需要的人。
+</li>
+
+<li>
+教育无目的论：杜威提出，认为教育过程本身就是目的。
+</li>
+
+
+<p><strong>影响人身心发展的因素</strong></p>
+
+<li>
+遗传：提供发展的可能性，是人的发展的生物基础。
+</li>
+
+<li>
+环境：将遗传提供的可能性转化为现实。
+</li>
+
+<li>
+学校教育：在人身心发展中起主导作用。
+</li>
+
+<li>
+个体主观能动性：人的发展的内在动力和决定性因素。
+</li>
+
+
+<p><strong>全面发展教育的构成及作用</strong></p>
+
+<li>
+德育：培养思想品德，是方向和灵魂。
+</li>
+
+<li>
+智育：传授知识、发展能力，是核心和基础。
+</li>
+
+<li>
+体育：增强体质，是物质基础。
+</li>
+
+<li>
+美育：培养审美能力，是动力和升华。
+</li>
+
+<li>
+劳动技术教育：培养劳动观念和实践能力，是综合实践的重要内容。
+</li>
+
+
+<p><strong>学校德育实效性提高策略</strong></p>
+
+<li>
+提高德育工作的认识，加强德育队伍建设。
+</li>
+
+<li>
+贯彻教育影响的一致性和连贯性原则。
+</li>
+
+<li>
+选择合适的德育内容和方法。
+</li>
+
+<li>
+发挥学生主体作用，提高德育针对性。
+</li>
+
+
+<p><strong>体育的目标</strong></p>
+
+<li>
+增强学生体质，促进身体健康。
+</li>
+
+<li>
+掌握体育知识和技能。
+</li>
+
+<li>
+培养运动兴趣和良好习惯。
+</li>
+
+<li>
+发展学生意志品质和团队精神。
+</li>
+
+
+
+<p><strong>第二章：中学课程</strong></p>
+
+
+<p><strong>泰勒的目标四段论</strong></p>
+
+<li>
+确定教育目标。
+</li>
+
+<li>
+选择教育经验。
+</li>
+
+<li>
+组织教育经验。
+</li>
+
+<li>
+评价教育计划。
+</li>
+
+
+<p><strong>课程内容的文本表现形式</strong></p>
+
+<li>
+课程计划：国家对学校课程设置的总体规划。
+</li>
+
+<li>
+课程标准：规定学科课程目标、内容标准和实施要求。
+</li>
+
+<li>
+教材：课程标准的具体化，是教师教学和学生学习的重要材料。
+</li>
+
+
+<p><strong>本节总结</strong></p>
+
+<p>
+复习教资科二第一章、第二章高频简答题，重点掌握教育目的理论、人的发展因素、全面发展教育、德育与体育目标，以及课程设计相关理论，为简答题和材料分析题积累答题框架。
+</p>
+
+
+</div>
+</div>
+       
+
+            </div>
+        </div>
+
+        <hr />
+        <a href="index.html" class="back-link">← 返回学习主页</a>
+    </div>
+</div>
+</body>
+</html>
