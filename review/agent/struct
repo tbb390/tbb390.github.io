@@ -1,0 +1,21 @@
+<div class="card">
+
+<a href="interviewX.html">
+
+<div class="title">
+标题
+</div>
+
+<div class="desc">
+时间：
+
+内容：
+</div>
+
+<span class="tag">
+标签
+</span>
+
+</a>
+
+</div>

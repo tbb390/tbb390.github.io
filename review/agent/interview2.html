@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Interview2 综合面试复盘</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    padding:25px;
+    background:#f5f7fb;
+    font-family:"Microsoft YaHei",sans-serif;
+    color:#333;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+}
+
+
+.header{
+    background:white;
+    padding:22px 25px;
+    border-radius:15px;
+    margin-bottom:18px;
+}
+
+.header h1{
+    margin:0 0 10px;
+    font-size:26px;
+}
+
+.header p{
+    color:#666;
+    margin:0;
+    line-height:1.6;
+}
+
+
+.card{
+    background:white;
+    border-radius:15px;
+    padding:20px 22px;
+    margin-bottom:16px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.05);
+}
+
+
+.title{
+    font-size:18px;
+    font-weight:bold;
+    color:#2563eb;
+    margin-bottom:12px;
+}
+
+
+.content{
+    font-size:15px;
+    line-height:1.75;
+}
+
+
+.key{
+    margin-top:12px;
+    background:#f1f7ff;
+    padding:10px 12px;
+    border-radius:10px;
+    color:#555;
+}
+
+
+.tag{
+    display:inline-block;
+    background:#e8f2ff;
+    color:#2563eb;
+    border-radius:20px;
+    padding:5px 12px;
+    font-size:13px;
+    margin-right:6px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<div class="header">
+
+<h1>AI Agent 实习面试复盘（二）</h1>
+
+<p>
+综合面试：个人经历口述 + 逻辑推理笔试 + AI应用实践
+</p>
+
+<br>
+
+<span class="tag">HR面</span>
+<span class="tag">逻辑题</span>
+<span class="tag">AI实践</span>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="title">
+自我介绍
+</div>
+
+<div class="content">
+
+您好，我叫白学宇，目前是网络工程专业大三学生。
+
+我的主要方向是 AI 应用开发，重点关注大模型应用、Agent 和 RAG 技术。
+
+在学习过程中，我不仅学习 Python、Java 等开发基础，也通过项目实践深入了解大模型应用开发流程。
+
+比较有代表性的项目是 Ragent 企业级 Agentic RAG 平台，涉及知识库构建、文档解析、Embedding、向量检索、Prompt设计以及大模型调用等完整流程。
+
+项目过程中，我也主动解决过一些工程问题，例如通过日志分析定位异步任务失败原因，优化项目运行流程。
+
+我希望未来能够继续在 AI Agent 应用开发方向深入，将技术能力和实际业务结合。
+
+</div>
+
+</div>
+
+
+
+
+<div class="card">
+
+<div class="title">
+为什么这样介绍自己？
+</div>
+
+<div class="content">
+
+我希望让面试官快速了解到三个方面：
+
+第一，我具备岗位相关技术基础；
+
+第二，我有实际项目经验，不只是学习理论；
+
+第三，我具备主动学习和解决问题的能力。
+
+AI领域技术更新比较快，我认为持续学习和快速解决问题的能力非常重要。
+
+</div>
+
+</div>
+
+
+
+
+<div class="card">
+
+<div class="title">
+希望从这份工作获得哪些收获？
+</div>
+
+<div class="content">
+
+第一，希望提升工程实践能力，了解企业真实项目开发流程。
+
+第二，希望深入学习 Agent 在业务场景中的落地方式，包括任务规划、工具调用和可靠性设计。
+
+第三，希望提升团队协作能力，从完成个人任务成长为能够推动项目落地。
+
+</div>
+
+</div>
+
+
+
+
+<div class="card">
+
+<div class="title">
+最值得骄傲的经历？
+</div>
+
+<div class="content">
+
+我比较自豪的是完成 Ragent 企业级 Agentic RAG 项目。
+
+项目涉及多个陌生方向，包括 Java 后端、大模型调用、向量数据库以及消息队列。
+
+刚开始很多技术并不了解，但我通过拆分模块、阅读代码、运行验证逐渐掌握整个系统。
+
+最终不仅完成项目运行，也能够理解 RAG 从数据处理到生成回答的完整流程。
+
+</div>
+
+</div>
+
+
+
+
+<div class="card">
+
+<div class="title">
+遇到问题如何解决？
+</div>
+
+<div class="content">
+
+项目中曾遇到文档上传成功，但是知识库没有生成向量的问题。
+
+我的处理方式是先分析完整链路：
+
+文件上传 → 消息队列 → 消费任务 → 文档切片 → Embedding → 向量入库。
+
+通过查看 RocketMQ 状态、消费者日志以及运行环境配置，最终定位到任务执行异常。
+
+调整配置后重新验证完整流程，恢复系统正常运行。
+
+</div>
+
+</div>
+
+
+
+
+<div class="card">
+
+<div class="title">
+主动学习新知识完成目标的经历？
+</div>
+
+<div class="content">
+
+为了完成 Agentic RAG 项目，我主动学习 RAG、Embedding、向量数据库以及 Agent 执行流程。
+
+学习过程中采用边学习边实践的方法，通过阅读源码、运行项目、分析日志不断验证。
+
+最终能够独立完成项目部署，并理解核心技术流程。
+
+</div>
+
+</div>
+
+
+
+
+<div class="card">
+
+<div class="title">
+逻辑题1：彩票筹集资金问题
+</div>
+
+<div class="content">
+
+彩票售价5元，中奖概率2%，奖金50元。
+
+单张彩票期望奖金：
+
+50 × 2% = 1元
+
+因此每张彩票平均净收益：
+
+5 - 1 = 4元
+
+目标筹集1000元：
+
+1000 ÷ 4 ≈ 250张
+
+答案：约销售250张彩票。
+
+</div>
+
+</div>
+
+
+
+
+<div class="card">
+
+<div class="title">
+逻辑题2：三位数价格猜测
+</div>
+
+<div class="content">
+
+数字：
+
+513535319
+
+相邻三个数字组成：
+
+513、135、353、535、353、531、319
+
+去重后共有6种可能。
+
+一次猜中的概率：
+
+1 / 6
+
+答案：约16.7%。
+
+</div>
+
+</div>
+
+
+
+
+<div class="card">
+
+<div class="title">
+逻辑题3：用户留存率分析
+</div>
+
+<div class="content">
+
+留存率计算公式：
+
+第N月活跃用户数 ÷ 第0月用户数
+
+通过Excel计算各月份留存率，并绘制趋势图。
+
+分析重点：
+
+不仅关注计算结果，更关注用户生命周期变化趋势。
+
+</div>
+
+</div>
+
+
+
+
+<div class="card">
+
+<div class="title">
+逻辑题4：不规则数独
+</div>
+
+<div class="content">
+
+解题方法：
+
+利用每行、每列以及每个粗线区域必须包含1-6的限制。
+
+优先寻找数字缺失数量少的区域，通过排除法逐步确定。
+
+核心考察：
+
+逻辑推理和约束分析能力。
+
+</div>
+
+</div>
+
+
+
+
+<div class="card">
+
+<div class="title">
+逻辑题5：角色分配问题
+</div>
+
+<div class="content">
+
+通过条件逐步推理：
+
+如果乙不演项王，则丙演张良。
+
+根据其他限制继续排除不可能情况。
+
+最终得到：
+
+丙演张良。
+
+答案：C。
+
+</div>
+
+</div>
+
+
+
+
+<div class="card">
+
+<div class="title">
+逻辑题6：帽子颜色推理
+</div>
+
+<div class="content">
+
+核心思路：
+
+通过观察别人看到的信息进行反推。
+
+如果4号看到2号和3号帽子颜色相同，则可以立即判断自己的颜色。
+
+但4号没有回答，因此说明2号和3号颜色不同。
+
+继续根据3号看到的信息推理，可以确定自己的帽子颜色。
+
+考察：
+
+信息推理能力和逆向思考能力。
+
+</div>
+
+</div>
+
+
+
+
+<div class="card">
+
+<div class="title">
+逻辑题7：AI应用实践分享
+</div>
+
+<div class="content">
+
+我的AI实践案例是 Ragent Agentic RAG 项目。
+
+使用AI辅助：
+
+1. 快速理解陌生代码结构；
+
+2. 分析日志定位问题；
+
+3. 优化Prompt设计；
+
+4. 辅助生成测试方案。
+
+我的AI使用方式不是直接依赖AI生成答案，而是：
+
+提出问题 → 获取方案 → 自己验证 → 实践修改 → 总结经验。
+
+AI更像一个辅助学习和解决问题的工具。
+
+</div>
+
+</div>
+
+
+
+
+<div class="card">
+
+<div class="title">
+职业规划
+</div>
+
+<div class="content">
+
+短期希望通过实习提升工程能力，深入理解 AI Agent 在真实业务中的应用。
+
+长期希望成长为能够独立设计和开发 AI 应用系统的工程师，不仅会调用模型，更能够结合业务需求设计可靠智能系统。
+
+</div>
+
+</div>
+
+
+
+
+</div>
+
+
+</body>
+</html>
