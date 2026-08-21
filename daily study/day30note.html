@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>每日学习概览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            padding: 2rem 2rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f4870, #2b5c8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            border-bottom: 1px dashed #e2edf2;
+            padding-bottom: 1rem;
+        }
+
+        .meta span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .section {
+            margin: 1.8rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f4870;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-box {
+            background: #fafcff;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #eef2ff;
+            line-height: 1.6;
+            color: #2d3e50;
+        }
+
+        .content-box p {
+            margin: 0;
+            min-height: 4rem;
+        }
+
+        hr {
+            margin: 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .back-link:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+            .card {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>📝 每日学习概览</h1>
+        <div class="meta">
+            <span>📅 日期：2026/08/19-20</span>
+        </div>
+
+
+<p class="subtitle">📌 深度学习（李宏毅）</p>
+
+
+<div class="section">
+<div class="section-title">📖 Logistic Regression（逻辑回归）课程复盘</div>
+
+<div class="content-box">
+
+
+<p><strong>一、本节核心：从回归到分类的建模转变</strong></p>
+
+
+<p>
+前面的回归任务解决的是“预测一个连续数值”，例如预测CP值；而逻辑回归解决的是分类问题，即输入特征后判断样本属于哪个类别。
+</p>
+
+
+<p>
+逻辑回归的核心思想：
+不是直接输出类别，而是先计算样本属于某一类别的概率，再根据概率进行分类。
+</p>
+
+
+<p><strong>整体流程：</strong></p>
+
+<li>
+选择模型（Model）：定义如何输出概率。
+</li>
+
+<li>
+定义损失函数（Loss）：衡量预测概率与真实标签的差距。
+</li>
+
+<li>
+优化参数：通过梯度下降寻找最佳参数。
+</li>
+
+
+
+<p><strong>二、Step 1：选择模型 —— Sigmoid实现概率输出</strong></p>
+
+
+<p>
+逻辑回归首先计算线性组合：
+</p>
+
+
+<p>
+z = w₁x₁ + w₂x₂ + ... + b
+</p>
+
+
+<p>
+然后通过Sigmoid函数进行概率转换：
+</p>
+
+
+<p>
+σ(z)=1/(1+e⁻ᶻ)
+</p>
+
+
+<li>
+Sigmoid将任意实数压缩到0~1之间。
+</li>
+
+<li>
+输出值可以理解为样本属于某类别的概率。
+</li>
+
+<li>
+通常概率≥0.5判断为正类别，否则判断为负类别。
+</li>
+
+
+<p>
+核心理解：
+线性模型负责计算“分数”，Sigmoid负责把分数转换成“概率”。
+</p>
+
+
+
+<p><strong>三、逻辑回归与线性回归区别</strong></p>
+
+
+<li>
+线性回归：
+输出任意连续数值，用于预测。
+</li>
+
+<li>
+逻辑回归：
+输出0~1概率，用于分类。
+</li>
+
+
+<p>
+关键区别：
+</p>
+
+<li>
+线性回归最后直接输出。
+</li>
+
+<li>
+逻辑回归最后需要经过Sigmoid激活函数。
+</li>
+
+
+
+<p><strong>四、Step 2：损失函数 —— 为什么分类使用交叉熵</strong></p>
+
+
+<p>
+模型确定后，需要一个标准判断参数好坏。
+</p>
+
+
+<p>
+逻辑回归采用最大似然思想：
+</p>
+
+
+<li>
+如果模型预测正确类别的概率越高，说明参数越好。
+</li>
+
+<li>
+将所有训练样本预测正确的概率相乘，得到整体可能性。
+</li>
+
+
+<p>
+由于概率连乘会导致数值过小，因此进行两个处理：</p>
+
+
+<li>
+取对数：
+将乘法转换为加法，提高计算稳定性。
+</li>
+
+<li>
+加负号：
+将最大化概率问题转换为梯度下降中的最小化问题。
+</li>
+
+
+<p>
+最终得到交叉熵损失函数：
+</p>
+
+
+<p>
+Loss = -[yln(f)+(1-y)ln(1-f)]
+</p>
+
+
+<p>
+其中：
+</p>
+
+<li>
+y是真实标签。
+</li>
+
+<li>
+f是模型预测概率。
+</li>
+
+
+<p>
+交叉熵本质：
+衡量真实分布与模型预测分布之间的差异。
+</p>
+
+
+
+<p><strong>五、为什么Sigmoid必须搭配交叉熵？（重点理解）</strong></p>
+
+
+<p><strong>1. Sigmoid + 均方误差的问题</strong></p>
+
+
+<p>
+如果使用均方误差作为分类损失：
+</p>
+
+
+<p>
+梯度中会出现：
+</p>
+
+
+<p>
+f(1-f)
+</p>
+
+
+<p>
+当模型预测错误且非常自信时，例如真实标签为1，但预测概率接近0：
+</p>
+
+
+<li>
+Sigmoid进入饱和区域。
+</li>
+
+<li>
+f(1-f)接近0。
+</li>
+
+<li>
+梯度变小，参数更新困难。
+</li>
+
+
+<p>
+结果：
+模型错误很严重，但学习速度反而变慢，出现梯度消失问题。
+</p>
+
+
+
+<p><strong>2. Sigmoid + 交叉熵优势</strong></p>
+
+
+<p>
+交叉熵求导后，会抵消Sigmoid中的梯度项，最终梯度主要表现为：
+</p>
+
+
+<p>
+预测值 - 真实值
+</p>
+
+
+<li>
+预测错误越大，梯度越大，调整越快。
+</li>
+
+<li>
+接近正确答案时，梯度减小，避免过度调整。
+</li>
+
+
+<p>
+因此：
+</p>
+
+<li>
+分类任务通常使用Sigmoid + Cross Entropy组合。
+</li>
+
+<li>
+这是深度学习分类模型中的经典搭配。
+</li>
+
+
+
+<p><strong>六、深度学习训练整体逻辑串联</strong></p>
+
+
+<li>
+Step 1：选择模型。
+</li>
+
+
+<p>
+决定模型能够表达什么样的函数。
+</p>
+
+
+<li>
+Step 2：设计损失函数。
+</li>
+
+
+<p>
+决定如何评价模型预测效果。
+</p>
+
+
+<li>
+Step 3：梯度下降优化。
+</li>
+
+
+<p>
+根据损失不断调整参数，使模型越来越接近目标。
+</p>
+
+
+
+<p><strong>七、本节核心总结</strong></p>
+
+
+<p>
+逻辑回归的核心不是“回归”，而是利用线性模型结合Sigmoid，将输出转换为概率，用交叉熵衡量预测概率与真实标签的差异，再通过梯度下降优化参数。
+</p>
+
+
+<p>
+完整训练逻辑：
+</p>
+
+
+<p>
+线性组合 → Sigmoid概率输出 → 交叉熵计算误差 → 梯度下降更新参数。
+</p>
+
+
+<p>
+理解这一节的意义：
+它建立了现代分类模型的基础，也为后续神经网络中的Softmax、多分类任务以及深度学习优化方法提供了理论基础。
+</p>
+
+
+</div>
+</div>
+
+
+
+       <p class="subtitle">📌 教资科一 / 科二</p>
+
+
+<div class="section">
+<div class="section-title">📖 高频选择题与简答题复盘</div>
+
+<div class="content-box">
+
+
+<p><strong>一、科一：学生观（选择题高频）</strong></p>
+
+
+<p><strong>1. 学生是发展中的人</strong></p>
+
+<li>
+学生具有发展的潜能和可能性，教育要用发展的眼光看待学生。
+</li>
+
+<li>
+学生的发展具有动态性，不应固定评价学生。
+</li>
+
+
+<p><strong>2. 学生是独特的人</strong></p>
+
+<li>
+每个学生具有自身的兴趣、特点和发展差异。
+</li>
+
+<li>
+教育应尊重个体差异，做到因材施教。
+</li>
+
+
+<p><strong>3. 学生是具有独立意义的人</strong></p>
+
+<li>
+学生是学习活动的主体，具有主观能动性。
+</li>
+
+<li>
+教育应尊重学生主体地位，促进自主发展。
+</li>
+
+
+<p><strong>4. 学生身心发展规律</strong></p>
+
+<li>
+顺序性：教育要循序渐进。
+</li>
+
+<li>
+阶段性：教育要根据不同年龄特点开展。
+</li>
+
+<li>
+不平衡性：教育要抓住关键期。
+</li>
+
+<li>
+个别差异性：教育要因材施教。
+</li>
+
+
+<p><strong>5. 教育共同发展</strong></p>
+
+<li>
+教师与学生是共同成长、共同发展的关系。
+</li>
+
+<li>
+教学过程是师生互动、教学相长的过程。
+</li>
+
+
+
+<p><strong>二、科二：新课程改革</strong></p>
+
+
+<p><strong>简述新课程改革的课程结构</strong></p>
+
+
+<li>
+整体设置九年一贯的义务教育课程。
+</li>
+
+<li>
+小学阶段以综合课程为主。
+</li>
+
+<li>
+初中阶段设置分科与综合相结合的课程。
+</li>
+
+<li>
+高中阶段以分科课程为主。
+</li>
+
+<li>
+从小学至高中设置综合实践活动课程并作为必修课程。
+</li>
+
+
+
+<p><strong>简述新课程改革背景下的评价观</strong></p>
+
+
+<li>
+评价目的：促进学生发展。
+</li>
+
+<li>
+评价主体：评价主体多元化，教师、学生、家长共同参与。
+</li>
+
+<li>
+评价内容：评价内容综合化，不仅关注知识成绩，也关注能力、情感态度。
+</li>
+
+<li>
+评价方式：评价方式多样化，形成性评价与终结性评价结合。
+</li>
+
+<li>
+评价功能：由选拔功能转向发展功能。
+</li>
+
+
+
+<p><strong>三、教学概述</strong></p>
+
+
+<p><strong>我国现阶段的教学任务</strong></p>
+
+
+<li>
+首要任务：使学生掌握系统的科学基础知识和基本技能。
+</li>
+
+<li>
+发展学生智能，特别是培养创新能力和实践能力。
+</li>
+
+<li>
+发展学生体力，促进身体健康。
+</li>
+
+<li>
+培养科学世界观、思想品德、审美情趣和心理素质。
+</li>
+
+
+
+<p><strong>教学过程的结构</strong></p>
+
+
+<li>
+引发学习动机：教学过程的起始阶段。
+</li>
+
+<li>
+领会知识：教学过程的中心环节。
+</li>
+
+<li>
+巩固知识。
+</li>
+
+<li>
+运用知识。
+</li>
+
+<li>
+检查知识。
+</li>
+
+
+
+<p><strong>四、教学评价</strong></p>
+
+
+<p><strong>教学评价的基本原则及落实要求</strong></p>
+
+
+<li>
+客观性原则：评价标准客观公正，避免主观偏差。
+</li>
+
+<li>
+发展性原则：评价促进学生发展，而非单纯筛选。
+</li>
+
+<li>
+整体性原则：全面评价学生知识、能力和素质。
+</li>
+
+<li>
+指导性原则：评价结果用于改进教学。
+</li>
+
+
+
+<p><strong>教学评价的作用（功能）</strong></p>
+
+
+<li>
+诊断功能：了解学生学习情况，发现问题。
+</li>
+
+<li>
+激励功能：调动学生学习积极性。
+</li>
+
+<li>
+调节功能：调整教学内容和方法。
+</li>
+
+<li>
+教学功能：促进学生学习和教师教学改进。
+</li>
+
+<li>
+鉴定功能：判断教学效果和学生发展水平。
+</li>
+
+
+
+<p><strong>相对性评价与绝对性评价区别</strong></p>
+
+
+<li>
+相对性评价：以学生群体平均水平或排名作为标准，比较学生之间差异。
+</li>
+
+<li>
+绝对性评价：以预定教学目标作为标准，判断是否达到要求。
+</li>
+
+
+<p>
+核心区别：
+相对评价看“人与人之间比较”，绝对评价看“是否达到目标”。
+</p>
+
+
+
+<p><strong>形成性评价与终结性评价区别</strong></p>
+
+
+<li>
+形成性评价：教学过程中进行，用于发现问题、改进教学。
+</li>
+
+<li>
+终结性评价：教学结束后进行，用于判断学习成果。
+</li>
+
+
+<p>
+核心区别：
+形成性评价重过程改进，终结性评价重结果判断。
+</p>
+
+
+
+<p><strong>五、教学组织形式</strong></p>
+
+
+<p><strong>教学组织形式选择依据</strong></p>
+
+
+<li>
+教学目的和任务。
+</li>
+
+<li>
+课程性质和教学内容特点。
+</li>
+
+<li>
+学生数量、年龄特点和学习基础。
+</li>
+
+<li>
+教学时间、教学设备和环境条件。
+</li>
+
+<li>
+教师自身能力和教学经验。
+</li>
+
+
+
+<p><strong>教学组织形式类型</strong></p>
+
+
+<li>
+班级授课制：教师面向全班学生进行教学，是现代学校基本组织形式。
+</li>
+
+<li>
+个别教学：根据学生个体差异进行教学。
+</li>
+
+<li>
+分组教学：按照学生特点组成不同小组开展教学。
+</li>
+
+<li>
+复式教学：教师在同一时间内对两个或多个年级学生进行教学。
+</li>
+
+
+
+<p><strong>本节总结</strong></p>
+
+
+<p>
+复习科一学生观以及科二新课改、教学过程、教学评价和教学组织形式相关高频考点。重点掌握选择题中的概念对应关系，以及简答题中的课程结构、评价观、教学任务、教学过程结构和教学评价分类。
+</p>
+
+
+</div>
+</div>
+<p class="subtitle">📌 Agent</p>
+
+
+<div class="section">
+<div class="section-title">🤖 智能生态与智能协同系统设计要点</div>
+
+<div class="content-box">
+
+
+<p><strong>一、智能生态：Agent能力建设核心</strong></p>
+
+
+<p>
+智能生态关注的是 Agent 如何稳定、安全地调用外部能力，重点不是单纯连接工具，而是保证工具调用的完整闭环。
+</p>
+
+
+<p><strong>核心关注四个方面：</strong></p>
+
+
+<li>
+<strong>接口规范：</strong>
+统一工具输入输出格式，明确接口协议、参数类型和返回结构，保证模型能够正确理解和调用。
+</li>
+
+
+<li>
+<strong>权限控制：</strong>
+明确不同工具、数据和操作的访问范围，避免 Agent 超权限执行。
+</li>
+
+
+<li>
+<strong>安全机制：</strong>
+包括身份认证、数据保护、操作审计、高风险操作确认等，保证系统可控。
+</li>
+
+
+<li>
+<strong>返回值质量：</strong>
+关注工具执行结果是否准确、完整、可被模型继续理解和利用，提高任务成功率。
+</li>
+
+
+<p><strong>工具设计需要关注：</strong></p>
+
+
+<li>
+工具描述是否清晰：
+模型是否能够理解工具作用、适用场景和调用条件。
+</li>
+
+
+<li>
+参数定义是否完整：
+明确参数名称、类型、格式、是否必填以及约束条件。
+</li>
+
+
+<li>
+权限设计是否合理：
+不同工具能力需要对应不同权限等级，避免风险操作直接执行。
+</li>
+
+
+<li>
+实际成功率：
+不仅看接口是否能调用，还要看 Agent 在真实任务中的完成效果。
+</li>
+
+
+
+<p><strong>二、智能协同（UCLAW）：跨设备Agent执行流程</strong></p>
+
+
+<p>
+智能协同主要解决 Agent 如何连接远程设备、系统和第三方服务，并完成任务执行闭环。
+</p>
+
+
+<p><strong>涉及环境：</strong></p>
+
+
+<li>
+远程设备。
+</li>
+
+<li>
+网络环境。
+</li>
+
+<li>
+第三方服务。
+</li>
+
+<li>
+操作系统和应用服务。
+</li>
+
+
+<p><strong>执行链路：</strong></p>
+
+
+<li>
+<strong>环境接入：</strong>
+需要明确进入 OS 的账号信息、网络配置、端口开放情况以及服务状态。
+</li>
+
+
+<li>
+<strong>设备绑定：</strong>
+建立 Agent 与目标设备之间的可信连接关系。
+</li>
+
+
+<li>
+<strong>任务下发：</strong>
+将用户需求转换为具体执行任务，并发送到目标设备。
+</li>
+
+
+<li>
+<strong>权限确认：</strong>
+执行敏感操作前需要验证权限，必要时进行人工确认。
+</li>
+
+
+<li>
+<strong>执行日志：</strong>
+记录任务执行过程，包括调用工具、执行命令、异常情况等。
+</li>
+
+
+<li>
+<strong>结果回传：</strong>
+将执行结果返回 Agent，并用于下一步决策或反馈用户。
+</li>
+
+
+
+<p><strong>三、模型选择考虑因素</strong></p>
+
+
+<li>
+<strong>任务复杂度：</strong>
+简单问答可选择轻量模型，复杂推理、多步骤Agent任务需要更强推理能力模型。
+</li>
+
+
+<li>
+<strong>上下文长度：</strong>
+需要处理大量文档、代码或历史信息时，需要支持长上下文模型。
+</li>
+
+
+<li>
+<strong>工具调用能力：</strong>
+Agent场景需要模型具备稳定的Function Calling / Tool Calling能力。
+</li>
+
+
+<li>
+<strong>响应速度：</strong>
+实时交互场景需要考虑推理延迟和吞吐能力。
+</li>
+
+
+<li>
+<strong>成本：</strong>
+综合考虑调用次数、Token消耗和部署成本。
+</li>
+
+
+<li>
+<strong>部署环境：</strong>
+涉及企业内部数据时，需要考虑本地部署、私有化部署以及数据安全要求。
+</li>
+
+
+<p><strong>总结</strong></p>
+
+
+<p>
+智能生态重点关注“工具能力是否标准、安全、可靠”；智能协同重点关注“跨设备任务执行是否形成完整闭环”。一个成熟Agent系统需要具备能力接入、权限控制、任务规划、执行记录和结果反馈的完整链路。
+</p>
+
+
+</div>
+</div>
+
+
+        <div class="section">
+            <div class="section-title">📌English</div>
+            <div class="content-box">
+                <p>u8-u10 review u67 
+</p>
+            </div>
+        </div> 
+
+
+        <div class="section">
+            <div class="section-title">📌 明日计划</div>
+            <div class="content-box">
+                <p>u11 review89 10  科一科二 语法 agent 深度学习 投简历
+</p>
+            </div>
+        </div> 
+        <hr />
+        <a href="index.html" class="back-link">← 返回学习主页</a>
+    </div>
+</div>
+</body>
+</html>
