@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>每日学习概览</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            padding: 2rem 2rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f4870, #2b5c8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+
+        h3 {
+            font-size: 1.05rem;
+            color: #1f4870;
+            margin-bottom: 0.8rem;
+            margin-top: 0.8rem;
+        }
+
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            border-bottom: 1px dashed #e2edf2;
+            padding-bottom: 1rem;
+        }
+
+
+        .meta span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+
+        .section {
+            margin: 1.8rem 0;
+        }
+
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f4870;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+
+        .content-box {
+            background: #fafcff;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #eef2ff;
+            line-height: 1.7;
+            color: #2d3e50;
+        }
+
+
+        .content-box p {
+            margin-bottom: 0.8rem;
+        }
+
+
+        .content-box ul {
+            padding-left: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+
+        .content-box li {
+            margin-bottom: 0.5rem;
+        }
+
+
+        .content-box strong {
+            color: #1f4870;
+            font-weight: 600;
+        }
+
+
+        hr {
+            margin: 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+
+        .back-link:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(-3px);
+        }
+
+
+        @media (max-width: 640px) {
+
+            body {
+                padding: 1rem;
+            }
+
+
+            .card {
+                padding: 1.5rem;
+            }
+
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+        }
+
+
+    </style>
+</head><body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>📝 每日学习概览</h1>
+
+
+        <div class="meta">
+            <span>📅 日期：2026年08月21日</span>
+        </div>
+
+
+
+        <div class="section">
+
+            <div class="section-title">
+                📖 今天学了什么
+            </div>
+
+
+            <div class="content-box">
+
+
+                <h3>📚 教资科二：教育知识与能力</h3>
+
+                <p>
+                    <strong>1. 有效教学的基本要求</strong>
+                </p>
+
+                <ul>
+                    <li>
+                        <strong>面向全体学生：</strong>
+                        教学应关注学生整体发展，保证所有学生都能够参与学习过程。
+                    </li>
+
+                    <li>
+                        <strong>关注学生差异：</strong>
+                        根据学生基础、能力和特点进行针对性教学。
+                    </li>
+
+                    <li>
+                        <strong>明确教学目标：</strong>
+                        教学活动应围绕目标展开，提高教学效率。
+                    </li>
+
+                    <li>
+                        <strong>促进学生主动学习：</strong>
+                        重视学生主体地位，引导学生积极参与。
+                    </li>
+                </ul>
+
+
+                <hr>
+
+
+                <p>
+                    <strong>2. 循序渐进教学原则</strong>
+                </p>
+
+                <p>
+                    <strong>含义：</strong>
+                    教学要遵循学生认识发展规律和知识内在逻辑，
+                    按照由浅入深、由易到难、由简到繁的顺序进行。
+                </p>
+
+
+                <p>
+                    <strong>贯彻要求（系统认识、连贯、矛盾）：</strong>
+                </p>
+
+                <ul>
+                    <li>
+                        <strong>系统认识：</strong>
+                        按照教材体系组织教学，使学生形成完整知识结构。
+                    </li>
+
+                    <li>
+                        <strong>连贯教学：</strong>
+                        注意新旧知识之间的联系，保证学习过程连续。
+                    </li>
+
+                    <li>
+                        <strong>处理矛盾：</strong>
+                        根据学生实际水平调整教学难度，解决教学要求与学生能力之间的矛盾。
+                    </li>
+                </ul>
+
+
+                <hr>
+
+
+                <p>
+                    <strong>3. 课外辅导的要求</strong>
+                </p>
+
+
+                <ul>
+                    <li>
+                        <strong>补充教学内容：</strong>
+                        针对课堂学习不足进行补充和强化。
+                    </li>
+
+                    <li>
+                        <strong>解决实际问题：</strong>
+                        根据学生学习情况给予具体指导。
+                    </li>
+
+                    <li>
+                        <strong>指导学习方法：</strong>
+                        启发学生掌握正确学习方法，提高自主学习能力。
+                    </li>
+                </ul>
+
+
+                <hr>
+
+
+                <p>
+                    <strong>4. 因材施教原则贯彻要求</strong>
+                </p>
+
+
+                <ul>
+                    <li>
+                        <strong>统一要求：</strong>
+                        面向全体学生，保证基本教学目标实现。
+                    </li>
+
+                    <li>
+                        <strong>了解差异：</strong>
+                        了解学生知识基础、能力水平和个性特点。
+                    </li>
+
+                    <li>
+                        <strong>发现兴趣：</strong>
+                        根据学生兴趣特长进行培养，促进个性发展。
+                    </li>
+                </ul>
+
+
+
+                <hr>
+
+
+                <h3>📖 教资科一：综合素质</h3>
+
+
+                <p>
+                    <strong>第一章第三节：教师观</strong>
+                </p>
+
+
+                <ul>
+
+                    <li>
+                        <strong>教师角色转变：</strong>
+                        从传统知识传授者转变为学生学习的促进者。
+                    </li>
+
+
+                    <li>
+                        <strong>学生观：</strong>
+                        关注学生主体地位，促进学生全面发展。
+                    </li>
+
+
+                    <li>
+                        <strong>教学理念：</strong>
+                        坚持以人为本，尊重学生个体差异。
+                    </li>
+
+                </ul>
+
+
+
+                <hr>
+
+
+                <h3>🇬🇧 English</h3>
+
+
+                <p>
+                    <strong>Unit 11 Review</strong>
+                </p>
+
+
+                <ul>
+
+                    <li>
+                        完成 Unit 11 内容复习。
+                    </li>
+
+                    <li>
+                        回顾 Unit 8、9、10 重点知识。
+                    </li>
+
+                    <li>
+                        整理词汇、语法以及阅读理解中的核心内容。
+                    </li>
+
+                </ul>
+
+
+
+
+                <hr>
+
+
+
+                <h3>🛠️ 实训汇报准备</h3>
+
+
+                <ul>
+
+                    <li>
+                        实训汇报 PPT 已完成大部分准备工作。
+                    </li>
+
+
+                    <li>
+                        初步梳理小程序开发整体流程：
+                        <strong>
+                            需求分析 → 页面设计 → 前端开发 → 后端接口 → 数据处理 → 测试优化 → 项目展示
+                        </strong>
+                    </li>
+
+
+                    <li>
+                        后续等待项目进一步完成后，
+                        根据实际功能优化 PPT 内容和演讲稿。
+                    </li>
+
+                </ul>
+
+
+
+
+                <hr>
+
+
+
+                <h3>🤖 AI 模型部署与异构计算原理</h3>
+
+
+                <p>
+                    <strong>
+                        大模型部署不能简单认为“模型越大越好”，
+                        也不能通过单一 GPU 参数或 TOPS 指标决定方案。
+                    </strong>
+                </p>
+
+
+                <p>
+                    实际部署需要综合考虑：
+                </p>
+
+
+                <ul>
+
+                    <li>模型结构</li>
+
+                    <li>参数规模</li>
+
+                    <li>权重精度</li>
+
+                    <li>上下文长度</li>
+
+                    <li>并发规模</li>
+
+                    <li>推理框架</li>
+
+                    <li>硬件架构</li>
+
+                    <li>目标性能指标</li>
+
+                </ul>
+
+
+
+
+                <p>
+                    <strong>模型部署三层结构：</strong>
+                </p>
+
+
+                <ul>
+
+                    <li>
+                        <strong>模型文件：</strong>
+                        保存模型权重、结构配置和相关参数。
+                    </li>
+
+
+                    <li>
+                        <strong>推理引擎：</strong>
+                        加载模型并调用 CPU、GPU 或 AI 加速器完成计算。
+                    </li>
+
+
+                    <li>
+                        <strong>服务接口：</strong>
+                        通过 HTTP 等方式向业务系统提供模型能力。
+                    </li>
+
+                </ul>
+
+
+                <p>
+                    例如 vLLM 可以提供 OpenAI 兼容接口，
+                    这里的兼容主要表示接口格式一致，
+                    不代表模型能力和 OpenAI 模型完全相同。
+                </p>
+
+
+
+
+                <hr>
+
+
+
+                <p>
+                    <strong>大模型显存组成：</strong>
+                </p>
+
+
+                <ul>
+
+                    <li>
+                        <strong>模型权重：</strong>
+                        主要受到参数规模和精度影响。
+                    </li>
+
+
+                    <li>
+                        <strong>KV Cache：</strong>
+                        主要受到上下文长度和并发数量影响。
+                    </li>
+
+                </ul>
+
+
+                <p>
+                    同一个模型在单用户短上下文和多用户长上下文场景下，
+                    对显存需求可能存在巨大差异。
+                </p>
+
+
+
+
+                <hr>
+
+
+
+                <p>
+                    <strong>模型量化：</strong>
+                </p>
+
+
+                <ul>
+
+                    <li>
+                        <strong>W4：</strong>
+                        权重使用 4bit 存储。
+                    </li>
+
+
+                    <li>
+                        <strong>FP8：</strong>
+                        使用 8bit 浮点计算。
+                    </li>
+
+                </ul>
+
+
+                <p>
+                    量化效果需要结合模型结构、硬件支持和推理框架优化能力，
+                    不能只根据量化位数判断性能。
+                </p>
+
+
+
+
+                <hr>
+
+
+
+                <p>
+                    <strong>MoE 混合专家模型：</strong>
+                </p>
+
+
+                <ul>
+
+                    <li>
+                        <strong>总参数量：</strong>
+                        影响模型文件大小和存储需求。
+                    </li>
+
+
+                    <li>
+                        <strong>激活参数量：</strong>
+                        影响实际 Token 推理计算量。
+                    </li>
+
+                </ul>
+
+
+                <p>
+                    因此 MoE 模型不能简单通过总参数规模判断部署难度。
+                </p>
+
+
+
+
+                <hr>
+
+
+
+                <p>
+                    <strong>硬件选型流程：</strong>
+                </p>
+
+
+                <p>
+                    确定模型 →
+                    确定量化方案 →
+                    确定上下文长度 →
+                    确定并发规模 →
+                    确定延迟和吞吐要求 →
+                    选择硬件 →
+                    实际测试
+                </p>
+
+
+                <p>
+                    <strong>主要测试指标：</strong>
+                </p>
+
+
+                <ul>
+
+                    <li>首 Token 延迟</li>
+
+                    <li>Token 生成速度</li>
+
+                    <li>整体吞吐量</li>
+
+                    <li>显存占用</li>
+
+                    <li>长时间运行稳定性</li>
+
+                </ul>
+
+
+
+
+                <hr>
+
+
+
+                <h3>🎯 项目与面试复盘</h3>
+
+
+                <ul>
+
+                    <li>
+                        回顾项目整体架构和技术实现。
+                    </li>
+
+
+                    <li>
+                        复盘 AI Agent、RAG、数据库设计、模型调用等面试高频问题。
+                    </li>
+
+
+                    <li>
+                        持续优化项目表达方式，将技术实践转化为面试语言。
+                    </li>
+
+                </ul>
+
+
+            </div>
+
+        </div>
+
+
+
+
+        <div style="max-width: 100%;">
+
+            <img src="/prtsc/.png" 
+            style="width:100%; height:auto; border-radius:8px;">
+
+        </div>
+
+
+
+
+        <div class="section">
+
+            <div class="section-title">
+                💡 收获 & 理解
+            </div>
+
+
+            <div class="content-box">
+
+
+                <p>
+                    今天进一步理解了大模型应用开发不仅关注模型本身，
+                    更重要的是完整部署链路。
+                </p>
+
+
+                <ul>
+
+                    <li>
+                        模型大小不是衡量部署方案的唯一标准，
+                        需要结合场景、资源和性能目标综合判断。
+                    </li>
+
+
+                    <li>
+                        大模型工程落地涉及模型、推理框架、硬件和服务接口多个层面。
+                    </li>
+
+
+                    <li>
+                        在 Agent 项目开发中，需要理解底层模型部署逻辑，
+                        才能更好进行应用设计和性能优化。
+                    </li>
+
+                </ul>
+
+
+            </div>
+
+        </div>
+
+
+
+
+        <div class="section">
+
+            <div class="section-title">
+                📌 明日计划
+            </div>
+
+
+            <div class="content-box">
+
+                <ul>
+
+                    <li>
+                        继续整理 AI Agent 项目和面试知识点。
+                    </li>
+
+                    <li>
+                        深入复习大模型应用开发流程。
+                    </li>
+
+                    <li>
+                        完善实训汇报 PPT 和演讲内容。
+                    </li>
+
+                    <li>
+                        继续推进教资和英语复习。
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+
+
+        <hr />
+
+
+        <a href="index.html" class="back-link">
+            ← 返回学习主页
+        </a>
+
+
+    </div>
+
+</div>
+
+
+</body>
+</html>
