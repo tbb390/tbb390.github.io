@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>2026-08-23 每日学习复盘</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:linear-gradient(145deg,#f0f4fa 0%,#e2e8f0 100%);
+    font-family:'Segoe UI','微软雅黑','PingFang SC',sans-serif;
+    padding:2rem 1.5rem;
+    color:#1e2a3e;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+}
+
+.card{
+    background:white;
+    border-radius:2rem;
+    box-shadow:0 20px 30px -12px rgba(0,0,0,.1);
+    padding:2rem;
+}
+
+h1{
+    font-size:1.8rem;
+    font-weight:700;
+    color:#1f4870;
+    border-left:5px solid #3b82f6;
+    padding-left:1rem;
+    margin-bottom:1rem;
+}
+
+
+.meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.8rem;
+    margin-bottom:2rem;
+    padding-bottom:1rem;
+    border-bottom:1px dashed #ddd;
+}
+
+.meta span{
+    background:#f1f5f9;
+    padding:.3rem .8rem;
+    border-radius:20px;
+    color:#5b6e8c;
+    font-size:.9rem;
+}
+
+
+.section{
+    margin:2rem 0;
+}
+
+
+.section-title{
+    font-size:1.2rem;
+    font-weight:600;
+    color:#1f4870;
+    margin-bottom:.8rem;
+}
+
+
+.content-box{
+    background:#fafcff;
+    border:1px solid #eef2ff;
+    border-radius:1rem;
+    padding:1.2rem;
+    line-height:1.8;
+    color:#2d3e50;
+}
+
+
+.content-box p{
+    margin-bottom:.8rem;
+}
+
+
+.content-box p:last-child{
+    margin-bottom:0;
+}
+
+
+hr{
+    border:0;
+    height:1px;
+    background:linear-gradient(to right,#cbd5e1,transparent);
+    margin:2rem 0;
+}
+
+
+.back-link{
+    display:inline-flex;
+    background:#ffffffcc;
+    padding:.6rem 1.2rem;
+    border-radius:2rem;
+    text-decoration:none;
+    color:#1e3a8a;
+    border:1px solid #cbd5e1;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+
+<h1>📝 每日学习复盘</h1>
+
+
+<div class="meta">
+
+<span>📅 日期：2026-08-23</span>
+
+<span>⏱️ 学习方向：Agent比赛 / 深度学习 / 教资</span>
+
+<span>📚 阶段：暑期学习记录</span>
+
+</div>
+
+
+
+<div class="section">
+
+<div class="section-title">
+🤖 Agent比赛学习复盘
+</div>
+
+
+<div class="content-box">
+
+<p>
+今天主要继续推进 Agent 比赛相关内容，对智能体系统的整体设计思路进行了复习和理解。
+</p>
+
+<p>
+从实际应用角度来看，一个 Agent 系统并不是简单调用大模型，而是需要围绕任务目标搭建完整执行链路，包括用户需求理解、任务拆解、工具调用、上下文管理以及结果生成。
+</p>
+
+<p>
+重点理解了 Agent 与普通 Chatbot 的区别：
+普通对话机器人主要依赖模型本身进行回答，而 Agent 更强调“规划 + 执行”的能力，可以根据目标主动选择步骤，并通过工具获取外部信息完成任务。
+</p>
+
+<p>
+同时结合之前 RAG 项目的经验，对知识增强方向进行了复盘：
+RAG 的核心流程包括文档解析、文本切分、Embedding 向量化、向量检索、召回结果融合以及大模型生成回答。
+其中检索质量和上下文构建会直接影响最终回答效果。
+</p>
+
+<p>
+今天的重点不是单纯记忆框架，而是进一步理解 Agent 系统背后的工程逻辑：
+模型负责推理，大量外围模块负责提供信息、执行动作以及控制流程，最终形成一个完整智能应用。
+</p>
+
+</div>
+
+</div>
+
+
+
+
+<div class="section">
+
+<div class="section-title">
+🧠 深度学习复盘 —— 逻辑回归与生成模型
+</div>
+
+
+<div class="content-box">
+
+
+<p>
+今天学习了李宏毅老师深度学习课程中的逻辑回归、判别式模型与生成式模型部分。
+</p>
+
+
+<p>
+核心理解：
+机器学习模型实际上是在选择一种“归纳偏置”，即模型是否愿意对未知情况进行假设。
+</p>
+
+
+<p>
+判别式模型（Discriminative Model）更加关注：
+给定输入 x，直接学习分类结果，例如学习 P(C|x)。
+它更加依赖已有数据，不主动假设数据背后的产生规律，因此在数据量充足时通常表现更好。
+</p>
+
+
+<p>
+生成式模型（Generative Model）则尝试学习数据产生过程：
+通过估计 P(x|C) 和 P(C)，再利用概率关系进行分类。
+它会加入一定假设，相当于对未知情况进行“脑补”。
+</p>
+
+
+<p>
+通过 toy example 理解了为什么生成模型有时候反而有效：
+当训练数据较少、数据存在噪声或者标签不完全可靠时，合理的先验假设可以帮助模型弥补数据不足。
+</p>
+
+
+<p>
+随后学习了多分类情况下的 Softmax：
+通过将多个类别对应的 score 转换为概率分布，使模型能够输出不同类别属于当前输入的概率。
+Softmax 的核心作用是：
+将不同类别的竞争关系转化为概率形式，同时通过指数函数强化较大的预测结果。
+</p>
+
+
+<p>
+今天最大的收获：
+模型性能不仅取决于算法复杂度，也取决于模型对于世界规律的假设是否适合当前任务。
+</p>
+
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="section">
+
+<div class="section-title">
+📚 教资科二复盘 —— 学习心理部分
+</div>
+
+
+<div class="content-box">
+
+
+<p>
+今天完成了教育心理学第四章后半部分内容整理，重点掌握学习理论、学习动机以及学习策略相关简答题。
+</p>
+
+
+<p>
+【有意义学习】
+核心是把新知识与已有认知结构建立内在、非字面的联系。
+实现条件包括：
+学习材料具有逻辑意义；
+学生已有相关知识基础；
+学生具有主动建立联系的学习心向。
+</p>
+
+
+<p>
+【学习动机培养与激发】
+培养方面：
+结合学生需要促进动机产生；
+加强立志教育和成就动机训练；
+帮助学生建立正确自我概念，提高自我效能；
+培养努力导致成功的归因方式。
+</p>
+
+
+<p>
+激发方面：
+根据任务难度控制动机水平；
+合理使用奖励和惩罚；
+采用启发式教学；
+正确指导学生进行学习结果归因。
+</p>
+
+
+<p>
+【学习策略】
+认知策略包括：
+复述策略——重复强化信息；
+精加工策略——建立新旧知识联系；
+组织策略——形成知识结构。
+</p>
+
+
+<p>
+元认知策略包括：
+计划、监控、调节。
+作用是帮助学生提高学习效率，实现自主学习。
+</p>
+
+
+<p>
+同时复习了桑代克学习规律：
+准备律、效果律、练习律；
+观察学习过程：
+注意、保持、再现、动机；
+学习迁移类型以及操作技能形成阶段：
+定向、模仿、整合、熟练。
+</p>
+
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="section">
+
+<div class="section-title">
+🌱 英语  小程序
+</div>
+
+
+<div class="content-box">
+
+
+<p>
+ U13 
+</p>
+
+
+<p>
+小程序项目继续推进，完成 Vibe Coding 阶段的全局配置文件，并开始进入查询页面开发阶段。
+项目方向为电商物流查询类应用，后续继续完善页面结构和功能流程。
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="section">
+
+<div class="section-title">
+💡 今日收获总结
+</div>
+
+
+<div class="content-box">
+
+
+<p>
+今天三个方向
+</p>
+
+
+<p>
+深度学习帮助理解模型如何学习规律；
+Agent 学习进一步理解如何把模型能力工程化落地；
+教资学习则强化了学习过程、认知结构和学习策略的理论认识。
+</p>
+
+
+<p>
+后续学习不仅需要积累知识点，更需要形成“理论理解 → 工程实践 → 总结复盘”的闭环。
+</p>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+<div class="section">
+
+<div class="section-title">
+📌 明日计划（2026-08-24）
+</div>
+
+
+<div class="content-box">
+
+
+<p>
+📖 英语：
+完成 U14 ，并复习 U11、U12、U13 。
+</p>
+
+
+<p>
+📚 教资：
+学习科一第二章后续内容，同时推进科二下一章节学习。
+</p>
+
+
+<p>
+🤖 Agent比赛：
+继续学习比赛课程内容。
+</p>
+
+
+<p>
+🧠 深度学习：
+完成逻辑回归后续课程学习，继续推进下一节内容。
+</p>
+
+
+<p>
+💻 项目：
+继续完善电商物流查询小程序，实现整体页面
+</p>
+
+
+<p>
+🌙 
+完成当天学习复盘，整理知识点并规划下一阶段任务。
+</p>
+
+
+</div>
+
+</div>
+
+
+
+
+
+<hr>
+
+
+<a href="index.html" class="back-link">
+← 返回学习主页
+</a>
+
+
+</div>
+
+</div>
+
+
+</body>
+</html>
