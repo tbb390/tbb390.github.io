@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>2026-08-24 每日学习复盘</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:linear-gradient(145deg,#f0f4fa 0%,#e2e8f0 100%);
+    font-family:'Segoe UI','微软雅黑','PingFang SC',sans-serif;
+    padding:2rem 1.5rem;
+    color:#1e2a3e;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+}
+
+.card{
+    background:white;
+    border-radius:2rem;
+    box-shadow:0 20px 30px -12px rgba(0,0,0,.1);
+    padding:2rem;
+}
+
+h1{
+    font-size:1.8rem;
+    font-weight:700;
+    color:#1f4870;
+    border-left:5px solid #3b82f6;
+    padding-left:1rem;
+    margin-bottom:1rem;
+}
+
+.meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.8rem;
+    margin-bottom:2rem;
+    padding-bottom:1rem;
+    border-bottom:1px dashed #ddd;
+}
+
+.meta span{
+    background:#f1f5f9;
+    padding:.3rem .8rem;
+    border-radius:20px;
+    color:#5b6e8c;
+    font-size:.9rem;
+}
+
+.section{
+    margin:2rem 0;
+}
+
+.section-title{
+    font-size:1.2rem;
+    font-weight:600;
+    color:#1f4870;
+    margin-bottom:.8rem;
+}
+
+.content-box{
+    background:#fafcff;
+    border:1px solid #eef2ff;
+    border-radius:1rem;
+    padding:1.2rem;
+    line-height:1.8;
+    color:#2d3e50;
+}
+
+.content-box p{
+    margin-bottom:.8rem;
+}
+
+.content-box p:last-child{
+    margin-bottom:0;
+}
+
+hr{
+    border:0;
+    height:1px;
+    background:linear-gradient(to right,#cbd5e1,transparent);
+    margin:2rem 0;
+}
+
+.back-link{
+    display:inline-flex;
+    background:#ffffffcc;
+    padding:.6rem 1.2rem;
+    border-radius:2rem;
+    text-decoration:none;
+    color:#1e3a8a;
+    border:1px solid #cbd5e1;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+
+<h1>📝 每日学习复盘</h1>
+
+
+<div class="meta">
+
+<span>📅 日期：2026-08-24</span>
+
+<span>⏱️ 学习方向：Agent比赛培训 / 教资 / 英语</span>
+
+<span>📚 阶段：暑期学习记录</span>
+
+</div>
+
+
+
+<div class="section">
+
+<div class="section-title">
+🤖 Agent比赛培训课程学习
+</div>
+
+
+<div class="content-box">
+
+
+<p>
+今天继续学习智能体应用开发比赛培训课程，主要了解 Agent 的技术组成、项目设计思路以及 AI 应用背后的算力基础。
+</p>
+
+
+<p>
+课程中介绍了不同类型智能体背后的技术组件并不完全相同。针对资料整理类任务，通常需要结合本地资料解析、RAG 检索增强生成、大模型以及文档处理工具；针对数据分析任务，需要加入表格解析、确定性计算和图表生成工具，再由模型完成结果解释；如果进一步扩展到企业办公场景，则需要连接 OA、HR、工单系统等业务接口，并考虑权限管理和数据治理。
+</p>
+
+
+<p>
+通过这部分学习，对比赛项目的设计方式有了新的理解。智能体项目不需要一开始就设计成一个功能非常复杂的“万能助手”，更合理的方式是先选择一个明确场景，完成一个小闭环。例如学习助手可以先围绕指定资料完成知识库构建、问题回答、考点整理和试题生成，保证资料来源和回答结果能够验证，再逐步增加更多能力。
+</p>
+
+
+<p>
+课程还强调了智能体开发过程中的测试思维。一个智能体是否可靠，不只是看能不能生成答案，还需要检查检索内容是否准确、答案是否来自已有资料、格式是否符合要求，以及面对资料之外的问题时是否能够识别信息不足。
+</p>
+
+
+<p>
+在智能体安全方面，学习了权限和执行控制的重要性。随着 Agent 从回答问题发展到执行任务，需要考虑身份认证、工具权限、操作隔离、人工确认以及日志记录等问题。对于修改文件、执行系统操作等有影响的任务，需要增加确认机制，而查询类操作可以优先自动化。
+</p>
+
+
+<p>
+另外学习了 GPU 发展历程以及 AI 算力相关知识。GPU 最初主要用于游戏中的图形渲染，随着可编程计算的发展，逐渐被应用到科学计算和人工智能领域。深度学习中的大量矩阵计算与 GPU 并行计算特点匹配，使 GPU 成为了 AI 训练和推理的重要硬件基础。
+</p>
+
+
+<p>
+同时整理了 CPU、GPU、NPU、TPU、ASIC、FPGA 等不同芯片路线的特点。CPU 更偏向通用任务处理和系统调度；GPU 擅长大规模并行计算；NPU 更关注低功耗 AI 推理；TPU 是针对张量计算优化的专用芯片；ASIC 强调特定任务性能；FPGA 则在性能和灵活性之间进行平衡。
+</p>
+
+
+<p>
+通过培训课程，对智能体比赛项目有了更清晰的认识：除了模型本身，还需要考虑数据来源、知识库、工具调用、运行环境和测试验证，一个完整作品需要保证整个流程能够稳定运行。
+</p>
+
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="section">
+
+<div class="section-title">
+📚 教资科二复盘 —— 中学生发展心理与德育
+</div>
+
+
+<div class="content-box">
+
+
+<p>
+今天复习了第五章中学生发展心理、第六章中学生心理辅导以及第七章中学德育内容，重点整理了高频简答题。
+</p>
+
+
+<p>
+【不同气质类型学生的教育措施】
+不同气质类型学生具有不同心理特点，教师需要根据学生特点进行教育。
+胆汁质学生情绪反应强烈，教育时需要直接指出问题；
+多血质学生兴趣容易转移，需要帮助其保持专注；
+粘液质学生反应速度较慢，需要给予更多耐心；
+抑郁质学生敏感细腻，需要采用更加委婉的教育方式。
+口诀：胆汁直接，多血专一，粘液耐心，抑郁委婉。
+</p>
+
+
+<p>
+【培养学生能力的方法】
+培养学生能力需要关注多个方面：
+注重非智力因素培养；
+培养元认知能力；
+坚持因材施教；
+引导学生参与社会实践；
+重视能力训练以及学习和练习。
+口诀：非人才能见培训。
+</p>
+
+
+<p>
+【中学生异性交往特点】
+中学生异性交往具有：
+隐蔽性、多样性、欲望加强以及情绪不稳定等特点。
+教师需要正确认识青春期心理发展规律，帮助学生建立健康的人际关系。
+</p>
+
+
+<p>
+【学校心理健康教育途径】
+主要包括：
+心理课程、心理辅导课、学科教学渗透以及心理辅导。
+其中心理辅导包括小组辅导和个人辅导。
+</p>
+
+
+<p>
+【说服教育法要求】
+贯彻说服教育法需要做到：
+以诚待人；
+抓住教育机会；
+明确教育目的；
+增强教育趣味性。
+口诀：乘机兴趣。
+</p>
+
+
+<p>
+【中学生品德发展特点】
+中学生品德发展具有：
+自律性、阶段性、不平衡性和社会性。
+品德形成通常经历：
+顺从 → 认同 → 内化。
+学生从接受外部要求逐渐发展为形成稳定的内在价值观。
+</p>
+
+
+<p>
+【促进学生形成良好品德的方法】
+口诀：演讲小说定价榜。
+包括：
+角色扮演、奖惩、小组活动、有效说服、群体约定、价值辨析以及良好榜样。
+</p>
+
+
+<p>
+【德育过程规律】
+德育过程具有：
+交往活动性；
+知情意行统一性；
+长期性；
+促进思想内部矛盾转化。
+口诀：脚趾长毛。
+</p>
+
+
+<p>
+【德育原则】
+疏导原则要求：
+理解学生、正面教育、因势利导。
+知行统一原则要求：
+提高学生认识、组织实践活动、统一知行要求、教师以身作则。
+</p>
+
+
+<p>
+【中学德育途径】
+主要包括：
+教学、班主任工作和班会、社会活动、课外活动、共青团组织活动。
+口诀：一教二班三活。
+</p>
+
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="section">
+
+<div class="section-title">
+🌱 英语学习
+</div>
+
+
+<div class="content-box">
+
+
+<p>
+今天完成英语单词 U14 学习，并复习巩固 U11、U12、U13 内容。
+</p>
+
+
+<p>
+通过阶段复习加强前面词汇记忆，为后续阅读和长难句学习做好积累。
+</p>
+
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="section">
+
+<div class="section-title">
+💡 今日学习总结
+</div>
+
+
+<div class="content-box">
+
+
+<p>
+今天主要围绕 Agent 比赛培训和教资复习展开。
+</p>
+
+
+<p>
+Agent 培训部分帮助梳理了智能体从模型、知识库、工具到安全控制的完整组成，同时了解了 AI 应用背后的硬件基础。
+</p>
+
+
+<p>
+教资部分继续整理心理发展和德育相关高频考点，通过口诀和理解结合的方式提高记忆效率。
+</p>
+
+
+<p>
+后续学习继续保持知识整理和复盘习惯，把课程内容逐渐沉淀成自己的知识体系。
+</p>
+
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="section">
+
+<div class="section-title">
+📌 明日计划（2026-08-25）
+</div>
+
+
+<div class="content-box">
+
+
+<p>
+🤖 Agent比赛：
+继续学习比赛培训课程内容，整理智能体开发相关知识点。
+</p>
+
+<p>
+📚 深度学习
+</p>
+
+<p>
+📚 教资：
+继续推进科二复习，巩固高频简答题。
+</p>
+
+
+<p>
+📖 英语：
+继续完成 U15 后续学习，并保持单词复习。
+</p>
+
+
+<p>
+🌙
+完成当天学习复盘，整理知识点。
+</p>
+
+
+</div>
+
+</div>
+
+
+
+<hr>
+
+
+<a href="index.html" class="back-link">
+← 返回学习主页
+</a>
+
+
+</div>
+
+</div>
+
+
+</body>
+
+</html>
