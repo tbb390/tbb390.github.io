@@ -1,208 +1,762 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-  <meta charset="UTF-8"> 
-  <title>个人学习成长记录</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      padding: 40px 20px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(180deg, #f5f7fa, #ffffff);
-      color: #333;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-      font-weight: 600;
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .day-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 16px;
-    }
-    .day-card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 16px 0;
-      text-align: center;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-      transition: transform .2s, box-shadow .2s;
-    }
-    .day-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.1);
-    }
-    .day-card a {
-      text-decoration: none;
-      color: #222;
-      font-size: 16px;
-      font-weight: 500;
-    }
-    footer {
-      margin-top: 40px;
-      text-align: center;
-      font-size: 13px;
-      color: #999;
-    }
-    .roadmap-section {
-margin-bottom: 40px;
+
+<meta charset="UTF-8">
+
+<title>个人学习成长记录</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<style>
+
+*{
+    box-sizing:border-box;
 }
 
-.roadmap-section h2 {
-text-align: center;
-margin-bottom: 20px;
-font-weight: 600;
+
+body{
+
+    margin:0;
+
+    padding:40px 20px;
+
+    font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Microsoft YaHei",
+    sans-serif;
+
+    background:
+    linear-gradient(180deg,#f5f7fa,#ffffff);
+
+    color:#333;
+
 }
 
-.roadmap-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
-gap: 18px;
-margin-bottom: 30px;
+
+
+.container{
+
+    max-width:1000px;
+
+    margin:auto;
+
 }
 
-.roadmap-card {
-text-decoration: none;
-background: #fff;
-border-radius: 14px;
-padding: 18px;
-box-shadow: 0 8px 24px rgba(0,0,0,.06);
-transition: all .2s;
-color: #222;
+
+
+
+
+.header{
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    margin-bottom:35px;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.06);
+
 }
 
-.roadmap-card:hover {
-transform: translateY(-4px);
-box-shadow: 0 12px 32px rgba(0,0,0,.1);
+
+
+.header h1{
+
+    margin:0;
+
+    font-size:32px;
+
 }
 
-.roadmap-card .title {
-font-size: 17px;
-font-weight: 600;
-margin-bottom: 8px;
+
+
+.header p{
+
+    margin-top:12px;
+
+    color:#666;
+
+    line-height:1.7;
+
 }
 
-.roadmap-card .desc {
-font-size: 13px;
-color: #666;
-line-height: 1.5;
+
+
+
+
+.section-title{
+
+    font-size:24px;
+
+    font-weight:600;
+
+    margin:35px 0 20px;
+
 }
 
-  </style>
+
+
+
+
+/* 学习路线 */
+
+.roadmap-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fill,minmax(220px,1fr));
+
+    gap:20px;
+
+}
+
+
+
+.roadmap-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    text-decoration:none;
+
+    color:#222;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.06);
+
+    transition:.2s;
+
+}
+
+
+
+.roadmap-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 12px 30px rgba(0,0,0,.1);
+
+}
+
+
+
+.title{
+
+    font-size:18px;
+
+    font-weight:600;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.desc{
+
+    font-size:14px;
+
+    color:#666;
+
+    line-height:1.6;
+
+}
+
+
+
+
+
+/* 搜索 */
+
+#searchBox{
+
+    width:100%;
+
+    padding:14px 18px;
+
+    margin-bottom:25px;
+
+    border-radius:14px;
+
+    border:1px solid #ddd;
+
+    font-size:15px;
+
+    outline:none;
+
+    background:white;
+
+}
+
+
+
+#searchBox:focus{
+
+    border-color:#888;
+
+}
+
+
+
+
+
+/* Day卡片 */
+
+.day-list{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fill,minmax(160px,1fr));
+
+    gap:18px;
+
+}
+
+
+
+.day-card{
+
+    background:white;
+
+    border-radius:15px;
+
+    padding:18px;
+
+    box-shadow:
+    0 6px 20px rgba(0,0,0,.05);
+
+    transition:.2s;
+
+}
+
+
+
+.day-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 12px 30px rgba(0,0,0,.1);
+
+}
+
+
+
+.day-card a{
+
+    text-decoration:none;
+
+    color:#333;
+
+}
+
+
+
+.day-card strong{
+
+    font-size:16px;
+
+}
+
+
+
+.day-card span{
+
+    display:block;
+
+    margin-top:8px;
+
+    font-size:13px;
+
+    color:#777;
+
+    line-height:1.5;
+
+}
+
+
+
+
+
+.empty{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    color:#888;
+
+}
+
+
+
+
+
+footer{
+
+    margin-top:50px;
+
+    text-align:center;
+
+    font-size:13px;
+
+    color:#999;
+
+}
+
+
+</style>
+
 </head>
+
+
+
 <body>
 
-<h1>🎯 近期学习路线</h1>
 
 <div class="container">
-  <div class="roadmap-section">
 
-  <h2></h2>
 
-  <div class="roadmap-grid">
 
-    <a href="roadmap/Augest-plan.html" class="roadmap-card">
-  <div class="title">🚀 八月计划</div>
-  <div class="desc">
-    八月的学习安排
-  </div>
+<div class="header">
+
+<h1>
+🎯 我的学习成长记录
+</h1>
+
+
+<p>
+记录 AI Agent、大模型应用开发、
+项目实践以及每日学习积累。
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="section-title">
+
+🚀 学习路线
+
+</div>
+
+
+
+
+<div class="roadmap-grid">
+
+
+
+<a href="roadmap/Augest-plan.html" class="roadmap-card">
+
+<div class="title">
+🚀 八月计划
+</div>
+
+<div class="desc">
+八月学习安排
+</div>
+
 </a>
+
+
+
 <a href="roadmap/week-plan.html" class="roadmap-card">
-  <div class="title">📅 本周计划</div>
-  <div class="desc">
-    近一周的学习安排
-  </div>
+
+<div class="title">
+📅 本周计划
+</div>
+
+<div class="desc">
+近期学习规划
+</div>
+
 </a>
+
+
 
 <a href="review/index.html" class="roadmap-card">
-  <div class="title">📚 事件复盘</div>
-  <div class="desc">
-   面试，项目，比赛事件复盘记录
-  </div>
+
+<div class="title">
+📚 事件复盘
+</div>
+
+<div class="desc">
+面试、项目、比赛复盘
+</div>
+
 </a>
+
+
 
 <a href="roadmap/agent-roadmap.html" class="roadmap-card">
-  <div class="title">🤖 Agent学习路线</div>
-  <div class="desc">
-    LLM → Tool → RAG → MCP
-  </div>
+
+<div class="title">
+🤖 Agent学习路线
+</div>
+
+<div class="desc">
+LLM → Tool → RAG → MCP
+</div>
+
 </a>
+
+
 
 <a href="roadmap/ragent-roadmap.html" class="roadmap-card">
-  <div class="title">🚀 Ragent项目学习</div>
-  <div class="desc">
-    项目阅读与简历准备
-  </div>
+
+<div class="title">
+🚀 Ragent项目学习
+</div>
+
+<div class="desc">
+项目源码与简历准备
+</div>
+
 </a>
-<a href="daily study/ragent初览.html" class="roadmap-card">
-  <div class="title">具体</div>
-  <div class="desc">
-    项目内容
-  </div>
+
+
+
+<a href="daily-study/ragent初览.html" class="roadmap-card">
+
+<div class="title">
+📖 Ragent初览
+</div>
+
+<div class="desc">
+项目架构整理
+</div>
+
 </a>
+
+
 
 <a href="roadmap/network-roadmap.html" class="roadmap-card">
-  <div class="title">🌐 CPT测验</div>
-  <div class="desc">
-    VLAN、DHCP、NAT、ACL
-  </div>
+
+<div class="title">
+🌐 网络学习
+</div>
+
+<div class="desc">
+VLAN、DHCP、NAT、ACL
+</div>
+
 </a>
+
+
 
 <a href="roadmap/exam-roadmap.html" class="roadmap-card">
-  <div class="title">📚 期末复习</div>
-  <div class="desc">
-    概率统计、数据库、OS、Linux
-  </div>
+
+<div class="title">
+📚 期末复习
+</div>
+
+<div class="desc">
+数据库、OS、Linux等
+</div>
+
 </a>
 
-  </div>
+
 
 </div>
-<h1>📘 刷题记录</h1>
-  <div class="day-list" id="dayList"></div>
+
+
+
+
+
+
+
+<div class="section-title">
+
+📘 学习记录
+
 </div>
+
+
+
+
+<input 
+id="searchBox"
+placeholder="🔍 搜索内容，例如 Agent、RAG、数据库..."
+>
+
+
+
+
+<div class="day-list" id="dayList">
+
+</div>
+
+
+
+
 
 <footer>
-  Keep going.
+
+Keep going.
+
 </footer>
 
+
+
+
+</div>
+
+
+
+
+
 <script>
-const MAX_DAYS = 366
-const list = document.getElementById('dayList')
 
-async function exists(file) {
-  try {
-    const res = await fetch(file, { method: 'HEAD' })
-    return res.ok
-  } catch {
-    return false
-  }
-}
 
-async function loadDays() {
-  for (let i = 1; i <= MAX_DAYS; i++) {
-    const file = `daily study/day${i}note.html`
-    if (await exists(file)) {
-      const div = document.createElement('div')
-      div.className = 'day-card'
-      div.innerHTML = `<a href="${file}">第 ${i} 天</a>`
-      list.appendChild(div)
+const list =
+document.getElementById("dayList");
+
+
+const searchBox =
+document.getElementById("searchBox");
+
+
+
+let allNotes=[];
+
+
+
+
+// 加载全文索引
+
+async function loadIndex(){
+
+
+    try{
+
+
+        const response =
+        await fetch("search-index.json");
+
+
+
+        if(!response.ok){
+
+            throw new Error();
+
+        }
+
+
+
+        allNotes =
+        await response.json();
+
+
+
+        render(allNotes);
+
+
+
+    }catch(e){
+
+
+
+        list.innerHTML=
+        `
+
+        <div class="empty">
+
+        暂无搜索索引，请先生成 search-index.json
+
+        </div>
+
+        `;
+
+
     }
-  }
+
+
 }
 
-loadDays()
+
+
+
+
+
+
+// 渲染卡片
+
+function render(data){
+
+
+
+    if(data.length===0){
+
+
+        list.innerHTML=
+
+        `
+
+        <div class="empty">
+
+        没有找到相关内容
+
+        </div>
+
+        `;
+
+
+        return;
+
+
+    }
+
+
+
+
+    let html="";
+
+
+
+    data.forEach(item=>{
+
+
+        html+=`
+
+        <div class="day-card">
+
+
+        <a href="${item.file}">
+
+
+        <strong>
+
+        Day ${item.day}
+
+        </strong>
+
+
+        <span>
+
+        ${item.title}
+
+        </span>
+
+
+        </a>
+
+
+        </div>
+
+
+        `;
+
+
+    });
+
+
+
+    list.innerHTML=html;
+
+
+}
+
+
+
+
+
+
+
+// 全文搜索
+
+searchBox.addEventListener(
+"input",
+()=>{
+
+
+    const keyword =
+    searchBox.value
+    .trim()
+    .toLowerCase();
+
+
+
+    if(!keyword){
+
+
+        render(allNotes);
+
+
+        return;
+
+
+    }
+
+
+
+    const result =
+    allNotes.filter(item=>{
+
+
+        const text = `
+
+        ${item.day}
+
+        ${item.title}
+
+        ${item.content}
+
+        `
+
+        .toLowerCase();
+
+
+
+        return text.includes(keyword);
+
+
+
+    });
+
+
+
+    render(result);
+
+
+
+});
+
+
+
+
+
+
+
+loadIndex();
+
+
+
 </script>
 
+
+
 </body>
+
 </html>
