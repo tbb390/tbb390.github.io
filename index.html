@@ -48,8 +48,6 @@ body{
 
 
 
-
-
 .header{
 
     background:white;
@@ -66,7 +64,6 @@ body{
 }
 
 
-
 .header h1{
 
     margin:0;
@@ -74,7 +71,6 @@ body{
     font-size:32px;
 
 }
-
 
 
 .header p{
@@ -86,7 +82,6 @@ body{
     line-height:1.7;
 
 }
-
 
 
 
@@ -104,8 +99,6 @@ body{
 
 
 
-
-/* 学习路线 */
 
 .roadmap-grid{
 
@@ -138,7 +131,6 @@ body{
     transition:.2s;
 
 }
-
 
 
 .roadmap-card:hover{
@@ -177,7 +169,6 @@ body{
 
 
 
-
 /* 搜索 */
 
 #searchBox{
@@ -201,10 +192,9 @@ body{
 }
 
 
-
 #searchBox:focus{
 
-    border-color:#888;
+    border-color:#777;
 
 }
 
@@ -212,14 +202,14 @@ body{
 
 
 
-/* Day卡片 */
+/* Day */
 
 .day-list{
 
     display:grid;
 
     grid-template-columns:
-    repeat(auto-fill,minmax(160px,1fr));
+    repeat(auto-fill,minmax(180px,1fr));
 
     gap:18px;
 
@@ -289,8 +279,6 @@ body{
 
 
 
-
-
 .empty{
 
     background:white;
@@ -304,8 +292,6 @@ body{
     color:#888;
 
 }
-
-
 
 
 
@@ -327,12 +313,10 @@ footer{
 </head>
 
 
-
 <body>
 
 
 <div class="container">
-
 
 
 <div class="header">
@@ -362,7 +346,6 @@ footer{
 
 
 
-
 <div class="roadmap-grid">
 
 
@@ -381,6 +364,7 @@ footer{
 
 
 
+
 <a href="roadmap/week-plan.html" class="roadmap-card">
 
 <div class="title">
@@ -392,6 +376,8 @@ footer{
 </div>
 
 </a>
+
+
 
 
 
@@ -409,6 +395,8 @@ footer{
 
 
 
+
+
 <a href="roadmap/agent-roadmap.html" class="roadmap-card">
 
 <div class="title">
@@ -420,6 +408,8 @@ LLM → Tool → RAG → MCP
 </div>
 
 </a>
+
+
 
 
 
@@ -437,6 +427,8 @@ LLM → Tool → RAG → MCP
 
 
 
+
+
 <a href="daily-study/ragent初览.html" class="roadmap-card">
 
 <div class="title">
@@ -448,6 +440,8 @@ LLM → Tool → RAG → MCP
 </div>
 
 </a>
+
+
 
 
 
@@ -465,6 +459,8 @@ VLAN、DHCP、NAT、ACL
 
 
 
+
+
 <a href="roadmap/exam-roadmap.html" class="roadmap-card">
 
 <div class="title">
@@ -479,20 +475,12 @@ VLAN、DHCP、NAT、ACL
 
 
 
-</div>
 
-
-
-
-
-
-
-<div class="section-title">
+</div><div class="section-title">
 
 📘 学习记录
 
 </div>
-
 
 
 
@@ -503,12 +491,9 @@ placeholder="🔍 搜索内容，例如 Agent、RAG、数据库..."
 
 
 
-
 <div class="day-list" id="dayList">
 
 </div>
-
-
 
 
 
@@ -517,7 +502,6 @@ placeholder="🔍 搜索内容，例如 Agent、RAG、数据库..."
 Keep going.
 
 </footer>
-
 
 
 
@@ -544,7 +528,10 @@ let allNotes=[];
 
 
 
-// 加载全文索引
+
+// =======================
+// 加载搜索索引
+// =======================
 
 async function loadIndex(){
 
@@ -559,7 +546,9 @@ async function loadIndex(){
 
         if(!response.ok){
 
-            throw new Error();
+            throw new Error(
+                "search-index.json不存在"
+            );
 
         }
 
@@ -579,14 +568,13 @@ async function loadIndex(){
 
 
         list.innerHTML=
-        `
 
+        `
         <div class="empty">
 
         暂无搜索索引，请先生成 search-index.json
 
         </div>
-
         `;
 
 
@@ -601,7 +589,136 @@ async function loadIndex(){
 
 
 
-// 渲染卡片
+// =======================
+// 获取命中摘要
+// =======================
+
+function getSummary(content,keyword){
+
+
+
+    const index =
+    content
+    .toLowerCase()
+    .indexOf(keyword);
+
+
+
+    if(index===-1){
+
+        return "";
+
+    }
+
+
+
+    const start =
+    Math.max(
+        0,
+        index-40
+    );
+
+
+
+    const end =
+    Math.min(
+        content.length,
+        index+keyword.length+80
+    );
+
+
+
+    return "..."
+    +
+    content.substring(start,end)
+    +
+    "...";
+
+
+}
+
+
+
+
+
+
+
+// =======================
+// 搜索评分
+// =======================
+
+function searchScore(item,keyword){
+
+
+
+    let score=0;
+
+
+
+    const title =
+    item.title
+    .toLowerCase();
+
+
+
+    const content =
+    item.content
+    .toLowerCase();
+
+
+
+
+
+    // 标题匹配
+
+    if(title.includes(keyword)){
+
+        score+=100;
+
+    }
+
+
+
+
+    // 正文完整匹配
+
+    if(content.includes(keyword)){
+
+        score+=50;
+
+    }
+
+
+
+
+    // 出现次数增加权重
+
+    const count =
+    content
+    .split(keyword)
+    .length-1;
+
+
+
+    score+=count;
+
+
+
+    return score;
+
+
+}
+
+
+
+
+
+
+
+
+// =======================
+// 渲染结果
+// =======================
 
 function render(data){
 
@@ -613,13 +730,11 @@ function render(data){
         list.innerHTML=
 
         `
-
         <div class="empty">
 
         没有找到相关内容
 
         </div>
-
         `;
 
 
@@ -631,6 +746,7 @@ function render(data){
 
 
 
+
     let html="";
 
 
@@ -638,7 +754,9 @@ function render(data){
     data.forEach(item=>{
 
 
-        html+=`
+        html+=
+
+        `
 
         <div class="day-card">
 
@@ -653,11 +771,41 @@ function render(data){
         </strong>
 
 
+
         <span>
 
         ${item.title}
 
         </span>
+
+
+
+
+        ${
+        item.summary
+        ?
+
+        `
+
+        <p style="
+        margin-top:10px;
+        font-size:13px;
+        color:#777;
+        line-height:1.6;
+        ">
+
+        ${item.summary}
+
+        </p>
+
+        `
+
+        :
+
+        ""
+
+        }
+
 
 
         </a>
@@ -684,7 +832,12 @@ function render(data){
 
 
 
-// 全文搜索
+
+
+
+// =======================
+// 智能全文搜索
+// =======================
 
 searchBox.addEventListener(
 "input",
@@ -692,11 +845,15 @@ searchBox.addEventListener(
 
 
     const keyword =
+
     searchBox.value
     .trim()
     .toLowerCase();
 
 
+
+
+    // 没输入恢复全部
 
     if(!keyword){
 
@@ -711,29 +868,70 @@ searchBox.addEventListener(
 
 
 
+
+
     const result =
-    allNotes.filter(item=>{
 
 
-        const text = `
-
-        ${item.day}
-
-        ${item.title}
-
-        ${item.content}
-
-        `
-
-        .toLowerCase();
+    allNotes
 
 
-
-        return text.includes(keyword);
-
+    .map(item=>{
 
 
-    });
+        return {
+
+
+            ...item,
+
+
+            score:
+
+            searchScore(
+                item,
+                keyword
+            ),
+
+
+
+            summary:
+
+            getSummary(
+                item.content,
+                keyword
+            )
+
+
+        };
+
+
+    })
+
+
+
+
+    // 过滤无结果
+
+    .filter(item=>
+
+        item.score>0
+
+    )
+
+
+
+
+    // 相关度排序
+
+    .sort(
+
+        (a,b)=>
+
+        b.score-a.score
+
+    );
+
+
 
 
 
@@ -749,12 +947,12 @@ searchBox.addEventListener(
 
 
 
+
 loadIndex();
 
 
 
 </script>
-
 
 
 </body>
