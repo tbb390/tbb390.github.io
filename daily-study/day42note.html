@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <title>2026-09-03 每日学习概览</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            padding: 2rem 2rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f4870, #2b5c8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            border-bottom: 1px dashed #e2edf2;
+            padding-bottom: 1rem;
+        }
+
+        .meta span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .section {
+            margin: 1.8rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f4870;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-box {
+            background: #fafcff;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #eef2ff;
+            line-height: 1.7;
+            color: #2d3e50;
+        }
+
+        .content-box h3 {
+            margin-top: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #1f4870;
+            font-size: 1rem;
+        }
+
+        .content-box h3:first-child {
+            margin-top: 0;
+        }
+
+        .content-box p {
+            margin-bottom: 0.8rem;
+        }
+
+        .content-box ul {
+            padding-left: 1.3rem;
+            margin: 0.5rem 0 0.8rem;
+        }
+
+        .content-box li {
+            margin: 0.3rem 0;
+        }
+
+        .content-box code {
+            background: #eef4ff;
+            padding: 0.1rem 0.35rem;
+            border-radius: 5px;
+            font-family: Consolas, monospace;
+            color: #1e3a8a;
+        }
+
+        .flow {
+            background: #f1f5f9;
+            border-radius: 0.8rem;
+            padding: 0.9rem 1rem;
+            margin: 0.8rem 0;
+            white-space: pre-line;
+            font-family: Consolas, 'Microsoft YaHei', monospace;
+            line-height: 1.8;
+        }
+
+        hr {
+            margin: 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .back-link:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>📝 每日学习概览</h1>
+
+        <div class="meta">
+            <span>📅 日期：2026年9月3日</span>
+            <span>📚 科目/主题：计算机网络、教资、Agent、Kaggle、求职</span>
+        </div>
+
+
+        <div class="section">
+
+            <div class="section-title">📖 今天学了什么</div>
+
+            <div class="content-box">
+
+                <h3>一、投递简历</h3>
+
+                <p>
+                    今天继续进行简历投递，并围绕 AI Agent 应用开发方向关注相关岗位。
+                    目前除了继续学习技术知识，也逐渐开始把项目经历、RAG、Agent 和基础计算机知识联系起来，为后续面试做准备。
+                </p>
+
+
+                <h3>二、计算机网络：IP 协议可靠吗？</h3>
+
+                <p>
+                    今天首先复习了 IP 协议的基本特点。IP 协议本身属于尽力而为的网络层协议，
+                    它主要负责数据包的寻址和转发，但不保证数据一定能够送达，也不保证数据一定按顺序到达。
+                </p>
+
+                <p>
+                    因此，网络通信中的可靠性通常需要由更高层协议提供。例如 TCP 会在 IP 的基础上，
+                    通过连接建立、确认机制、重传、流量控制等方式提供可靠传输。
+                </p>
+
+                <div class="flow">应用层
+↓
+TCP / UDP
+↓
+IP
+↓
+数据链路层
+↓
+物理层</div>
+
+
+                <h3>三、网络协议体系结构</h3>
+
+                <p>
+                    复习了计算机网络的分层思想以及各层主要负责的功能。网络协议分层的核心目的，
+                    是把复杂的网络通信过程拆分成不同层次，每一层负责相对明确的任务。
+                </p>
+
+                <ul>
+                    <li><strong>物理层：</strong>负责比特流在物理介质上的传输。</li>
+                    <li><strong>数据链路层：</strong>负责局域网中的帧传输和链路层通信。</li>
+                    <li><strong>网络层：</strong>负责 IP 寻址和不同网络之间的路由。</li>
+                    <li><strong>传输层：</strong>负责端到端通信，常见协议包括 TCP 和 UDP。</li>
+                    <li><strong>应用层：</strong>为具体应用提供网络服务，例如 HTTP、DNS 等。</li>
+                </ul>
+
+                <p>
+                    设备和层次之间也存在对应关系，例如路由器主要工作在网络层，
+                    二层交换机主要处理数据链路层，而主机需要实现完整的网络协议栈。
+                </p>
+
+
+                <h3>四、TCP 与 UDP</h3>
+
+                <p>
+                    TCP 是面向连接的可靠传输协议，能够提供连接管理、可靠传输以及流量控制等能力。
+                    UDP 则是无连接协议，不保证数据一定到达，也不保证顺序，但协议开销相对更小。
+                </p>
+
+                <ul>
+                    <li><strong>TCP：</strong>面向连接、可靠传输、适合对数据完整性要求较高的场景。</li>
+                    <li><strong>UDP：</strong>无连接、尽力而为、传输开销较小，适合实时性或广播、多播等场景。</li>
+                </ul>
+
+                <p>
+                    今天重点重新区分了“网络层 IP 提供尽力而为的传输”和“TCP 在传输层提供可靠性”这两个概念。
+                </p>
+
+
+                <h3>五、套接字与网络通信端点</h3>
+
+                <p>
+                    Socket 可以理解为网络通信的端点。通常通过：
+                </p>
+
+                <div class="flow">IP 地址 + 端口号</div>
+
+                <p>
+                    来标识一个具体的通信端点。IP 地址用于定位主机，
+                    端口号则用于区分同一台主机上的不同应用程序。
+                </p>
+
+                <p>
+                    同一台设备可以同时运行网页、聊天软件和游戏等多个网络程序，
+                    不同程序可以通过不同端口进行通信。
+                </p>
+
+
+                <h3>六、DNS 与 NAT</h3>
+
+                <p>
+                    DNS 主要解决域名和 IP 地址之间的转换问题。
+                    用户通常更容易记住域名，而网络中的实际通信仍然需要通过 IP 地址进行定位。
+                </p>
+
+                <p>
+                    NAT 是缓解 IPv4 地址不足的重要技术，通过私有地址与公网地址之间的转换，
+                    使多个内部设备可以共享较少的公网 IP。
+                </p>
+
+                <ul>
+                    <li>静态 NAT：固定的一对一地址转换。</li>
+                    <li>动态 NAT：从公网地址池中动态分配地址。</li>
+                    <li>PAT：通过端口号区分不同内部主机，共享同一个公网 IP。</li>
+                </ul>
+
+
+                <h3>七、IPv4 地址不足与 IPv6</h3>
+
+                <p>
+                    IPv4 使用 32 位地址，能够提供的地址数量有限。
+                    NAT 可以缓解地址不足的问题，但不能从根本上解决 IPv4 地址空间有限的问题。
+                </p>
+
+                <p>
+                    IPv6 使用 128 位地址，提供了更大的地址空间，
+                    从 IPv4 向 IPv6 迁移才是解决地址空间不足的长期方向。
+                </p>
+
+
+                <h3>八、分布式网络应用程序设计</h3>
+
+                <p>
+                    继续复习了网络协议与分布式应用之间的关系。
+                    分布式系统中的服务可以部署在不同的服务器、不同城市甚至不同地区，
+                    但对用户来说通常仍然表现为一个完整的系统。
+                </p>
+
+                <p>
+                    常见的网络应用架构包括：
+                </p>
+
+                <ul>
+                    <li><strong>C/S：</strong>客户端与服务器之间进行通信。</li>
+                    <li><strong>B/S：</strong>浏览器作为客户端，通过 HTTP 等协议访问服务器。</li>
+                    <li><strong>P2P：</strong>节点之间地位相对平等，可以直接进行资源交换。</li>
+                </ul>
+
+                <p>
+                    同时理解了服务集群的基本思想：多个服务器可以共同处理请求，
+                    提高系统的处理能力和可用性。
+                </p>
+
+
+                <h3>九、网络编程接口</h3>
+
+                <p>
+                    从网络编程的角度复习了不同类型的 Socket。
+                </p>
+
+                <ul>
+                    <li><strong>原始套接字：</strong>可以直接处理更底层的网络协议数据。</li>
+                    <li><strong>流式套接字：</strong>通常基于 TCP，提供面向连接的可靠通信。</li>
+                    <li><strong>数据报套接字：</strong>通常基于 UDP，采用无连接的数据报通信方式。</li>
+                </ul>
+
+                <p>
+                    同时了解了网络开发和抓包相关的接口与工具基础，例如 Windows 网络驱动接口规范，
+                    以及用于原始数据包捕获的 PCAP 类库。
+                </p>
+
+
+                <h3>十、计算机网络知识串联</h3>
+
+                <p>
+                    今天的内容可以从一次网络访问过程串起来：
+                </p>
+
+                <div class="flow">用户输入域名
+↓
+DNS 解析得到 IP 地址
+↓
+应用程序通过 Socket 建立通信端点
+↓
+根据需求选择 TCP 或 UDP
+↓
+IP 协议负责网络层寻址和转发
+↓
+路由器根据网络层信息进行转发
+↓
+最终到达目标服务器</div>
+
+                <p>
+                    在更大的应用场景中，多个服务器又可以组成分布式系统或服务集群，
+                    通过网络协议完成不同服务之间的数据交换。
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="section">
+
+            <div class="section-title">📌 明日计划</div>
+
+            <div class="content-box">
+
+                <ul>
+                    <li>English Unit 22 单词</li>
+                    <li>继续投递简历</li>
+                    <li>教资必考点背诵</li>
+                    <li>教资刷题</li>
+                    <li>继续学习 Agent 理论知识</li>
+                    <li>开始探索 Kaggle 比赛和相关项目</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <hr />
+
+        <a href="index.html" class="back-link">← 返回学习主页</a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

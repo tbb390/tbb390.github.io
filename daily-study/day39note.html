@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <title>2026-08-31 每日学习复盘</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #f4f7fb 0%, #eaf1f8 100%);
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 35px 40px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .header h1 {
+            color: #3b82f6;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .meta span {
+            background: #f3f7fc;
+            color: #5b6b7d;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 35px 40px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .card h2 {
+            color: #3b82f6;
+            font-size: 23px;
+            margin-bottom: 25px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #edf1f5;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section h3 {
+            font-size: 18px;
+            color: #2f3b4a;
+            margin-bottom: 15px;
+        }
+
+        .section h4 {
+            font-size: 16px;
+            color: #475569;
+            margin: 18px 0 10px;
+        }
+
+        p {
+            line-height: 1.9;
+            margin-bottom: 12px;
+            color: #4b5563;
+        }
+
+        ul,
+        ol {
+            padding-left: 25px;
+            margin: 10px 0 15px;
+        }
+
+        li {
+            line-height: 1.9;
+            margin-bottom: 6px;
+            color: #4b5563;
+        }
+
+        .flow {
+            background: #f6f9fc;
+            border-left: 4px solid #60a5fa;
+            padding: 18px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            line-height: 2;
+            color: #475569;
+            white-space: pre-line;
+        }
+
+        .highlight {
+            background: #f0f7ff;
+            border-radius: 8px;
+            padding: 15px 18px;
+            margin: 15px 0;
+            color: #475569;
+            line-height: 1.8;
+        }
+
+        .code {
+            background: #f6f8fa;
+            border-radius: 8px;
+            padding: 15px 18px;
+            margin: 15px 0;
+            font-family: Consolas, monospace;
+            color: #374151;
+            white-space: pre-line;
+            line-height: 1.8;
+        }
+
+        .plan-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .plan-list li {
+            padding: 13px 16px;
+            background: #f7faff;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            color: #475569;
+        }
+
+        .plan-list li::before {
+            content: "✓";
+            color: #3b82f6;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .back {
+            text-align: center;
+            padding: 25px 0 10px;
+        }
+
+        .back a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .back a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+
+            body {
+                padding: 20px 12px;
+            }
+
+            .header,
+            .card {
+                padding: 25px 20px;
+                border-radius: 16px;
+            }
+
+            .header h1 {
+                font-size: 25px;
+            }
+
+            .card h2 {
+                font-size: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+
+            <h1>📖 2026-08-31 每日学习复盘</h1>
+
+            <div class="meta">
+                <span>📅 日期：2026-08-31</span>
+                <span>🎯 学习方向：AI Agent 应用开发 / 项目复习 / 面试准备 / 英语</span>
+                <span>📚 阶段：项目理解与实习面试准备</span>
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>📖 今天学了什么</h2>
+
+
+            <div class="section">
+
+                <h3>🤖 Agent 项目复习与项目流程梳理</h3>
+、
+
+                <p>
+                    项目主要解决的是企业私有知识无法被通用大模型准确回答，以及企业数据直接交给外部模型可能存在隐私和安全问题。
+                    因此通过 RAG 的方式，把企业自己的知识资料接入系统，在回答问题之前先从知识库中检索相关内容，再结合检索结果让大模型生成回答。
+                </p>
+
+                <div class="flow">
+文档上传
+↓
+文件类型识别
+↓
+文档解析
+↓
+文本切分
+↓
+Embedding 向量化
+↓
+向量存储
+↓
+检索
+↓
+去重 / 重排
+↓
+构建 Prompt
+↓
+LLM 生成
+↓
+SSE 流式输出
+                </div>
+
+                <p>
+                    今天重新梳理后，对这个流程的理解比之前更具体了一些。每个环节并不是简单地把技术组件串起来，
+                    而是为了保证用户的问题能够找到更相关的企业资料，再让模型基于这些资料生成回答。
+                </p>
+
+            </div>
+
+
+            <div class="section">
+
+                <h3>📄 文档上传到检索流程</h3>
+
+                <p>
+                    今天重点复习了自己参与的文档处理和知识库检索相关流程。
+                    用户上传文档后，系统需要先识别文件类型并进行解析，然后将原始文档切分成适合向量化和检索的文本块。
+                </p>
+
+                <p>
+                    文本不能直接把整篇文档作为一个整体进行检索，因为文档通常比较长，
+                    用户的问题也只会涉及其中的一部分内容。
+                </p>
+
+                <p>
+                    因此需要先进行 Chunk 切分，将文档拆成多个较小的文本块，再分别进行 Embedding。
+                    用户提问后，同样会将问题转换成向量，通过向量相似度从知识库中寻找相关内容。
+                </p>
+
+                <div class="highlight">
+                    文档切分的目的，是让检索粒度更加合适。<br>
+                    如果文本块过大，可能包含大量无关信息；<br>
+                    如果文本块过小，又可能导致上下文不足。
+                </div>
+
+                <p>
+                    检索得到多个候选结果后，还需要进行去重和重排，
+                    尽量把真正与用户问题相关的内容放到前面，再组合成 Prompt 交给 LLM。
+                </p>
+
+            </div>
+
+
+            <div class="section">
+
+                <h3>⚙️ Embedding 并发优化</h3>
+
+                <p>
+                    今天继续复习了项目中自己做过的 Embedding 阶段性能优化。
+                    文档切分之后，每个 Chunk 都需要进行向量化，如果按照单任务顺序调用，
+                    当文本块数量增加时，整个处理流程的时间会比较长。
+                </p>
+
+                <p>
+                    因此优化时采用了批量切分和四路有界并发的方式处理 Embedding 请求。
+                </p>
+
+                <div class="flow">
+待处理 Chunk
+↓
+任务切分
+↓
+四路有界并发
+↓
+并行请求 Embedding
+↓
+异常快速取消
+↓
+结果按原顺序合并
+                </div>
+
+                <p>
+                    使用有界并发，而不是无限提高并发数量，主要是因为并发并不是越高越好。
+                    如果同时请求过多，可能造成模型 API 请求压力增加、本地 CPU 和网络资源竞争，
+                    甚至导致任务处理混乱。
+                </p>
+
+                <p>
+                    因此这里限制为固定的并发数量，让多个任务可以并行处理，同时避免系统资源被大量请求占满。
+                </p>
+
+                <p>
+                    优化完成后，通过 A/B 测试对比优化前后的处理时间，
+                    平均处理时间从大约 510ms 降到 136ms，处理效率有比较明显的提升。
+                </p>
+
+                <div class="highlight">
+                    今天重新准备这个问题时，重点不只是记住“四路并发”，而是能够说明：<br><br>
+
+                    为什么要并发：减少多个 Embedding 请求顺序执行带来的等待时间。<br>
+                    为什么要有界：避免并发过多导致资源竞争和接口压力。<br>
+                    怎么保证结果正确：任务处理完成后按照原来的顺序进行合并。
+                </div>
+
+            </div>
+
+
+            <div class="section">
+
+                <h3>🔧 RocketMQ 状态问题复习</h3>
+
+                <p>
+                    今天也重新整理了之前项目中遇到的一个任务状态问题。
+                    当时文档处理任务一直处于 Running 状态，没有正常完成。
+                </p>
+
+                <p>
+                    排查过程中主要从任务状态、日志以及消息处理链路开始检查，
+                    最后发现问题与本地环境配置和 RocketMQ 相关环境状态有关，
+                    导致消息处理完成后任务状态没有正常更新。
+                </p>
+
+                <p>
+                    后来重新检查并搭建相关环境后，任务状态恢复正常。
+                </p>
+
+                
+                <div class="flow">
+发现任务一直 Running
+↓
+查看任务状态
+↓
+检查系统日志
+↓
+排查消息处理链路
+↓
+确认本地环境相关问题
+↓
+重新检查并搭建环境
+↓
+任务状态恢复正常
+                </div>
+
+                <p>
+                    通过这个问题，也重新熟悉了异步任务处理中消息队列和任务状态之间的关系。
+                    一个任务即使业务逻辑已经执行，如果消息消费或状态更新环节出现问题，
+                    前端看到的任务状态仍然可能停留在处理中。
+                </p>
+
+            </div>
+
+
+            <div class="section">
+
+                <h3>🎤 根据岗位 JD 准备模拟面试</h3>
+
+                <p>
+                    今天根据 AI Agent 应用开发相关岗位的 JD，开始整理项目介绍和常见面试问题。
+                    准备的重点主要放在 AI / Agent 理解、项目开发经历、功能模块开发、测试优化以及学习能力上。
+                </p>
+
+                <h4>自我介绍</h4>
+
+                <p>
+                    自我介绍主要围绕网络工程专业背景、大三阶段、目前主要学习 AI Agent 应用开发，
+                    同时学习 Python、网页设计、数据处理和 Linux 等内容展开。
+                </p>
+
+                <p>
+                    项目经历重点介绍企业级知识库问答系统，以及之前为了熟悉 Linux 环境和知识库基本流程做的小型课设项目。
+                </p>
+
+                <h4>项目介绍</h4>
+
+                <p>
+                    面试时介绍项目时，需要先说明项目解决什么问题，再介绍整体架构，
+                    最后重点讲自己实际参与的工作。
+                </p>
+
+                <div class="highlight">
+                    项目问题：企业私有知识无法被通用大模型准确回答，同时需要考虑数据隐私和安全。<br><br>
+
+                    技术路线：通过 RAG 接入企业知识库，在回答问题之前先检索相关资料，再结合资料生成回答。<br><br>
+
+                    个人参与：文档上传到检索流程相关功能开发、中间件环境部署与问题排查、Embedding 并发优化以及测试。
+                </div>
+
+            </div>
+
+
+            <div class="section">
+
+                <h3>💬 模拟面试问题：项目中具体做了什么</h3>
+
+                <p>
+                    今天重点练习了如何回答“你在项目里具体负责什么”这个问题。
+                    之前回答容易停留在“负责功能开发和测试优化”这种比较泛的表达，
+                    现在需要具体到实际模块。
+                </p>
+
+                <div class="highlight">
+                    在项目中，主要参与了从文档上传、解析、文本切分，到 Embedding 和检索这一部分流程的功能开发和测试。
+                    其中遇到过 RocketMQ 相关的任务状态问题，也针对 Embedding 阶段进行了并发性能优化。
+                </div>
+
+                <p>
+                    通过今天的模拟面试准备，项目回答开始从“介绍技术栈和流程”，
+                    转向说明自己具体做了什么、遇到了什么问题，以及是如何处理和测试的。
+                </p>
+
+            </div>
+
+
+            <div class="section">
+
+                <h3>🧠 模拟面试问题：为什么使用四路有界并发</h3>
+
+                <p>
+                    这个问题主要用于进一步考察是否真正理解自己的优化方案。
+                </p>
+
+                <p>
+                    如果只是回答“为了提高速度所以用了并发”，信息是不够的。
+                    更完整的理解应该包括并发带来的收益，以及为什么不能无限增加并发数量。
+                </p>
+
+                <ul>
+                    <li>多个 Embedding 请求顺序执行时，会产生较多等待时间。</li>
+                    <li>并发可以让多个任务同时处理，提高整体吞吐量。</li>
+                    <li>并发数量过多可能导致 CPU、网络和接口资源竞争。</li>
+                    <li>模型 API 同时接收到过多请求，也可能出现响应变慢或请求异常。</li>
+                    <li>使用固定数量的有界并发，可以在处理效率和系统稳定性之间取得平衡。</li>
+                    <li>处理完成后需要保证结果能够按照原任务顺序合并。</li>
+                </ul>
+
+               
+
+            </div>
+
+
+            <div class="section">
+
+                <h3>📘 English Unit 19</h3>
+
+                <p>
+                    今天继续完成 English Unit 19 单词
+                </p>
+
+            </div>
+
+
+            <div class="section">
+
+                <h3>📝 学校实习日志填写</h3>
+
+                <p>
+                    今天完成了学校相关的实习日志填写，对近期项目学习、实训准备和相关学习内容进行了整理记录。
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>📌 明日计划</h2>
+
+            <ul class="plan-list">
+
+                <li>English Unit 20</li>
+
+                <li>科一背诵必考点学习</li>
+
+                <li>继续投递简历</li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="back">
+
+            <a href="../index.html">← 返回学习主页</a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
