@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>2026-09-15 每日学习概览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            padding: 2rem 2rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f4870, #2b5c8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            border-bottom: 1px dashed #e2edf2;
+            padding-bottom: 1rem;
+        }
+
+        .meta span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .section {
+            margin: 1.8rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f4870;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-box {
+            background: #fafcff;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #eef2ff;
+            line-height: 1.6;
+            color: #2d3e50;
+        }
+
+        .content-box p {
+            margin: 0 0 0.8rem;
+        }
+
+        .content-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        hr {
+            margin: 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .back-link:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="card">
+
+        <h1>📝 每日学习概览</h1>
+
+        <div class="meta">
+            <span>📅 日期：2026年09月15日</span>
+            <span>📚 科目/主题：English、深度学习</span>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📖 今天学了什么</div>
+            <div class="content-box">
+
+                <p>
+                    <strong>English：</strong>
+                    完成 Unit 26 单词学习，高频词部分第一轮大致背诵完成，后面开始以复习和巩固为主。
+                </p>
+
+                <p>
+                    <strong>深度学习：</strong>
+                    继续学习梯度下降训练过程中出现的优化问题，主要是 loss 在训练过程中不再下降，或者刚开始训练就出现更新困难。
+                </p>
+
+                <p>
+                    重点学习了<strong>临界点（Critical Point）</strong>。当损失函数的梯度为 0 时，参数通过梯度下降暂时无法继续更新，这种情况不能简单理解成“卡在局部最小值”，因为临界点还可能是局部最大值或者鞍点。
+                </p>
+
+                <p>
+                    对比了<strong>局部最小值和鞍点</strong>的区别。局部最小值附近的各个方向基本都是让 loss 上升的，而鞍点虽然梯度同样为 0，但仍然存在能够让 loss 下降的方向，因此看起来像是训练停住了，实际上并不是一个真正的局部最低点。
+                </p>
+
+                <p>
+                    还学习了利用<strong>泰勒近似和海森矩阵（Hessian）</strong>分析临界点。海森矩阵描述了损失函数二阶导数的信息，可以通过特征值判断临界点的性质：特征值全部为正时对应局部最小值，全部为负时对应局部最大值，同时存在正负特征值时则属于鞍点。
+                </p>
+
+                <p>
+                    理论上，如果发现海森矩阵存在负特征值，可以沿着对应的特征向量方向更新参数，使 loss 继续下降，从而离开鞍点。但实际深度学习模型的参数量通常非常大，直接计算完整的 Hessian 矩阵以及进行特征值分解成本很高，所以实际训练中一般不会直接使用这种方法。
+                </p>
+
+                <p>
+                    最后了解到深度学习的参数空间通常是非常高维的，在这种高维损失函数中，鞍点出现的情况比低维情况下更加常见，因此训练卡住时不能简单地认为一定是陷入了局部最小值。
+                </p>
+
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📌 明日计划</div>
+            <div class="content-box">
+                <p>背诵基础词 Unit 1，开始对之前的基础词进行复习。</p>
+                <p>继续学习深度学习，了解 Batch 和 Momentum。</p>
+                <p>投递简历，继续准备 Agent 方向的实习。</p>
+                <p>学习 Agent 方面的相关知识。</p>
+            </div>
+        </div>
+
+        <hr />
+
+        <a href="index.html" class="back-link">← 返回学习主页</a>
+
+    </div>
+</div>
+</body>
+</html>

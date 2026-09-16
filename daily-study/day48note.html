@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>2026-09-17 每日学习概览</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f4870, #2b5c8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            border-bottom: 1px dashed #e2edf2;
+            padding-bottom: 1rem;
+        }
+
+        .meta span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .section {
+            margin: 1.8rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f4870;
+            margin-bottom: 0.8rem;
+        }
+
+        .content-box {
+            background: #fafcff;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #eef2ff;
+            line-height: 1.7;
+            color: #2d3e50;
+        }
+
+        .content-box p {
+            margin: 0 0 0.9rem;
+        }
+
+        .content-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .sub-title {
+            font-weight: 600;
+            color: #28557e;
+            margin-top: 1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        hr {
+            margin: 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .back-link:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="card">
+
+        <h1>📝 每日学习概览</h1>
+
+        <div class="meta">
+            <span>📅 日期：2026年09月17日</span>
+            <span>📚 科目/主题：English、深度学习、Agent开发</span>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📖 今天学了什么</div>
+
+            <div class="content-box">
+
+                <p>
+                    <strong>English：</strong>
+                    背诵基础词 Unit 1。
+                </p>
+
+                <p class="sub-title">深度学习：Batch、Batch Size、Epoch、Shuffle、Momentum</p>
+
+                <p>
+                    今天继续复习深度学习训练过程中的 Batch 和 Momentum，重点理解不同 Batch Size 对训练效率和训练效果的影响。
+                </p>
+
+                <p>
+                    <strong>Batch、Epoch 与 Shuffle：</strong>
+                    训练时将全量数据划分成多个 Batch，每次使用一个 Batch 计算 Loss 和梯度并更新参数。所有 Batch 都遍历一次就是一个 Epoch。通常每个 Epoch 开始前会重新 Shuffle 数据，再重新划分 Batch。
+                </p>
+
+                <p>
+                    <strong>Batch Size 的区别：</strong>
+                    Full Batch 使用全部训练数据进行一次参数更新，梯度方向比较稳定，但是更新频率低；Batch Size=1 每次只使用一条数据，更新频率高，但梯度噪声较大，参数更新过程也更加不稳定。
+                </p>
+
+                <p>
+                    <strong>GPU 与 Batch：</strong>
+                    GPU 具有较强的并行计算能力，在一定范围内增加 Batch Size 后，单个 Batch 的计算时间不会明显增加，因此大 Batch 通常能够更快完成一个 Epoch。
+                </p>
+
+                <p>
+                    <strong>小 Batch 为什么有优势：</strong>
+                    小 Batch 带来的梯度噪声并不完全是坏事。noisy update 可能帮助模型跳出鞍点和局部最优，并更容易找到泛化能力较好的平缓区域。因此 Batch Size 不能简单理解成越大越好，需要根据任务进行调整。
+                </p>
+
+                <p>
+                    <strong>Momentum：</strong>
+                    普通梯度下降主要根据当前梯度的反方向更新参数，而 Momentum 会结合之前的更新方向，让参数具有类似物理运动中的“惯性”。即使当前梯度接近 0，也可以依靠之前积累的移动方向继续向前。
+                </p>
+
+                <p>
+                    <strong>Momentum 的直观理解：</strong>
+                    可以把参数优化想象成一个从高处滚下来的小球。小球滚到鞍点或者局部极小值时，如果仍然具有足够的惯性，就可能继续向前运动，而不是直接停在当前位置。
+                </p>
+
+                <p>
+                    <strong>今天重点：</strong>
+                    Batch Size 影响训练的计算效率、梯度噪声和泛化表现；Momentum 则是在梯度下降基础上加入历史更新方向，通过“惯性”帮助优化过程继续向前。
+                </p>
+
+
+                <p class="sub-title">Agent开发：MinerU 复盘</p>
+
+                <p>
+                    <strong>【总】为什么用 MinerU？</strong><br>
+                    因为 RAG 和企业知识库需要处理大量复杂文档，需要一个高精度、低成本、数据安全可控的文档解析工具，为后续大模型提供质量更高的中文语料。
+                </p>
+
+                <p>
+                    <strong>1. Why / 为什么会用？</strong><br>
+                    在 RAG 和企业知识库中，需要处理 PDF、财报、扫描件等复杂文档。云端 API 存在数据出境、合规和成本方面的问题；国外开源工具在中文场景下存在支持不足；如果直接使用超大模型进行解析，又会带来较高的算力和成本压力。
+                </p>
+
+                <p>
+                    因此需要一个能够本地部署，同时能够较好处理中文复杂文档的解析工具。MinerU 的作用就是在 RAG 前面先完成文档解析和结构化处理。
+                </p>
+
+                <p>
+                    <strong>2. What / MinerU 是什么？</strong><br>
+                    MinerU 是一个开源的一站式文档解析工具，可以将 PDF、网页、图片等复杂内容转换成 Markdown、JSON 等结构化数据。
+                </p>
+
+                <p>
+                    它涉及 OCR、版面分析、阅读顺序恢复、表格识别、公式识别等能力，可以将公式转换成 LaTeX、表格转换成 HTML，并支持多语言 OCR。其处理思路包括 Pipeline 和 VLM，其中材料中提到核心 VLM 模型约为 1.2B。
+                </p>
+
+                <p>
+                    <strong>3. Before / 没用之前的问题：</strong><br>
+                    普通 PDF 文本提取容易丢失文档结构。双栏排版可能出现阅读顺序错误，复杂表格可能出现结构断裂，扫描件还需要额外进行 OCR。对于中文文档，竖排文本、印章等内容也可能成为解析难点。
+                </p>
+
+                <p>
+                    同时还需要考虑数据安全和成本。云端解析需要考虑企业数据上传问题，本地使用大型通用模型进行解析又会增加 GPU 和算力成本。
+                </p>
+
+                <p>
+                    <strong>4. After / 使用之后：</strong><br>
+                    使用 MinerU 后，可以对复杂文档中的文本、标题、表格、图片和公式等内容进行识别和整理，并输出 Markdown、JSON 等结构化结果。
+                </p>
+
+                <p>
+                    通过 OCR、Layout Analysis 和 Reading Order 等能力，可以更好地处理复杂版面、文字识别和阅读顺序问题，同时保留表格、公式等结构，为后续 Chunk 和 Embedding 提供更合适的数据。
+                </p>
+
+                <p>
+                    MinerU 也支持本地化运行，材料中提到其核心 VLM 模型约为 1.2B，因此相较于直接使用超大模型进行文档解析，可以降低对算力的依赖。
+                </p>
+
+                <p>
+                    <strong>5. Result / 最终效果：</strong><br>
+                    今天复盘材料中给出的数据包括中文 OCR 准确率 98.1%、公式识别 98%、表格识别 92%，OmniDocBench 得分 95.69，同时提到 GPU 成本节省约 60%。
+                </p>
+
+                <p>
+                    对 RAG 来说，更重要的是解析结果能够以 Markdown、JSON 等结构化形式进入后续处理流程，从而减少因为文档结构丢失、阅读顺序错误等问题对 Chunk、Embedding 和 Retrieval 造成的影响。
+                </p>
+
+                <p>
+                    <strong>【总】MinerU 在 RAG 中的位置：</strong><br>
+                    MinerU 不是 RAG，也不是向量数据库，而是知识库构建前面的文档解析环节。
+                </p>
+
+                <p>
+                    整体可以理解为：
+                    原始文档 → MinerU → Markdown / JSON → Chunk → Embedding → 向量数据库 → Retrieval → Rerank → LLM。
+                </p>
+
+                <p>
+                    所以 MinerU 不只是简单的“PDF 转 Markdown”，核心是尽可能保留复杂文档中的内容和结构，为后面的 RAG 提供更适合模型处理的知识输入。
+                </p>
+
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📌 明日计划</div>
+
+            <div class="content-box">
+                <p>English Unit 2。</p>
+                <p>继续投递简历。</p>
+                <p>继续学习 Agent 方向相关知识，并学习部分中间件。</p>
+                <p>继续深度学习下一部分内容。</p>
+                <p>进行 Kaggle 实操。</p>
+            </div>
+        </div>
+
+        <hr />
+
+        <a href="index.html" class="back-link">← 返回学习主页</a>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>2026-09-14 每日学习概览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            padding: 2rem 2rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f4870, #2b5c8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            border-bottom: 1px dashed #e2edf2;
+            padding-bottom: 1rem;
+        }
+
+        .meta span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .section {
+            margin: 1.8rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f4870;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-box {
+            background: #fafcff;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #eef2ff;
+            line-height: 1.6;
+            color: #2d3e50;
+        }
+
+        .content-box p {
+            margin: 0 0 0.8rem;
+        }
+
+        .content-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        hr {
+            margin: 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .back-link:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="card">
+
+        <h1>📝 每日学习概览</h1>
+
+        <div class="meta">
+            <span>📅 日期：2026年09月14日</span>
+            <span>📚 科目/主题：English、Agent开发</span>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📖 今天学了什么</div>
+            <div class="content-box">
+
+                <p>
+                    <strong>English：</strong>
+                    完成高频词 Unit 25 的单词背诵。
+                </p>
+
+                <p>
+                    <strong>Agent开发：</strong>
+                    结合 Ragent 项目继续整理面试问题和回答，重点复习模型选型、RAG检索、MCP、Prompt、性能优化和项目评估。
+                </p>
+
+                <p>
+                    <strong>Q：为什么选择千问？</strong><br>
+                    A：主要结合中文知识理解、指令遵循和检索上下文利用能力进行考虑，并通过固定测试集比较不同模型的准确性、相关性、完整性、幻觉、响应速度和成本。
+                </p>
+
+                <p>
+                    <strong>Q：千问是多少B？</strong><br>
+                    A：明确使用过的是 Qwen3-Embedding-8B，它负责Embedding，不是最终生成答案的LLM。生成模型具体版本和参数规模不是自己负责底层部署的。
+                </p>
+
+                <p>
+                    <strong>Q：模型是本地部署还是API？</strong><br>
+                    A：LLM侧主要通过模型服务调用，自己主要负责RAG Pipeline、Embedding、检索、Prompt和测试验证，没有负责实际GPU集群的生产级部署。
+                </p>
+
+                <p>
+                    <strong>Q：Prompt里面有没有使用思维链？</strong><br>
+                    A：没有要求模型输出完整思维链，主要通过角色、任务、上下文和回答规则引导模型基于检索结果生成答案。
+                </p>
+
+                <p>
+                    <strong>Q：为什么采用混合检索？</strong><br>
+                    A：向量检索擅长语义匹配，关键词检索对产品名称、错误码、版本号等精确信息更有效，两者结合可以提高召回覆盖率。
+                </p>
+
+                <p>
+                    <strong>Q：RRF是什么？为什么需要RRF？</strong><br>
+                    A：RRF是倒数排名融合，用于融合不同检索方式得到的排名结果，解决不同检索器结果需要统一排序的问题。
+                </p>
+
+                <p>
+                    <strong>Q：RRF之后为什么还需要Rerank？</strong><br>
+                    A：RRF融合后的结果仍可能存在重复或相关性不足的Chunk，Rerank可以对候选结果进行二次精排，再选择最终Top-K。
+                </p>
+
+                <p>
+                    <strong>Q：RAG系统召回率前后分别多少？</strong><br>
+                    A：最终测试Top-K Recall达到90%+，MRR达到0.95+，测试集为50份Markdown文档和150条标准Query。没有保留完全对齐的优化前正式基线，因此不虚构前后具体百分比。
+                </p>
+
+                <p>
+                    <strong>Q：你的Embedding Pipeline具体怎么优化？</strong><br>
+                    A：采用Batch分片、4路有界并发、异常快速取消和结果保序合并，A/B测试平均耗时从510ms降低到136ms，约73%优化，吞吐提升约3.75倍。
+                </p>
+
+                <p>
+                    <strong>Q：为什么Embedding并发有效？</strong><br>
+                    A：多个Chunk的Embedding任务相对独立，并发可以减少串行等待；但并发过高会增加API、CPU和内存压力，所以采用有界并发。
+                </p>
+
+                <p>
+                    <strong>Q：Batch和并发有什么区别？</strong><br>
+                    A：Batch解决一次处理多少数据，并发解决同时处理多少任务，是两个不同维度的优化。
+                </p>
+
+                <p>
+                    <strong>Q：意图识别、意图澄清参与了吗？</strong><br>
+                    A：主要参与链路理解、调试和测试。意图识别用于判断用户当前需求，信息不足或存在歧义时先进行澄清，自己深入较多的是RAG检索和Embedding部分。
+                </p>
+
+                <p>
+                    <strong>Q：MCP在项目中是怎么使用的？</strong><br>
+                    A：MCP提供工具协议和Schema，LLM根据工具信息提取调用参数，系统通过MCP Tool Executor执行工具，通过mcpToolId、callTool得到mcpContext后继续处理。
+                </p>
+
+                <p>
+                    <strong>Q：RAG怎么进行评估？</strong><br>
+                    A：检索和生成分开评估，检索侧关注Top-K Recall、MRR，生成侧关注准确性、相关性、完整性、忠实性、幻觉和指令遵循。
+                </p>
+
+                <p>
+                    <strong>Q：RAG出现问题时怎么定位？</strong><br>
+                    A：依次检查原始文档、解析、Chunk、Embedding、向量入库、Query、Recall、Rerank、Prompt和LLM，逐层定位问题，而不是直接归因于模型。
+                </p>
+
+                <p>
+                    <strong>Q：这个项目最难的问题是什么？</strong><br>
+                    A：Embedding Pipeline性能问题。通过拆分各阶段耗时定位Embedding阶段瓶颈，再使用Batch和4路有界并发优化，并通过A/B测试验证效果。
+                </p>
+
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📌 明日计划</div>
+            <div class="content-box">
+                <p>背诵 English 高频词 Unit 26。</p>
+                <p>继续学习深度学习。</p>
+                <p>投递简历。</p>
+            </div>
+        </div>
+
+        <hr />
+
+        <a href="index.html" class="back-link">← 返回学习主页</a>
+
+    </div>
+</div>
+</body>
+</html>
