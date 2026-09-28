@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>2026-09-28 每日学习概览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f4870, #2b5c8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            border-bottom: 1px dashed #e2edf2;
+            padding-bottom: 1rem;
+        }
+
+        .meta span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .section {
+            margin: 1.8rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f4870;
+            margin-bottom: 0.8rem;
+        }
+
+        .content-box {
+            background: #fafcff;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #eef2ff;
+            line-height: 1.7;
+            color: #2d3e50;
+        }
+
+        .write-area {
+            min-height: 8rem;
+        }
+
+        hr {
+            margin: 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .back-link:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="card">
+
+        <h1>📝 每日学习概览</h1>
+
+        <div class="meta">
+            <span>📅 日期：2026年09月28日</span>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📖 整理</div>
+
+            <div class="content-box write-area">
+                <span>📚 深度学习</span>
+                <p>
+                    普通神经网络直接处理图片时，参数会非常多，所以cnn会利用图片的特点减少不必要的参数。
+                    <br>
+图片中的很多特征只需要看局部区域就能发现，比如边缘、纹理等。
+<br>
+同一种特征可能出现在图片的不同位置，所以可以使用同一组参数在不同位置进行检测。
+<br>
+卷积就是让一个小的“模板”在图片上移动，不断判断当前位置有没有自己要找的特征。
+<br>
+不同的模板可以寻找不同的特征，得到不同的特征结果。
+<br>
+cnn 通过多层网络，把简单的特征逐渐组合成更加复杂的特征
+<br>
+Pooling 主要用于缩小特征图的大小、减少计算量。最后将提取到的特征用于图片分类
+                </p>
+                <span>📝 agent</span>
+                <p>
+                    State可以理解成agent运行过程中的共享状态，用来保存当前任务需要的数据。
+            比如用户的问题、已经完成的步骤、中间结果、工具返回结果等。
+                </p>
+                <p>
+            不同节点之间不是直接保存对方的数据，而是通过State进行传递。
+            一个节点读取当前State，完成自己的处理后，再把新的结果写回State。
+        </p>
+
+        <p>
+            State设计时需要注意字段的作用，哪些数据需要保存、哪些节点会读取、
+            哪些节点负责修改，都应该比较明确。
+        </p>
+
+        <p class="sub-title">LangGraph中的Node</p>
+
+        <p>
+            Node就是Agent流程中的一个具体处理步骤。
+            一个Node可以负责分析问题、调用工具、处理工具结果或者生成最终答案。
+        </p>
+
+        <p>
+            Node本身不需要关心整个Agent怎么运行，只需要根据当前State完成自己的任务，
+            然后把处理后的数据交给后面的流程。
+        </p>
+
+        <p>
+            这种方式可以把比较复杂的Agent拆成多个步骤，每个节点负责一部分逻辑，
+            节点之间通过State连接起来。
+        </p>
+
+        <p class="sub-title">Edge和条件路由</p>
+
+        <p>
+            Edge负责描述节点之间的连接关系，也就是当前步骤执行完之后下一步去哪里。
+        </p>
+
+        <p>
+            如果所有任务都是固定流程，可以直接按照固定顺序连接节点。
+            如果下一步需要根据执行结果决定，就可以使用条件路由。
+        </p>
+
+        <p>
+            例如当前State中记录了工具执行结果，
+            可以根据结果判断任务是否完成：
+            如果完成就进入最终输出，如果没有完成就继续执行后面的步骤。
+        </p>
+
+        <p>
+            所以Agent的流程不一定是一条从头走到尾的直线，
+            可以有分支，也可以根据结果重新回到前面的节点。
+        </p>
+<p class="sub-title">Node的拆分与职责</p>
+
+<p>
+    Node并不是拆得越细越好。
+    节点拆分会影响错误处理、重试、Checkpoint和调试。
+    如果一个Node包含多个容易失败的外部操作，其中某一步失败后可能需要重复执行前面的操作。
+</p>
+
+<p>
+    因此可以根据不同的职责和失败范围拆分Node，
+    让每个节点负责相对明确的一部分工作。
+    这样出现问题时，可以更准确地定位和恢复。
+</p>
+
+<p class="sub-title">错误处理</p>
+
+<p>
+    Agent运行过程中出现错误时，不同类型的错误应该采用不同的处理方式。
+    临时性的错误可以进行Retry，例如网络请求暂时失败。
+</p>
+
+<p>
+    如果错误可以通过Agent继续处理，
+    可以把错误信息写入State，让后面的流程根据错误结果继续执行。
+</p>
+
+<p>
+    如果问题需要用户提供信息或者进行确认，
+    可以使用Interrupt暂停Agent，等用户处理完成后再继续。
+</p>
+
+<p class="sub-title">Command</p>
+
+<p>
+    Command可以让Node在执行完成后，同时完成State更新和流程跳转。
+    也就是说，一个Node不仅可以修改当前状态，
+    还可以根据当前情况决定下一步进入哪个节点。
+</p>
+
+<p class="sub-title">Checkpoint与持久化</p>
+
+<p>
+    Checkpoint可以保存Agent执行过程中的状态。
+    当任务执行过程中暂停或者出现可以恢复的问题时，
+    可以利用之前保存的状态继续执行，而不需要从头开始。
+</p>
+
+<p>
+    thread_id可以用来标识一条独立的执行线程，
+    让同一个任务的状态能够在多次执行之间对应起来。
+</p>
+
+<p class="sub-title">Human-in-the-loop</p>
+
+<p>
+    Agent并不一定需要从头到尾完全自动执行。
+    在一些需要人工确认的步骤，可以通过Interrupt暂停流程，
+    等用户提供输入后再恢复执行。
+</p>
+
+<p>
+    这种方式可以把人工决策作为Agent流程中的一个正式步骤，
+    而不是简单地让程序发生异常后退出。
+</p>
+
+<p class="sub-title">Durable Execution</p>
+
+<p>
+    LangGraph可以通过持久化执行状态，让Agent具备可恢复执行的能力。
+    任务中某个阶段失败后，可以利用已经保存的状态继续后面的流程，
+    减少已经完成步骤被重复执行的情况。
+</p>
+<p class="sub-title">Loop循环</p>
+
+<p>
+    LangGraph中的流程不只是从一个Node走到下一个Node，
+    还可以根据执行结果重新回到之前的节点。
+</p>
+
+<p>
+    例如Agent调用工具得到结果后，发现任务还没有完成，
+    就可以再次进入Agent判断，而不是直接结束流程。
+    这种循环结构比较适合需要多次思考、调用工具和修正结果的任务。
+</p>
+
+<p class="sub-title">Chain和Graph的区别</p>
+
+<p>
+    Chain更适合固定顺序的处理流程，
+    例如问题处理、检索、Prompt构造、模型调用按照固定顺序执行。
+</p>
+
+<p>
+    Graph更适合存在状态、条件判断、分支和循环的流程。
+    所以Agent任务通常更适合使用Graph来组织。
+</p>
+
+<p>
+    这里不是简单理解成Graph比Chain更高级，
+    而是两者适合解决的问题不同。
+</p>
+<p class="sub-title">模型选型</p>
+
+<p>
+    Agent中的不同节点不一定必须使用同一个模型。
+    模型选择需要结合具体任务进行考虑。
+</p>
+
+<p>
+    主要需要考虑任务类型、效果、上下文长度、推理能力、
+    调用速度、成本、部署方式以及稳定性等因素。
+</p>
+
+<p>
+    因此实际Agent系统中可以针对不同节点选择不同模型，
+    而不是简单地认为模型越大越好。
+</p>
+            </div>
+        </div>
+
+
+        <hr />
+
+        <a href="index.html" class="back-link">← 返回学习主页</a>
+
+    </div>
+</div>
+</body>
+</html>
