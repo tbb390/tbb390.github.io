@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>2026-10-09 每日学习概览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            padding: 2rem 2rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f4870, #2b5c8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            border-bottom: 1px dashed #e2edf2;
+            padding-bottom: 1rem;
+        }
+
+        .meta span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .section {
+            margin: 1.8rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f4870;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-box {
+            background: #fafcff;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #eef2ff;
+            line-height: 1.6;
+            color: #2d3e50;
+        }
+
+        .content-box p {
+            margin: 0;
+            min-height: 2rem;
+        }
+
+        .sub-title {
+            font-weight: 600;
+            color: #1f4870;
+            margin: 1rem 0 0.5rem;
+        }
+
+        hr {
+            margin: 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .back-link:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(-3px);
+        }
+
+        .write-area {
+            min-height: 5rem;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="card">
+
+        <h1>📝 每日学习概览</h1>
+
+        <div class="meta">
+            <span>📅 日期：2026年10/09日</span>
+            <span>📚 科目/主题：English、深度学习</span>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📖 整理</div>
+
+            <div class="content-box">
+
+                <p class="sub-title">English：基础词 Unit 5</p>
+
+                <p>
+                    背诵基础词 Unit 5。
+                </p>
+
+
+                <p class="sub-title">深度学习 </p>
+
+                <p>
+1.self-a可以让每个词结合句子中其他词的信息，更好地理解上下文。q用来查询当前token想寻找什么信息。k用来计算匹配程度，每个token可以用来匹配的特征，v是用来最后用于整合的信息。wq、wk、wv 是模型训练过程中学习得到的参数矩阵。
+通过q和k的匹配程度，计算不同token之间的相关性，再经过softmax得到权重。输入和输出通常都是一组向量，每个位置的输出可以融合其他位置的信息。vs cnn，cnn更侧重提取局部特征，而self-a可以根据输入建立不同位置之间的联系。
+2.self-a的变形 应用
+multi-head attention可从不同角度学习 信息之间的关系。
+self-a本身没有天然的顺序信息，因此需要加入位置编码，让模型能够利用词语的位置和顺序信息。
+attention不仅可以用于文本，也可以用于图像和图结构。图像可以切分成多个patch并转换成向量，graph图神经网络也可以利用机制判断不同节点的信息有多重要。
+3.transformer是在attention的基础上构建起来的模型架构。
+encoder主要负责处理输入序列，让每个位置的向量融合上下文信息。encoder-decoder中的decoder会结合encoder的输出和已经生成的内容，逐步生成目标序列。
+seq2seq是一种序列到序列的建模方式，可以用于机器翻译、语音识别等任务，输入和输出的长度不一定相同。
+4.masked self-a
+在自回归生成中，模型不能提前看到未来的 token，因此需要使用mask屏蔽未来位置。
+训练时可以并行计算多个位置，但实际进行自回归生成时，通常还是一个token接一个token地生成。
+5.AT根据已经生成的内容逐步预测下一个 token，可以考虑输出token之间的依赖关系，生成速度慢
+NAT并行生成多个位置，生成速度更快，不过也需要处理输出长度预测和token之间的依赖问题。
+            </div>
+        </div>
+
+
+        <div class="section">
+            <div class="section-title">📌 明日计划</div>
+
+            <div class="content-box write-area">
+                <p>
+                    1. English背诵 Unit 6<br>
+                    2. Agent找资料
+                    3. 深度学习
+                    4. Kaggle
+                </p>
+            </div>
+        </div>
+
+        <hr />
+
+        <a href="index.html" class="back-link">← 返回学习主页</a>
+
+    </div>
+</div>
+
+</body>
+</html>
