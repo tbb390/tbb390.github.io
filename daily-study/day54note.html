@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>2026-10-10 每日学习概览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            padding: 2rem 2rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f4870, #2b5c8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            border-bottom: 1px dashed #e2edf2;
+            padding-bottom: 1rem;
+        }
+
+        .meta span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .section {
+            margin: 1.8rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f4870;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-box {
+            background: #fafcff;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #eef2ff;
+            line-height: 1.6;
+            color: #2d3e50;
+        }
+
+        .content-box p {
+            margin: 0;
+            min-height: 2rem;
+        }
+
+        .sub-title {
+            font-weight: 600;
+            color: #1f4870;
+            margin: 1rem 0 0.5rem;
+        }
+
+        hr {
+            margin: 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .back-link:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(-3px);
+        }
+
+        .write-area {
+            min-height: 5rem;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="card">
+
+        <h1>📝 每日学习概览</h1>
+
+        <div class="meta">
+            <span>📅 日期：2026年10/10日</span>
+            <span>📚 科目/主题：English、深度学习</span>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📖 整理</div>
+
+            <div class="content-box">
+
+                <p class="sub-title">English：基础词 Unit 6</p>
+
+                <p>
+                    背诵基础词 Unit 6。
+                </p>
+
+
+                <p class="sub-title">Transformer下整理 </p>
+
+                
+                <p>
+                        <li>区分：seq2seq是一种框架，常用RNN/LSTM实现。Transformer是一种具体的神经网络架构，可以用来实现seq2seq（原始Transformer模型），只有encoder形态（BERT模型），只有decoder形态（GPT系列）</li>
+                        
+                        <li>给encoder-decoder做训练时，input output正确答案。decoder产一个中文相当于做一次分类任务。</li>
+                       <li>decoder在生成时可以 copy mechanism：decoder在生成时可以选择直接copy encoder的输出。可以更好地处理一些需要复制输入的任务。可以用作chatbot，copy用户的输入作output。可以做summarization，copy一些重要的词语。可以做翻译，copy一些专有名词.</li>
+                        <li>当出现低级错误（语音辨识/合成）时， guided attention：在训练时，给decoder一个额外的监督信号，告诉它应该关注输入的哪些部分。可以用作机器翻译，给每个目标词一个对应的源词.</li>
+                        <li>greedy search:贪心path，每次选择分数最高的token生成。易造成局部最优</li>
+                        <li>beam search：在生成时，维护一个候选序列的集合，每次从集合中选择分数最高的几个序列继续生成。但是启发式搜索，不保证全局最优，不适合创造性生成</li>
+                                             
+</p>
+
+            </div>
+        </div>
+
+
+        <div class="section">
+            <div class="section-title">📌 明日计划</div>
+
+            <div class="content-box write-area">
+                <p>
+                    1. English Unit 7<br>
+                    2. Agent找资料
+                    3. Transformer架构整理
+                    
+                </p>
+            </div>
+        </div>
+
+        <hr />
+
+        <a href="index.html" class="back-link">← 返回学习主页</a>
+
+    </div>
+</div>
+
+</body>
+</html>
