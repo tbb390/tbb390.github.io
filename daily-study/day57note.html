@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>2026-10-16 每日学习概览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            padding: 2rem 2rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f4870, #2b5c8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            border-bottom: 1px dashed #e2edf2;
+            padding-bottom: 1rem;
+        }
+
+        .meta span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .section {
+            margin: 1.8rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f4870;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-box {
+            background: #fafcff;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #eef2ff;
+            line-height: 1.6;
+            color: #2d3e50;
+        }
+
+        .content-box p {
+            margin: 0;
+            min-height: 2rem;
+        }
+
+        .sub-title {
+            font-weight: 600;
+            color: #1f4870;
+            margin: 1rem 0 0.5rem;
+        }
+
+        hr {
+            margin: 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .back-link:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(-3px);
+        }
+
+        .write-area {
+            min-height: 5rem;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="card">
+
+        <h1>📝 每日学习概览</h1>
+
+        <div class="meta">
+            <span>📅 日期：2026年10/16日</span>
+            <span>📚 科目/主题：English、深度学习</span>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📖 整理</div>
+
+            <div class="content-box">
+
+                <p class="sub-title">English：基础词 Unit 7</p>
+
+
+                <p class="sub-title">Prompt Cache 前缀缓存</p>
+
+                
+                <p>
+Prompt Cache是KV Ccache的跨请求版，<br>
+prefill：模型收到输入后，将完整的token跑一遍后，算出每层kv<br>
+重复工作：kv cache只活在一次的请求里面，prefill后，请求结束就被释放，若这用户再问不同问题，但系统提示词和资料一样，会重新prefill<br>
+因为使用的掩码自注意力机制会使token只能看到自己和前面的（左边）token，因此，相同前缀的部分kv是相同的，不需要进行重复计算。<br>
+两种cache的联系：缓存的都是每一层的kv，区别是:<br>
+<li>1,作用范围：kv cache是一次请求内部，复用的是前边的token的kv，prompt cache是跨请求的，复用的是前边请求的相同开头（前缀）的token的kv</li>
+<li>2,节省的地方：kv cache省的是decode，吐字更快，prompt cache省的是prefill，首字更快</li>
+<li>3,管理收费：kv cache是由推理引擎，promptcache是由厂商服务器明码标价</li>
+总：kv cache是一句话中不重复算，prompt cache是这次请求和上次请求的相同前缀部分不重复算<br>
+<li>做agent开发时，缓存命中率和钱关系很大，prompt cache命中率越高，prefill越少，钱就省的越多</li>
+例如当用户问agent今天天气适不适合遛狗，agent调用大模型，模型进行调用查天气工具，agent把结果追加到上下文里，然后模型决定查狗怕不怕冷，再发起请求，而多次请求，如果天气和狗怕不怕冷的提示词和资料一样，prompt cache就能命中，节省prefill的计算量，节省钱
+解决agent的上下文越滚越长：重点保证前缀稳定<br>
+<li>1，请求json中的前后位置不影响缓存命中，但拼出来靠前的前缀序列保持不变，并且不要放入随机变化的变量在其中。</li>
+<li>2,工具定义中，工具列表的顺序也不能动，会影响拼接序列（前缀结果）不同</li>
+<li>3,不能频繁的压缩上下文，保证上下文稳定,在几轮后进行压缩替换摘要，</li>
+<li>4,不要改动历史消息，最近几轮是滑动窗口，尽量做添加</li>
+但仍然存在大量计算，还可注意力本身上下手，减少计算
+
+
+
+
+                                       
+</p>
+
+
+       
+
+
+            </div>
+        </div>
+
+
+        <div class="section">
+            <div class="section-title">📌 明日计划</div>
+
+            <div class="content-box write-area">
+                <p>
+                    1，邮件编辑<br>
+                    2，flash attention1<br>
+                    3，方向梳理<br>
+                    
+                
+                </p>
+            </div>
+        </div>
+
+        <hr />
+
+        <a href="index.html" class="back-link">← 返回学习主页</a>
+
+    </div>
+</div>
+
+</body>
+</html>
