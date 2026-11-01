@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>2026-10-30 每日学习概览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            padding: 2rem 2rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f4870, #2b5c8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            border-bottom: 1px dashed #e2edf2;
+            padding-bottom: 1rem;
+        }
+
+        .meta span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .section {
+            margin: 1.8rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f4870;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-box {
+            background: #fafcff;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #eef2ff;
+            line-height: 1.6;
+            color: #2d3e50;
+        }
+
+        .content-box p {
+            margin: 0;
+            min-height: 2rem;
+        }
+
+        .sub-title {
+            font-weight: 600;
+            color: #1f4870;
+            margin: 1rem 0 0.5rem;
+        }
+
+        hr {
+            margin: 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbd5e1, transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: #1e3a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .back-link:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(-3px);
+        }
+
+        .write-area {
+            min-height: 5rem;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="card">
+
+        <h1>📝 每日学习概览</h1>
+
+        <div class="meta">
+            <span>📅 日期：2026年10/30日</span>
+
+        </div>
+
+        <div class="section">
+            <div class="section-title">📖 整理</div>
+
+            <div class="content-box">
+
+               <p class="sub-title">agent</p>
+<p>
+<li>skill：即插即用的能力扩展包，封装专业步骤，工具调用和产出规范封在一个md文档里，<br>
+    使用原因：单纯靠提示词使用agent，新对话框对话时能力不可服用，而且提示词传输或者多次使用容易造成遗漏和麻烦。</li>
+<li>SKILL.md:核心入口，两部分构成:<br>
+    第一部分metadata：yaml元数据和，yaml定义技能的name，description，version，author，示例，inputs，outputs等信息，在agent启动的时候预加载通过description判断触发skill。<br>
+    第二部分是instruction正文：具有markdown格式的文本，描述技能的使用方法，包含必要的代码块和示例，触发skill后才会被查看。</li>
+    <pre>
+        <code class="language-yaml">
+    ---
+    name:成绩查询
+    description:"详细描述技能的功能和使用场景，可用工具：写好的脚本，禁止编造"
+    ---
+        </pre>
+    </code>
+     <pre>
+        <code class="language-markdown">
+    '''text
+    处理规则：
+    调用工具，参数设置，操作描述，要求（调用querystudent工具，参数studentid为用户给出的学号）
+    输入输出的格式要求，存放路径描述：
+    '''
+    ---
+    常见问题：规范大模型的操作，避免幻觉
+    ---
+
+        </pre>
+        </code>
+    
+   <li> scripts:存放一些py和shell脚本，处理确认任务，无需上下文代码，可以直接执行</li>
+    <li>reference:存放一些补充文档，比如api和故障排查之类的,指南</li>
+    <li>assets：存放一些静态文件，通常不会被运行在上下文，在脚本运行时使用。</li>
+
+
+</p>
+
+<p class="sub-title">english</p>
+<p>u11 u25</p>
+
+
+
+<p class="sub-title">邮件</p>
+
+
+                <p>
+lxq已读未回
+ly已发
+xdl已发
+gjh已发
+
+
+
+
+                                       
+</p>
+
+
+       
+
+
+            </div>
+        </div>
+
+
+        <div class="section">
+            <div class="section-title">📌 明日计划</div>
+
+            <div class="content-box write-area">
+                <p>
+                    1，agent <br>
+                    2，投简历<br>
+                    3，u12 复24<br>
+                    
+                </p>
+            </div>
+        </div>
+
+        <hr />
+
+        <a href="index.html" class="back-link">← 返回学习主页</a>
+
+    </div>
+</div>
+
+</body>
+</html>

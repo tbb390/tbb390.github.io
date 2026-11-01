@@ -170,8 +170,8 @@ Prompt Cache是KV Ccache的跨请求版，<br>
 prefill：模型收到输入后，将完整的token跑一遍后，算出每层kv<br>
 重复工作：kv cache只活在一次的请求里面，prefill后，请求结束就被释放，若这用户再问不同问题，但系统提示词和资料一样，会重新prefill<br>
 因为使用的掩码自注意力机制会使token只能看到自己和前面的（左边）token，因此，相同前缀的部分kv是相同的，不需要进行重复计算。<br>
-两种cache的联系：缓存的都是每一层的kv，区别是:<br>
-<li>1,作用范围：kv cache是一次请求内部，复用的是前边的token的kv，prompt cache是跨请求的，复用的是前边请求的相同开头（前缀）的token的kv</li>
+两种cache的联系：缓存的都是每一层的kv，区别:<br>
+<li>1,作用范围：kv cache是一次请求内部，复用的是前边的token的kv，prompt cache是跨请求，复用的是前边请求的相同开头（前缀）的token的kv</li>
 <li>2,节省的地方：kv cache省的是decode，吐字更快，prompt cache省的是prefill，首字更快</li>
 <li>3,管理收费：kv cache是由推理引擎，promptcache是由厂商服务器明码标价</li>
 总：kv cache是一句话中不重复算，prompt cache是这次请求和上次请求的相同前缀部分不重复算<br>
