@@ -1,294 +1,80 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>每日学习概览</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f2f6fb">
+  <title>每日学习记录</title>
 
-        body {
-            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
-            font-family: 'Segoe UI', '微软雅黑', 'PingFang SC', Roboto, system-ui, sans-serif;
-            padding: 2rem 1.5rem;
-            color: #1e2a3e;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 2rem;
-            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
-            padding: 2rem 2rem 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-        }
-
-        h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #1f4870, #2b5c8a);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            border-left: 5px solid #3b82f6;
-            padding-left: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-bottom: 2rem;
-            font-size: 0.85rem;
-            color: #5b6e8c;
-            border-bottom: 1px dashed #e2edf2;
-            padding-bottom: 1rem;
-        }
-
-        .meta span {
-            background: #f1f5f9;
-            padding: 0.2rem 0.8rem;
-            border-radius: 30px;
-        }
-
-        .section {
-            margin: 1.8rem 0;
-        }
-
-        .section-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #1f4870;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .content-box {
-            background: #fafcff;
-            padding: 1rem 1.2rem;
-            border-radius: 1rem;
-            border: 1px solid #eef2ff;
-            line-height: 1.6;
-            color: #2d3e50;
-        }
-
-        .content-box p {
-            margin: 0;
-            min-height: 4rem;
-        }
-
-        hr {
-            margin: 1.2rem 0;
-            border: 0;
-            height: 1px;
-            background: linear-gradient(to right, #cbd5e1, transparent);
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: #ffffffcc;
-            backdrop-filter: blur(4px);
-            padding: 0.5rem 1.2rem;
-            border-radius: 2rem;
-            color: #1e3a8a;
-            font-weight: 500;
-            text-decoration: none;
-            border: 1px solid #cbd5e1;
-            transition: all 0.2s ease;
-            margin-top: 1rem;
-        }
-
-        .back-link:hover {
-            background: white;
-            border-color: #3b82f6;
-            transform: translateX(-3px);
-        }
-
-        @media (max-width: 640px) {
-            body {
-                padding: 1rem;
-            }
-            .card {
-                padding: 1.5rem;
-            }
-            h1 {
-                font-size: 1.5rem;
-            }
-        }
-        body {
-  margin: 0;
-  padding: 40px 20px 64px;
-  color: #26384d;
-  background:
-    radial-gradient(ellipse at 12% 0%, #e8f1ff 0, transparent 38%),
-    #f3f7fc;
-  font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", sans-serif;
-  line-height: 1.85;
-}
-
-main,
-.article,
-.container {
-  width: min(100%, 900px);
-  margin: 0 auto;
-  padding: 44px 52px;
-  border: 1px solid #e5edf7;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 16px 42px rgba(37, 69, 112, 0.08);
-}
-
-h1 {
-  margin: 0 0 14px;
-  padding-left: 18px;
-  border-left: 4px solid #4388e6;
-  color: #214d7b;
-  font-size: clamp(28px, 4vw, 38px);
-  line-height: 1.35;
-}
-
-h2 {
-  margin: 38px 0 16px;
-  color: #2c5d91;
-  font-size: 23px;
-  line-height: 1.5;
-}
-
-h3 {
-  margin: 28px 0 12px;
-  color: #376c9e;
-  font-size: 19px;
-}
-
-p,
-li {
-  color: #34465b;
-  font-size: 16px;
-  line-height: 1.9;
-}
-
-p {
-  margin: 0 0 18px;
-}
-
-ul,
-ol {
-  padding-left: 1.5em;
-}
-
-li {
-  margin: 8px 0;
-}
-
-hr {
-  height: 1px;
-  margin: 28px 0;
-  border: 0;
-  background: #e6edf5;
-}
-
-blockquote {
-  margin: 22px 0;
-  padding: 14px 18px;
-  border-left: 3px solid #69a5e8;
-  border-radius: 0 12px 12px 0;
-  background: #f3f8ff;
-  color: #526b86;
-}
-
-pre {
-  overflow-x: auto;
-  padding: 18px 20px;
-  border: 1px solid #e2eaf4;
-  border-radius: 14px;
-  background: #f5f8fc;
-  line-height: 1.65;
-}
-
-code {
-  font-family: Consolas, "Cascadia Code", monospace;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin: 20px auto;
-  border-radius: 12px;
-}
-
-@media (max-width: 640px) {
-  body {
-    padding: 16px 12px 36px;
-  }
-
-  main,
-  .article,
-  .container {
-    padding: 28px 22px;
-    border-radius: 18px;
-  }
-
-  p,
-  li {
-    font-size: 15px;
-  }
-}
-    </style>
+  <!-- 所有每日页面共用的样式 -->
+  <link rel="stylesheet" href="../assets/daily-study.css">
 </head>
+
 <body>
-<div class="container">
-    <div class="card">
-        <h1>📝 每日学习概览</h1>
+  <main class="container">
+    <article class="card">
+      <header class="article-header">
+        <h1>📝 每日学习记录</h1>
+
         <div class="meta">
-            <span>📅 日期：____年__月__日</span>
-            <span>⏱️ 时长：____小时</span>
-            <span>📚 科目/主题：__________</span>
+          <span>📅 日期：2026年__月__日</span>
+          <span>⏱️ 时长：__小时</span>
+          <span>📚 主题：填写今日主题</span>
         </div>
+      </header>
 
-        <div class="section">
-            <div class="section-title">📖 今天学了什么</div>
-            <div class="content-box">
-                <p>（写一段话概括今天学习的主要内容，例如：复习了数据结构中的二叉树遍历，学习了动态规划的基本思想，或者专业课第三章前两节……）</p>
-            </div>
+      <section class="section">
+        <h2 class="section-title">🎯 今日目标</h2>
+        <div class="content-box">
+          <p>今天计划完成什么？写下具体的学习目标。</p>
         </div>
+      </section>
 
-        <div class="section">
-            <div class="section-title">💡 收获 & 理解</div>
-            <div class="content-box">
-                <p>（记下今天最深刻的几点收获、新掌握的知识点或顿悟时刻）</p>
-            </div>
+      <section class="section">
+        <h2 class="section-title">📖 学习记录</h2>
+        <div class="content-box">
+          <p>记录今天学习的内容、完成的章节或练习。</p>
         </div>
+      </section>
 
-<div style="max-width: 100%;">
-            <img src="/prtsc/.png" style="width:100%; height:auto; border-radius:8px;">
+      <section class="section">
+        <h2 class="section-title">💡 关键理解</h2>
+        <div class="content-box">
+          <p>记录重要概念、自己的理解、收获或新的发现。</p>
         </div>
-        
-       
+      </section>
 
-        <div class="section">
-            <div class="section-title">📌 明日计划</div>
-            <div class="content-box">
-                <p>（简单规划下一步的学习内容）</p>
-            </div>
+      <section class="section">
+        <h2 class="section-title">🛠️ 实践与产出</h2>
+        <div class="content-box">
+          <p>记录完成的代码、题目、笔记、实验或其他成果。</p>
         </div>
+      </section>
 
-        <hr />
-        <a href="index.html" class="back-link">← 返回学习主页</a>
-    </div>
-</div>
+      <section class="section">
+        <h2 class="section-title">🔍 问题与复盘</h2>
+        <div class="content-box">
+          <p>今天遇到了什么困难？哪些内容还需要继续理解？</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">➡️ 明日计划</h2>
+        <div class="content-box">
+          <p>写下下一步准备学习或完成的事情。</p>
+        </div>
+      </section>
+
+      <!-- 配图可选：修改为实际图片路径；不需要时删除整个 figure -->
+      <figure class="study-image">
+        <img src="../prtsc/替换为图片文件名.png" alt="今日学习记录配图">
+        <figcaption>图片说明（可选）</figcaption>
+      </figure>
+
+      <hr>
+
+      <a href="../index.html" class="back-link">← 返回学习主页</a>
+    </article>
+  </main>
 </body>
 </html>
