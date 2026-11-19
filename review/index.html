@@ -1,162 +1,585 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
-<meta charset="UTF-8">
-<title>技术复盘库</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f2f6fb">
+  <title>个人学习成长记录</title>
 
-<style>
+  <style>
+    :root {
+      color-scheme: light;
+      --page: #f2f6fb;
+      --surface: #ffffff;
+      --surface-soft: #f7faff;
+      --ink: #20344d;
+      --muted: #718198;
+      --blue: #3978c8;
+      --blue-dark: #244e7b;
+      --teal: #43a9a4;
+      --line: #e3eaf2;
+      --shadow: 0 12px 34px rgba(39, 66, 99, 0.07);
+      --shadow-hover: 0 18px 42px rgba(39, 66, 99, 0.13);
+    }
 
-*{
-box-sizing:border-box;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-body{
-margin:0;
-padding:30px;
-background:#f5f7fa;
-font-family:"Microsoft YaHei",Arial;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 42px 26px 30px;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 8% 0%, rgba(207, 226, 250, 0.56), transparent 34%),
+        radial-gradient(ellipse at 96% 16%, rgba(218, 234, 245, 0.44), transparent 30%),
+        var(--page);
+      font-family:
+        Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Microsoft YaHei", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
 
-.container{
-max-width:1100px;
-margin:auto;
-}
+    a {
+      color: inherit;
+    }
 
+    .container {
+      width: min(100%, 1500px);
+      margin: 0 auto;
+    }
 
-.header{
+    /* 顶部介绍卡片 */
+    .header {
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      min-height: 250px;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: 48px;
+      padding: 42px 54px;
+      border: 1px solid rgba(255, 255, 255, 0.88);
+      border-radius: 26px;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.99) 0%,
+          rgba(255, 255, 255, 0.96) 34%,
+          rgba(255, 255, 255, 0.72) 53%,
+          rgba(255, 255, 255, 0.06) 100%
+        ),
+        url("prtsc/header.png") right center / cover no-repeat,
+        #fff;
+      box-shadow: var(--shadow);
+    }
 
-background:white;
-padding:25px;
-border-radius:15px;
-margin-bottom:20px;
+    .header h1 {
+      max-width: 720px;
+      margin: 0;
+      color: #1e3b5d;
+      font-size: clamp(30px, 3.3vw, 43px);
+      font-weight: 750;
+      letter-spacing: -0.045em;
+      line-height: 1.24;
+    }
 
-}
+    .header p {
+      max-width: 650px;
+      margin: 16px 0 0;
+      color: #65788f;
+      font-size: 17px;
+      line-height: 1.85;
+    }
 
+    /* 区块标题 */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 42px 0 21px;
+      color: #294968;
+      font-size: 25px;
+      font-weight: 730;
+      letter-spacing: -0.025em;
+    }
 
-.header h1{
+    .section-title::before {
+      width: 4px;
+      height: 25px;
+      flex: 0 0 auto;
+      border-radius: 5px;
+      background: linear-gradient(180deg, #4387d6, #52b6ae);
+      content: "";
+    }
 
-margin:0;
-font-size:30px;
+    /* 学习路线卡片 */
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 17px;
+    }
 
-}
+    .roadmap-card {
+      position: relative;
+      display: flex;
+      min-height: 132px;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+      padding: 21px 23px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(81, 145, 218, 0.09), transparent 42%),
+        var(--surface);
+      color: var(--ink);
+      text-decoration: none;
+      box-shadow: 0 5px 18px rgba(39, 66, 99, 0.035);
+      transition:
+        transform 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease;
+    }
 
+    .roadmap-card:nth-child(4n + 2) {
+      background:
+        radial-gradient(circle at 100% 0%, rgba(66, 175, 164, 0.10), transparent 42%),
+        var(--surface);
+    }
 
-.header p{
+    .roadmap-card:nth-child(4n + 3) {
+      background:
+        radial-gradient(circle at 100% 0%, rgba(133, 119, 205, 0.10), transparent 42%),
+        var(--surface);
+    }
 
-color:#666;
+    .roadmap-card:nth-child(4n) {
+      background:
+        radial-gradient(circle at 100% 0%, rgba(86, 159, 205, 0.10), transparent 42%),
+        var(--surface);
+    }
 
-}
+    .roadmap-card::before {
+      position: absolute;
+      inset: 18px auto 18px 0;
+      width: 3px;
+      border-radius: 0 4px 4px 0;
+      background: linear-gradient(180deg, #4c8fda, #53b7ae);
+      content: "";
+      opacity: 0;
+      transition: opacity 180ms ease;
+    }
 
+    .roadmap-card:hover {
+      transform: translateY(-4px);
+      border-color: #cbdced;
+      box-shadow: var(--shadow-hover);
+    }
 
+    .roadmap-card:hover::before {
+      opacity: 1;
+    }
 
-.card{
+    .title {
+      margin-bottom: 9px;
+      color: #29435f;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
 
-background:white;
-padding:25px;
-border-radius:15px;
-margin-bottom:20px;
-box-shadow:0 5px 15px rgba(0,0,0,.08);
+    .desc {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
 
-transition:.2s;
+    /* 搜索框 */
+    #searchBox {
+      display: block;
+      width: 100%;
+      min-height: 56px;
+      margin: 0 0 20px;
+      padding: 14px 19px;
+      border: 1px solid #dce5ef;
+      border-radius: 15px;
+      outline: none;
+      background: rgba(255, 255, 255, 0.94);
+      color: var(--ink);
+      font: inherit;
+      font-size: 15px;
+      box-shadow: 0 4px 14px rgba(39, 66, 99, 0.035);
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
 
-}
+    #searchBox::placeholder {
+      color: #91a0b2;
+    }
 
+    #searchBox:focus {
+      border-color: #79a8dc;
+      box-shadow: 0 0 0 4px rgba(57, 120, 200, 0.11);
+    }
 
+    /* 每日记录卡片 */
+    .day-list {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 15px;
+    }
 
-.card:hover{
+    .day-card {
+      position: relative;
+      min-height: 116px;
+      overflow: hidden;
+      padding: 18px 19px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background:
+        linear-gradient(145deg, #fff 55%, #f5f9ff 100%);
+      box-shadow: 0 5px 17px rgba(39, 66, 99, 0.035);
+      transition:
+        transform 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease;
+    }
 
-transform:translateY(-3px);
+    .day-card::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 39px;
+      height: 39px;
+      border-radius: 0 0 0 39px;
+      background: rgba(67, 135, 214, 0.075);
+      content: "";
+      pointer-events: none;
+    }
 
-}
+    .day-card:hover {
+      transform: translateY(-3px);
+      border-color: #cbdced;
+      box-shadow: var(--shadow-hover);
+    }
 
+    .day-card a {
+      position: relative;
+      z-index: 1;
+      display: block;
+      height: 100%;
+      color: inherit;
+      text-decoration: none;
+    }
 
+    .day-card strong {
+      color: var(--blue-dark);
+      font-size: 16px;
+      font-weight: 720;
+    }
 
-a{
+    .day-card span {
+      display: block;
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
 
-text-decoration:none;
-color:#2563eb;
+    .day-card p {
+      color: var(--muted) !important;
+    }
 
-}
+    .empty {
+      grid-column: 1 / -1;
+      padding: 30px 22px;
+      border: 1px dashed #cbd8e7;
+      border-radius: 17px;
+      background: rgba(255, 255, 255, 0.75);
+      color: var(--muted);
+      text-align: center;
+    }
 
+    footer {
+      position: relative;
+      margin-top: 55px;
+      padding: 24px 0 8px;
+      color: #8a99aa;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-align: center;
+    }
 
+    footer::before {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 42px;
+      height: 2px;
+      transform: translateX(-50%);
+      border-radius: 2px;
+      background: linear-gradient(90deg, #4387d6, #52b6ae);
+      content: "";
+    }
 
-.title{
+    @media (max-width: 1100px) {
+      .roadmap-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
 
-font-size:24px;
-font-weight:bold;
+      .day-list {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
 
-}
+    @media (max-width: 760px) {
+      body {
+        padding: 24px 16px;
+      }
 
+      .header {
+        min-height: 210px;
+        margin-bottom: 34px;
+        padding: 32px 28px;
+        border-radius: 22px;
+        background-position: center, 58% center, center;
+      }
 
+      .header h1 {
+        max-width: 80%;
+        font-size: clamp(28px, 7vw, 36px);
+      }
 
-.desc{
+      .header p {
+        max-width: 82%;
+        font-size: 15px;
+      }
 
-margin-top:10px;
-color:#666;
-line-height:1.7;
+      .section-title {
+        margin-top: 34px;
+        font-size: 22px;
+      }
 
-}
+      .roadmap-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 13px;
+      }
 
+      .roadmap-card {
+        min-height: 120px;
+        padding: 17px;
+      }
 
+      .day-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
 
-</style>
+      .day-card {
+        min-height: 108px;
+        padding: 16px;
+      }
+    }
 
+    @media (max-width: 430px) {
+      body {
+        padding-inline: 12px;
+      }
+
+      .header {
+        min-height: 200px;
+        padding: 26px 21px;
+      }
+
+      .header h1,
+      .header p {
+        max-width: 100%;
+      }
+
+      .roadmap-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .roadmap-card {
+        min-height: 96px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 
-
 <body>
+  <main class="container">
+    <header class="header">
+      <h1>🎯 我的学习成长记录</h1>
+      <p>记录 AI Agent、大模型应用开发、项目实践以及每日学习积累。</p>
+    </header>
 
+    <section aria-labelledby="roadmap-title">
+      <h2 class="section-title" id="roadmap-title">🚀 学习路线</h2>
 
-<div class="container">
+      <div class="roadmap-grid">
+        <a href="roadmap/Augest-plan.html" class="roadmap-card">
+          <div class="title">🚀 八月计划</div>
+          <div class="desc">八月学习安排</div>
+        </a>
 
+        <a href="roadmap/week-plan.html" class="roadmap-card">
+          <div class="title">📅 本周计划</div>
+          <div class="desc">近期学习规划</div>
+        </a>
 
-<div class="header">
+        <a href="review/index.html" class="roadmap-card">
+          <div class="title">📚 事件复盘</div>
+          <div class="desc">面试、项目、比赛复盘</div>
+        </a>
 
-<h1>
-📝 技术复盘库
-</h1>
+        <a href="roadmap/agent-roadmap.html" class="roadmap-card">
+          <div class="title">🤖 Agent 学习路线</div>
+          <div class="desc">LLM → Tool → RAG → MCP</div>
+        </a>
 
-<p>
-记录面试、项目、源码分析以及技术成长过程
-</p>
+        <a href="roadmap/ragent-roadmap.html" class="roadmap-card">
+          <div class="title">🚀 Ragent 项目学习</div>
+          <div class="desc">项目源码与简历准备</div>
+        </a>
 
-</div>
+        <a href="daily-study/ragent初览.html" class="roadmap-card">
+          <div class="title">📖 Ragent 初览</div>
+          <div class="desc">项目架构整理</div>
+        </a>
 
+        <a href="roadmap/network-roadmap.html" class="roadmap-card">
+          <div class="title">🌐 网络学习</div>
+          <div class="desc">VLAN、DHCP、NAT、ACL</div>
+        </a>
 
+        <a href="roadmap/exam-roadmap.html" class="roadmap-card">
+          <div class="title">📚 期末复习</div>
+          <div class="desc">数据库、OS、Linux 等</div>
+        </a>
+      </div>
+    </section>
 
-<div class="card">
+    <section aria-labelledby="study-title">
+      <h2 class="section-title" id="study-title">📘 学习记录</h2>
 
-<a href="agent/index.html">
+      <input
+        id="searchBox"
+        type="search"
+        placeholder="🔍 搜索内容，例如 Agent、RAG、数据库..."
+        aria-label="搜索学习记录"
+      >
 
+      <div class="day-list" id="dayList" aria-live="polite"></div>
+    </section>
 
-<div class="title">
+    <footer>Keep going.</footer>
+  </main>
 
-🤖 Agent开发复盘
+  <script>
+    const list = document.getElementById("dayList");
+    const searchBox = document.getElementById("searchBox");
+    let allNotes = [];
 
-</div>
+    async function loadIndex() {
+      try {
+        const response = await fetch("search-index.json");
 
+        if (!response.ok) {
+          throw new Error("search-index.json 不存在");
+        }
 
-<div class="desc">
+        allNotes = await response.json();
+        render(allNotes);
+      } catch (error) {
+        list.innerHTML = `
+          <div class="empty">
+            暂无搜索索引，请先生成 search-index.json
+          </div>
+        `;
+      }
+    }
 
-AI Agent岗位面试、
-RAG项目深挖、
-MCP工具调用、
-大模型应用开发相关复盘
+    function getSummary(content, keyword) {
+      const index = content.toLowerCase().indexOf(keyword);
 
-</div>
+      if (index === -1) {
+        return "";
+      }
 
+      const start = Math.max(0, index - 40);
+      const end = Math.min(content.length, index + keyword.length + 80);
 
-</a>
+      return "…" + content.substring(start, end) + "…";
+    }
 
-</div>
+    function searchScore(item, keyword) {
+      let score = 0;
+      const title = item.title.toLowerCase();
+      const content = item.content.toLowerCase();
 
+      if (title.includes(keyword)) score += 100;
+      if (content.includes(keyword)) score += 50;
 
+      score += content.split(keyword).length - 1;
+      return score;
+    }
 
-</div>
+    function render(data) {
+      if (data.length === 0) {
+        list.innerHTML = `
+          <div class="empty">没有找到相关内容</div>
+        `;
+        return;
+      }
 
+      list.innerHTML = data.map(item => `
+        <article class="day-card">
+          <a href="${item.file}">
+            <strong>Day ${item.day}</strong>
+            <span>${item.title}</span>
+            ${item.summary ? `<p>${item.summary}</p>` : ""}
+          </a>
+        </article>
+      `).join("");
+    }
 
+    searchBox.addEventListener("input", () => {
+      const keyword = searchBox.value.trim().toLowerCase();
+
+      if (!keyword) {
+        render(allNotes);
+        return;
+      }
+
+      const results = allNotes
+        .map(item => ({
+          ...item,
+          score: searchScore(item, keyword),
+          summary: getSummary(item.content, keyword)
+        }))
+        .filter(item => item.score > 0)
+        .sort((a, b) => b.score - a.score);
+
+      render(results);
+    });
+
+    loadIndex();
+  </script>
 </body>
-
 </html>

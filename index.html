@@ -50,7 +50,15 @@ body{
 
 .header{
 
-    background:white;
+    background:
+  linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 255, 255, 0.92) 42%,
+    rgba(255, 255, 255, 0.18) 100%
+  ),
+  url("prtsc/header.png") right center / cover no-repeat,
+  #fff;
 
     padding:35px;
 
@@ -307,7 +315,101 @@ footer{
 
 }
 
+/* 统一标题和区块层次 */
+.section-title {
+  position: relative;
+  padding-left: 14px;
+}
 
+.section-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  bottom: 5px;
+  width: 4px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #4388e6, #62c5c2);
+}
+
+/* 学习路线卡片：轻微色彩区分 */
+.roadmap-card {
+  background:
+    linear-gradient(145deg, rgba(239, 246, 255, 0.72), transparent 62%),
+    #fff;
+}
+
+.roadmap-card:nth-child(4n + 2) {
+  background:
+    linear-gradient(145deg, rgba(236, 249, 248, 0.8), transparent 62%),
+    #fff;
+}
+
+.roadmap-card:nth-child(4n + 3) {
+  background:
+    linear-gradient(145deg, rgba(244, 241, 255, 0.8), transparent 62%),
+    #fff;
+}
+
+.roadmap-card:nth-child(4n) {
+  background:
+    linear-gradient(145deg, rgba(238, 245, 255, 0.86), transparent 62%),
+    #fff;
+}
+
+/* 日记卡片：突出日期编号，内容保持清爽 */
+.day-card {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(155deg, #fff 62%, #f5f9ff 100%);
+}
+
+.day-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 0 0 0 44px;
+  background: rgba(78, 144, 226, 0.08);
+  pointer-events: none;
+}
+
+.day-card strong {
+  position: relative;
+  z-index: 1;
+  color: #2e6fbd;
+}
+
+.day-card a:hover strong {
+  color: #174f91;
+}
+
+/* 搜索框聚焦时和页面蓝色强调色统一 */
+#searchBox:focus {
+  border-color: #73a8e8;
+  box-shadow: 0 0 0 4px rgba(67, 136, 230, 0.12);
+}
+
+/* 页脚增加一点收束感 */
+footer {
+  position: relative;
+  padding-top: 26px;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 48px;
+  height: 2px;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  background: linear-gradient(90deg, #4388e6, #62c5c2);
+}
 </style>
 
 </head>
