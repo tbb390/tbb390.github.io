@@ -410,6 +410,151 @@ footer::before {
   border-radius: 2px;
   background: linear-gradient(90deg, #4388e6, #62c5c2);
 }
+
+/* 顶部主视觉：让 FLUX 图更突出，文字区保持清晰 */
+.header {
+  min-height: 270px;
+  padding: 48px 54px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 28px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.97) 34%,
+      rgba(255, 255, 255, 0.72) 54%,
+      rgba(255, 255, 255, 0.04) 100%
+    ),
+    url("prtsc/header.png") right center / cover no-repeat,
+    #fff;
+  box-shadow: 0 18px 42px rgba(37, 69, 112, 0.09);
+}
+
+.header h1 {
+  position: relative;
+  z-index: 1;
+  color: #1e3b5d;
+  letter-spacing: -0.035em;
+}
+
+.header p {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+  color: #647990;
+  font-size: 17px;
+}
+
+/* 区块标题使用统一的蓝绿标记 */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #294968;
+}
+
+.section-title::before {
+  content: "";
+  width: 4px;
+  height: 25px;
+  flex: 0 0 4px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #4387d6, #52b6ae);
+}
+
+/* 路线卡片增加轻色面和悬停反馈 */
+.roadmap-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 138px;
+  border: 1px solid #e2eaf3;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(79, 146, 220, 0.11), transparent 45%),
+    #fff;
+  box-shadow: 0 7px 22px rgba(37, 69, 112, 0.045);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.roadmap-card:nth-child(4n + 2) {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(67, 169, 164, 0.12), transparent 45%),
+    #fff;
+}
+
+.roadmap-card:nth-child(4n + 3) {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(137, 119, 205, 0.11), transparent 45%),
+    #fff;
+}
+
+.roadmap-card:nth-child(4n) {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(86, 159, 205, 0.12), transparent 45%),
+    #fff;
+}
+
+.roadmap-card:hover {
+  transform: translateY(-4px);
+  border-color: #c7d9ed;
+  box-shadow: 0 16px 34px rgba(37, 69, 112, 0.11);
+}
+
+/* 日记卡片突出 Day 编号，卡片边缘更轻 */
+.day-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e4ebf3;
+  border-radius: 17px;
+  background: linear-gradient(145deg, #fff 58%, #f3f8ff 100%);
+  box-shadow: 0 5px 18px rgba(37, 69, 112, 0.04);
+}
+
+.day-card::before {
+  content: "";
+  position: absolute;
+  inset: 16px auto 16px 0;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(180deg, #4387d6, #52b6ae);
+  opacity: 0.65;
+}
+
+.day-card strong {
+  color: #2e6fbd;
+}
+
+.day-card:hover {
+  transform: translateY(-3px);
+  border-color: #c7d9ed;
+  box-shadow: 0 14px 30px rgba(37, 69, 112, 0.10);
+}
+
+#searchBox {
+  border-color: #dce6f1;
+  box-shadow: 0 5px 16px rgba(37, 69, 112, 0.04);
+}
+
+#searchBox:focus {
+  border-color: #79a8dc;
+  box-shadow: 0 0 0 4px rgba(57, 120, 200, 0.11);
+}
+
+@media (max-width: 640px) {
+  .header {
+    min-height: 220px;
+    padding: 30px 24px;
+    background-position: center, 58% center, center;
+  }
+
+  .header h1 {
+    max-width: 80%;
+  }
+
+  .header p {
+    max-width: 82%;
+    font-size: 15px;
+  }
+}
 </style>
 
 </head>
