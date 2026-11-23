@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f2f6fb">
+  <title>二分法 | 算法复习</title>
+  <link rel="stylesheet" href="algorithm.css">
+</head>
+<body>
+  <main class="alg-wrap alg-panel alg-detail">
+    <header class="alg-detail-head">
+      <div class="alg-kicker">Algorithm Practice / Day 1</div>
+      <h1>二刷lc704</h1>
+      <div class="alg-stats">
+        <span class="alg-difficulty medium">难度：简单</span>
+        <span class="alg-stat">日期：2026年11月22日</span>
+        <span class="alg-stat">标签：数组、二分查找</span>
+      </div>
+    </header>
+
+    <section class="alg-detail-section">
+      <p>给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，如果 target 存在返回下标，否则返回 -1</p>
+      <div class="alg-example"><strong>示例</strong><br>
+        <p>
+       示例 1:
+输入: nums = [-1,0,3,5,9,12], target = 9<br>
+输出: 4<br>
+解释: 9 出现在 nums 中并且下标为 4<br>
+        示例 2:<br>
+输入: nums = [-1,0,3,5,9,12], target = 2<br>
+输出: -1<br>
+解释: 2 不存在 nums 中因此返回 -1<br>
+       </div>
+    </section>
+
+    <section class="alg-detail-section">
+      <h2>解题思路</h2>
+      <p>观察到有序（升序）数组，可以使用二分查找算法来提高效率。很纯正的二分查找法。</p>
+    </section>
+
+    <section class="alg-detail-section">
+      <h2>代码实现</h2>
+      <pre class="alg-code"><code>
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int search(const vector<int>& nums, int target) {
+    int left = 0;
+    int right = static_cast<int>(nums.size()) - 1;
+
+    while (left <= right) {
+        int middle = left + (right - left) / 2;
+        if (target < nums[middle]) {
+            right = middle - 1;
+        } else if (target > nums[middle]) {
+            left = middle + 1;
+        } else {
+            return middle;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    int n, target;
+    cin >> n >> target;               
+    vector<int> nums(n);
+    for (int i = 0; i < n; i++) {
+        cin >> nums[i];               
+    }
+
+    cout << search(nums, target) << '\n';   
+    return 0;
+}
+
+
+</code></pre>
+    </section>
+
+    <section class="alg-detail-section">
+      <h2>复杂度分析</h2>
+      <div class="alg-complexity">
+        <span>时间复杂度：O(log n)</span>
+        <span>空间复杂度：O(1)</span>
+      </div>
+    </section>
+
+    <section class="alg-detail-section">
+      <h2>复盘与总结</h2>
+      <div class="alg-note">
+        <p>1，middle是在循环中不断更新的。<br>
+        2,分清下标和数值以及题目需要返回的类型<br>
+        3，注意区间和边界<br>
+        4，left+（right-left）/2<br>
+        </p>
+      </div>
+    </section>
+
+    <a class="alg-back" href="index.html">← 返回算法练习</a>
+  </main>
+</body>
+</html>

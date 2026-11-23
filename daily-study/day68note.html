@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f2f6fb">
+  <title>2026年11月21日 每日学习记录</title>
+
+  <link rel="stylesheet" href="../assets/daily-study.css">
+</head>
+
+<body>
+  <main class="container">
+    <article class="card">
+      <header class="article-header">
+        <h1>📝 每日学习记录</h1>
+
+        <div class="meta">
+          <span>📅 日期：2026年11月21日</span>
+          <span>⏱️ 时长：4小时</span>
+        </div>
+      </header>
+
+      <section class="section">
+        <h2 class="section-title">算法</h2>
+        <div class="content-box">
+          <p>
+            <li>复习二分法/c++语法</li>
+        </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">agent</h2>
+        <div class="content-box">
+          <p>
+            ImportMilvusNode入milvus库节点流程：<br>
+            1，参数检验2，加载milvus客户端3，创建集合，构建schema，向量索引4，插入数据5，返回state<br>
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">💡 关键理解</h2>
+        <div class="content-box">
+          <p>
+            <li> milvus是一个向量数据库，支持稠密向量和稀疏向量的存储和检索。</li>
+            稠密向量偏语义，稀疏向量关键词。<br>
+            milvus中的collection，类似于关系数据库中的表。各collection有不同的结构<br>
+            而schema定义设计即包含collection的结构信息。<br>
+            其中各包含字段信息，字段类型，主键，索引类型（字段名称，数据类型，约束）等。chunks表：主键字段，标量字段，向量字段<br>
+           
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">🛠️ ensp实验2</h2>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">🔍 python</h2>
+        <div class="content-box">
+             <pre class="alg-code"><code>
+            type("字符串") #查数据类型
+            str(123) #数字转字符串
+           agent={#字典
+            "state": "success",
+            "message": "导入milvus库节点成功"
+           }
+           def func1():
+            print("""多行
+            字符串""")
+            class Person:#定义类
+            def __init__(self, name, age): #初始化方法
+                self.name = name 
+                self.age = age 
+            def say_hello(self):#定义方法
+                print(f"Hello, my name is {self.name} and I am {self.age} years old.")
+            person1 = Person("Alice", 25)#创建对象
+            person1.say_hello()#调用方法
+            
+</code></pre>
+         
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">➡️ 明日计划</h2>
+        <div class="content-box">
+           <p>
+                    1，agent 项目<br>
+                    2，基础知识<br>
+                    3，二分法二刷<br>
+                    </p>
+        </div>
+      </section>
+
+      <a href="../index.html" class="back-link">← 返回学习主页</a>
+    </article>
+  </main>
+</body>
+</html>

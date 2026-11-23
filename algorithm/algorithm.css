@@ -1,0 +1,70 @@
+:root {
+  --alg-ink: #203852;
+  --alg-muted: #71839a;
+  --alg-blue: #3978c8;
+  --alg-teal: #45a9a3;
+  --alg-line: #e1eaf3;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; padding: 38px 22px 60px; color: var(--alg-ink);
+  background: radial-gradient(ellipse at 10% 0%, #dceafd 0, transparent 36%), #f2f6fb;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+  line-height: 1.75;
+}
+.alg-wrap { width: min(100%, 1180px); margin: 0 auto; }
+.alg-hero, .alg-panel {
+  border: 1px solid rgba(224,234,245,.92); border-radius: 24px;
+  background: rgba(255,255,255,.94); box-shadow: 0 16px 42px rgba(37,69,112,.075);
+}
+.alg-hero {
+  position: relative; overflow: hidden; padding: 42px 46px; margin-bottom: 30px;
+  background: radial-gradient(circle at 90% 30%, rgba(75,153,219,.19), transparent 25%),
+              radial-gradient(circle at 82% 100%, rgba(69,169,163,.13), transparent 28%), #fff;
+}
+.alg-kicker { color: var(--alg-blue); font-size: 12px; font-weight: 750; letter-spacing: .16em; text-transform: uppercase; }
+.alg-hero h1 { margin: 8px 0 8px; color: #204b78; font-size: clamp(30px,4vw,42px); letter-spacing: -.04em; }
+.alg-hero p { max-width: 660px; margin: 0; color: var(--alg-muted); }
+.alg-stats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.alg-stat { padding: 7px 13px; border: 1px solid #e3ebf5; border-radius: 999px; background: #f6f9fd; color: #526b86; font-size: 13px; }
+.alg-section-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin: 34px 2px 16px; }
+.alg-section-head h2 { margin: 0; color: #294968; font-size: 22px; }
+.alg-section-head span { color: var(--alg-muted); font-size: 13px; }
+.alg-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
+.alg-problem {
+  display: block; min-height: 164px; padding: 20px; border: 1px solid var(--alg-line); border-radius: 18px;
+  background: #fff; color: inherit; text-decoration: none; box-shadow: 0 6px 18px rgba(37,69,112,.04);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.alg-problem:hover { transform: translateY(-3px); border-color: #bfd5ee; box-shadow: 0 14px 30px rgba(37,69,112,.1); }
+.alg-problem-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.alg-problem h3 { margin: 12px 0 6px; color: #294866; font-size: 18px; }
+.alg-problem p { margin: 0; color: var(--alg-muted); font-size: 13px; }
+.alg-difficulty, .alg-tag { display: inline-flex; padding: 4px 9px; border-radius: 999px; background: #eef5ff; color: #3971b5; font-size: 11px; font-weight: 700; }
+.alg-difficulty.medium { background: #fff5e6; color: #a76c1d; }
+.alg-difficulty.hard { background: #fff0f0; color: #b44c57; }
+.alg-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 13px; }
+.alg-tag { background: #f1f7f7; color: #438982; font-weight: 600; }
+.alg-back { display: inline-flex; margin-top: 26px; padding: 9px 15px; border: 1px solid #dce7f2; border-radius: 999px; background: #fff; color: #315d89; text-decoration: none; font-size: 14px; }
+
+/* Problem detail */
+.alg-detail { width: min(100%, 920px); margin: 0 auto; padding: clamp(24px,5vw,50px); }
+.alg-detail-head { padding-bottom: 23px; border-bottom: 1px solid var(--alg-line); }
+.alg-detail h1 { margin: 8px 0 15px; color: #204b78; font-size: clamp(28px,4vw,38px); line-height: 1.3; }
+.alg-detail-section { margin: 30px 0; }
+.alg-detail-section h2 { margin: 0 0 12px; color: #315b86; font-size: 19px; }
+.alg-detail-section p, .alg-detail-section li { color: #35485e; line-height: 1.9; }
+.alg-example { margin: 12px 0; padding: 15px 18px; border: 1px solid var(--alg-line); border-radius: 13px; background: #f7faff; }
+.alg-code { overflow-x: auto; padding: 19px; border: 1px solid #dce6f1; border-radius: 15px; background: #17283b; color: #e7f1ff; font: 13px/1.75 Consolas, "Cascadia Code", monospace; }
+.alg-complexity { display: flex; flex-wrap: wrap; gap: 10px; }
+.alg-complexity span { padding: 7px 12px; border-radius: 10px; background: #eef5fb; color: #315d89; font-size: 13px; }
+.alg-note { padding: 16px 18px; border-left: 3px solid var(--alg-teal); border-radius: 0 12px 12px 0; background: #f1f9f8; color: #3d6264; }
+@media (max-width: 800px) { .alg-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 560px) {
+  body { padding: 18px 12px 36px; }
+  .alg-hero { padding: 28px 23px; border-radius: 19px; }
+  .alg-grid { grid-template-columns: 1fr; }
+  .alg-problem { min-height: 0; }
+  .alg-section-head { align-items: start; flex-direction: column; }
+}
