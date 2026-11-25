@@ -789,6 +789,18 @@ let allNotes=[];
 // 加载搜索索引
 // =======================
 
+function getDailyNotes(){
+  return allNotes
+    .filter(item => item.kind === "daily" || item.file?.startsWith("daily-study/"))
+    .sort((a, b) => {
+      const dayOf = item => {
+        const match = item.file?.match(/day(\d+)note\.html$/i);
+        return match ? Number(match[1]) : Number.MAX_SAFE_INTEGER;
+      };
+      return dayOf(a) - dayOf(b);
+    });
+}
+
 async function loadIndex(){
 
 
@@ -815,7 +827,7 @@ async function loadIndex(){
 
 
 
-       render(allNotes.filter(item => item.kind === "daily"));
+       render(getDailyNotes());
 
 
 
@@ -1114,7 +1126,7 @@ searchBox.addEventListener(
     if(!keyword){
 
 
-       render(allNotes.filter(item => item.kind === "daily"));
+       render(getDailyNotes());
 
 
         return;
