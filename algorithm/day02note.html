@@ -1,0 +1,121 @@
+1```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f2f6fb">
+  <title>LC875 爱吃香蕉的珂珂 | 算法练习</title>
+  <link rel="stylesheet" href="algorithm.css">
+</head>
+<body>
+  <main class="alg-wrap alg-panel alg-detail">
+    <header class="alg-detail-head">
+      <div class="alg-kicker">Algorithm Practice / Day 2</div>
+      <h1>LC875. 爱吃香蕉的珂珂</h1>
+      <div class="alg-stats">
+        <span class="alg-difficulty medium">难度：中等</span>
+        <span class="alg-stat">日期：2026年11月25日</span>
+        <span class="alg-stat">标签：二分答案、可行性判断</span>
+      </div>
+    </header>
+
+    <section class="alg-detail-section">
+      <h2>题目描述</h2>
+      <p>
+        给定若干堆香蕉 piles，以及规定时间h<br>
+        珂珂每小时可以选择一堆香蕉，以速度k吃掉k根<br>
+        如果当前堆剩余香蕉不足k根，则这一小时吃完后不再继续吃其他堆<br>
+        求能够在h小时内吃完所有香蕉的最小速度k<br>
+      </p>
+      <div class="alg-example">
+        示例<br>
+        输入：piles = [3,6,7,11], h = 8<br>
+        输出：4<br>
+        解释：速度为 4 时，四堆香蕉分别需要 1、2、2、3 小时，总计 8 小时。
+      </div>
+    </section>
+
+    <section class="alg-detail-section">
+      <h2>解题思路</h2>
+      <p>
+        不是查数组中target，是在答案范围内寻找最小可行速度
+      </p>
+      <p>
+        关键观察：吃香蕉的速度越快，所需的时间就越少<br>
+        速度从小到大排列时，可行性具有单调性变化，没有特殊点出现：
+      </p>
+      <p><strong>1.二分范围</strong></p>
+      <p>
+        最小速度为1；最大速度为piles中的最大值。<br>
+        因为速度达到最大堆的数量时，每堆最多只需要一个小时
+      </p>
+      <p><strong>2.check函数</strong></p>
+      <p>
+        假设当前速度为k，每一堆需要的时间：向上取整pile/k<br>
+        所有堆所需时间相加，如果不超过h，则当前速度可行
+      </p>
+      <p>
+        整数向上取整：<br>
+        (pile+k-1)/k
+      </p>
+      <p><strong>3.二分边界调整</strong></p>
+      <p>
+        寻找最小可行值。若当前速度可行，缩小更小的速度：right=mid；
+        若不可行，说明速度太慢了，向右扩大：left=mid+1
+      </p>
+    </section>
+
+    <section class="alg-detail-section">
+      <h2>代码实现</h2>
+      <pre class="alg-code"><code>
+        #include &lt;bits/stdc++.h&gt;
+        using namespace std;
+
+class Solution {
+public:
+    int minEatingSpeed(vector&lt;int&gt;&amp; piles, int h) {
+        int left = 1;
+        int right = *max_element(piles.begin(), piles.end());
+
+        while (left &lt; right) {
+            int mid = left + (right - left) / 2;
+
+            long long hours = 0;
+
+            for (int pile : piles) {
+                hours += (pile + mid - 1) / mid;
+            }
+
+            if (hours &lt;= h) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        return left;
+    }
+};</code></pre>
+    </section>
+
+
+
+    <section class="alg-detail-section">
+      <h2>复盘与总结</h2>
+      <div class="alg-note">
+        <p>1.二分答案是在答案范围内寻找满足条件的值</p>
+        <p>2.答案有单调性</p>
+        <p>3.check(mid)用来判断当前尝试的答案是否可行</p>
+        <p><strong>容易出错的地方：</strong></p>
+        <p>1.每堆香蕉需要单独计算小时数，不能把不同堆的剩余时间合并</p>
+        <p>2.每堆所需时间必须向上取整，不能使用普通整数除法</p>
+        <p>3.累计小时数使用longlong，避免数据较大时溢出</p>
+      </div>
+    </section>
+
+    <a class="alg-back" href="index.html">← 返回算法练习</a>
+  </main>
+</body>
+</html>
+```
