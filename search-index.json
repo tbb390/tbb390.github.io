@@ -540,7 +540,7 @@
     "label": "Day 70",
     "title": "📝 每日学习记录",
     "date": "2026年11月25日",
-    "content": "2026年11月25日 每日学习记录 📝 每日学习记录 📅 日期：2026年11月25日 算法复习 前缀和 二分答案 day02note ➡️ 明日计划 双指针复习 ← 返回学习主页",
+    "content": "2026年11月25日 每日学习记录 📝 每日学习记录 📅 日期：2026年11月25日 算法复习 二分答案 day02note ➡️ 明日计划 双指针复习 ← 返回学习主页",
     "file": "daily-study/day70note.html"
   },
   {
@@ -682,18 +682,18 @@
   {
     "kind": "algorithm",
     "label": "算法练习",
-    "title": "二刷lc704",
-    "date": "2026年11月22日",
-    "content": "二分法 | 算法复习 Algorithm Practice / Day 1 二刷lc704 难度：简单 日期：2026年11月22日 标签：数组、二分查找 给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target ，写一个函数搜索 nums 中的 target，如果 target 存在返回下标，否则返回 -1 示例 示例 1: 输入: nums = [-1,0,3,5,9,12], target = 9 输出: 4 解释: 9 出现在 nums 中并且下标为 4 示例 2: 输入: nums = [-1,0,3,5,9,12], target = 2 输出: -1 解释: 2 不存在 nums 中因此返回 -1 解题思路 观察到有序（升序）数组，可以使用二分查找算法来提高效率。很纯正的二分查找法。 代码实现 #include #include using namespace std; int search(const vector & nums, int target) { int left = 0; int right = static_cast (nums.size()) - 1; while (left < = right) { int middle = left + (right - left) / 2; if (target < nums[middle]) { right = middle - 1; } else if (target > nums[middle]) { left = middle + 1; } else { return middle; } } return -1; } int main() { int n, target; cin >> n >> target; vector nums(n); for (int i = 0; i < n; i++) { cin >> nums[i]; } cout < < search(nums, target) < < '\\n'; return 0; } 复杂度分析 时间复杂度：O(log n) 空间复杂度：O(1) 复盘与总结 1，middle是在循环中不断更新的。 2,分清下标和数值以及题目需要返回的类型 3，注意区间和边界 4，left+（right-left）/2 ← 返回算法练习",
-    "file": "algorithm/day01note.html"
+    "title": "LC875. 爱吃香蕉的珂珂",
+    "date": "2026年11月25日",
+    "content": "1```html LC875 爱吃香蕉的珂珂 | 算法练习 Algorithm Practice / Day 2 LC875. 爱吃香蕉的珂珂 难度：中等 日期：2026年11月25日 标签：二分答案、可行性判断 题目描述 给定若干堆香蕉 piles，以及规定时间h 珂珂每小时可以选择一堆香蕉，以速度k吃掉k根 如果当前堆剩余香蕉不足k根，则这一小时吃完后不再继续吃其他堆 求能够在h小时内吃完所有香蕉的最小速度k 示例 输入：piles = [3,6,7,11], h = 8 输出：4 解释：速度为 4 时，四堆香蕉分别需要 1、2、2、3 小时，总计 8 小时。 解题思路 不是查数组中target，是在答案范围内寻找最小可行速度 关键观察：吃香蕉的速度越快，所需的时间就越少 速度从小到大排列时，可行性具有单调性变化，没有特殊点出现： 1.二分范围 最小速度为1；最大速度为piles中的最大值。 因为速度达到最大堆的数量时，每堆最多只需要一个小时 2.check函数 假设当前速度为k，每一堆需要的时间：向上取整pile/k 所有堆所需时间相加，如果不超过h，则当前速度可行 整数向上取整： (pile+k-1)/k 3.二分边界调整 寻找最小可行值。若当前速度可行，缩小更小的速度：right=mid； 若不可行，说明速度太慢了，向右扩大：left=mid+1 代码实现 #include <bits/stdc++.h> using namespace std; class Solution { public: int minEatingSpeed(vector<int>& piles, int h) { int left = 1; int right = *max_element(piles.begin(), piles.end()); while (left < right) { int mid = left + (right - left) / 2; long long hours = 0; for (int pile : piles) { hours += (pile + mid - 1) / mid; } if (hours <= h) { right = mid; } else { left = mid + 1; } } return left; } }; 复盘与总结 1.二分答案是在答案范围内寻找满足条件的值 2.答案有单调性 3.check(mid)用来判断当前尝试的答案是否可行 容易出错的地方： 1.每堆香蕉需要单独计算小时数，不能把不同堆的剩余时间合并 2.每堆所需时间必须向上取整，不能使用普通整数除法 3.累计小时数使用longlong，避免数据较大时溢出 ← 返回算法练习 ```",
+    "file": "algorithm/day02note.html"
   },
   {
     "kind": "algorithm",
     "label": "算法练习",
-    "title": "第 02 天学习记录",
-    "date": "",
-    "content": "",
-    "file": "algorithm/day02note.html"
+    "title": "二刷lc704",
+    "date": "2026年11月22日",
+    "content": "二分法 | 算法复习 Algorithm Practice / Day 1 二刷lc704 难度：简单 日期：2026年11月22日 标签：数组、二分查找 给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target ，写一个函数搜索 nums 中的 target，如果 target 存在返回下标，否则返回 -1 示例 示例 1: 输入: nums = [-1,0,3,5,9,12], target = 9 输出: 4 解释: 9 出现在 nums 中并且下标为 4 示例 2: 输入: nums = [-1,0,3,5,9,12], target = 2 输出: -1 解释: 2 不存在 nums 中因此返回 -1 解题思路 观察到有序（升序）数组，可以使用二分查找算法来提高效率。很纯正的二分查找法。 代码实现 #include #include using namespace std; int search(const vector & nums, int target) { int left = 0; int right = static_cast (nums.size()) - 1; while (left < = right) { int middle = left + (right - left) / 2; if (target < nums[middle]) { right = middle - 1; } else if (target > nums[middle]) { left = middle + 1; } else { return middle; } } return -1; } int main() { int n, target; cin >> n >> target; vector nums(n); for (int i = 0; i < n; i++) { cin >> nums[i]; } cout < < search(nums, target) < < '\\n'; return 0; } 复杂度分析 时间复杂度：O(log n) 空间复杂度：O(1) 复盘与总结 1，middle是在循环中不断更新的。 2,分清下标和数值以及题目需要返回的类型 3，注意区间和边界 4，left+（right-left）/2 ← 返回算法练习",
+    "file": "algorithm/day01note.html"
   },
   {
     "kind": "algorithm",
