@@ -11,23 +11,27 @@ SKIP_NAMES = {"day-template.html", "404.html"}
 class PageText(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
-        self.parts, self.title_parts = [], []
+        self.parts, self.title_parts, self.heading_parts = [], [], []
         self.in_title = False
+        self.in_heading = False
         self.ignored = []
 
     def handle_starttag(self, tag, attrs):
         if tag == "title": self.in_title = True
+        if tag == "h1": self.in_heading = True
         if tag in {"script", "style", "noscript", "svg"}: self.ignored.append(tag)
         if tag in {"p", "li", "div", "section", "h1", "h2", "h3", "h4", "br", "tr"}: self.parts.append(" ")
 
     def handle_endtag(self, tag):
         if tag == "title": self.in_title = False
+        if tag == "h1": self.in_heading = False
         if tag in self.ignored:
             self.ignored.reverse(); self.ignored.remove(tag); self.ignored.reverse()
         if tag in {"p", "li", "div", "section", "h1", "h2", "h3", "h4", "br", "tr"}: self.parts.append(" ")
 
     def handle_data(self, data):
         if self.in_title: self.title_parts.append(data)
+        if self.in_heading: self.heading_parts.append(data)
         if not self.ignored: self.parts.append(data)
 
 def clean(text):
@@ -43,6 +47,14 @@ def label_for(path):
     if rel.startswith("review/"): return "复盘记录"
     return path.parent.name if path.parent != ROOT else "网站页面"
 
+def kind_for(path):
+    rel = path.relative_to(ROOT).as_posix()
+    if path.parent.name == "daily-study": return "daily"
+    if rel.startswith("algorithm/"): return "algorithm"
+    if rel.startswith("roadmap/"): return "roadmap"
+    if rel.startswith("review/"): return "review"
+    return "page"
+
 def main():
     items = []
     for path in ROOT.rglob("*.html"):
@@ -53,9 +65,9 @@ def main():
         try: parser.feed(path.read_text(encoding="utf-8", errors="replace"))
         except OSError as exc:
             print(f"读取失败: {path.relative_to(ROOT)}: {exc}"); continue
-        title = clean(" ".join(parser.title_parts)) or path.stem
+        title = clean(" ".join(parser.heading_parts)) or clean(" ".join(parser.title_parts)) or path.stem
         rel = path.relative_to(ROOT).as_posix()
-        items.append({"label": label_for(path), "title": title, "content": clean(" ".join(parser.parts)), "file": rel})
+        items.append({"kind": kind_for(path), "label": label_for(path), "title": title, "content": clean(" ".join(parser.parts)), "file": rel})
         print(f"完成: {rel}")
     items.sort(key=lambda item: (item["label"], item["title"]))
     OUTPUT.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")

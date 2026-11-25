@@ -815,7 +815,7 @@ async function loadIndex(){
 
 
 
-        render(allNotes);
+       render(allNotes.filter(item => item.kind === "daily"));
 
 
 
@@ -1114,7 +1114,7 @@ searchBox.addEventListener(
     if(!keyword){
 
 
-        render(allNotes);
+       render(allNotes.filter(item => item.kind === "daily"));
 
 
         return;
