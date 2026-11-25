@@ -791,7 +791,7 @@ let allNotes=[];
 
 function getDailyNotes(){
   return allNotes
-    .filter(item => item.kind === "daily" || item.file?.startsWith("daily-study/"))
+    .filter(item => item.kind === "daily" || /^daily-study\/day\d+note\.html$/i.test(item.file || ""))
     .sort((a, b) => {
       const dayOf = item => {
         const match = item.file?.match(/day(\d+)note\.html$/i);
