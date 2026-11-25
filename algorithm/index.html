@@ -24,7 +24,7 @@
       <span>按练习时间持续添加</span>
     </div>
 
-    <section class="alg-grid" aria-label="算法练习列表">
+    <section class="alg-grid" id="problem-list" aria-label="算法练习列表" aria-live="polite">
       <!-- 复制此卡片，修改链接、题名、难度和标签即可添加题目 -->
       <a class="alg-problem" href="day01note.html">
         <div class="alg-problem-top">
@@ -39,5 +39,46 @@
 
     <a class="alg-back" href="../index.html">← 返回学习主页</a>
   </main>
+  <script>
+    async function loadAlgorithmCards() {
+      const list = document.getElementById("problem-list");
+      list.replaceChildren();
+      try {
+        const response = await fetch("algorithm-index.json");
+        if (!response.ok) throw new Error("algorithm-index.json unavailable");
+        const problems = await response.json();
+        if (!problems.length) {
+          list.textContent = "还没有添加算法题目。";
+          return;
+        }
+        for (const problem of problems) {
+          const card = document.createElement("a");
+          card.className = "alg-problem";
+          card.href = problem.file;
+          const top = document.createElement("div");
+          top.className = "alg-problem-top";
+          const type = document.createElement("span");
+          type.className = "alg-difficulty";
+          type.textContent = "算法练习";
+          const day = document.createElement("span");
+          day.className = "alg-stat";
+          day.textContent = `Day ${String(problem.day).padStart(2, "0")}`;
+          top.append(type, day);
+          const title = document.createElement("h3");
+          title.textContent = problem.title;
+          card.append(top, title);
+          if (problem.date) {
+            const date = document.createElement("p");
+            date.textContent = `练习日期：${problem.date}`;
+            card.append(date);
+          }
+          list.append(card);
+        }
+      } catch (error) {
+        list.textContent = "题目列表暂时无法加载，请重新生成算法索引。";
+      }
+    }
+    loadAlgorithmCards();
+  </script>
 </body>
 </html>

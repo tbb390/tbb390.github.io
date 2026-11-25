@@ -93,4 +93,29 @@ def main():
     OUTPUT.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"全站搜索索引完成：{len(items)} 个页面 -> {OUTPUT.name}")
 
+    # Build the algorithm listing from actual dayXXnote.html files.
+    algorithm_dir = ROOT / "algorithm"
+    algorithm_items = []
+    for path in algorithm_dir.glob("day*note.html"):
+        match = re.fullmatch(r"day(\d+)note\.html", path.name, re.I)
+        if not match:
+            continue
+        parser = PageText()
+        parser.feed(path.read_text(encoding="utf-8", errors="replace"))
+        day = int(match.group(1))
+        title = clean(" ".join(parser.heading_parts)) or clean(" ".join(parser.title_parts))
+        if not title or title.casefold() == path.stem.casefold():
+            title = f"算法练习 Day {day:02d}"
+        content = clean(" ".join(parser.parts))
+        algorithm_items.append({
+            "day": day,
+            "title": title,
+            "date": extract_date(" ".join(parser.title_parts) + " " + content),
+            "file": path.name,
+        })
+    algorithm_items.sort(key=lambda item: item["day"])
+    algorithm_index = algorithm_dir / "algorithm-index.json"
+    algorithm_index.write_text(json.dumps(algorithm_items, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"算法专栏索引完成：{len(algorithm_items)} 道题 -> algorithm/algorithm-index.json")
+
 if __name__ == "__main__": main()
