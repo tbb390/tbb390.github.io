@@ -285,6 +285,14 @@ body{
 
 }
 
+.day-card .day-date {
+  margin-top: 5px;
+  color: #3d8c91;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: .02em;
+}
+
 
 
 .empty{
@@ -1042,7 +1050,8 @@ function render(data){
 
         <span>
 
-        ${item.title}
+       ${item.date ? `<span class="day-date">${item.date}</span>` : ""}
+       <span>${item.title}</span>
 
         </span>
 

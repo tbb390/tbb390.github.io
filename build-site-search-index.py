@@ -37,6 +37,17 @@ class PageText(HTMLParser):
 def clean(text):
     return re.sub(r"\s+", " ", text).strip()
 
+def extract_date(text):
+    patterns = [
+        r"(20\d{2}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日)",
+        r"(20\d{2}[-/]\d{1,2}[-/]\d{1,2})",
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, text)
+        if match:
+            return clean(match.group(1))
+    return ""
+
 def is_daily_note(path):
     return path.parent.name == "daily-study" and re.fullmatch(r"day\d+note\.html", path.name, re.I) is not None
 
@@ -74,7 +85,9 @@ def main():
             match = re.fullmatch(r"day(\d+)note", path.stem, re.I)
             title = f"第 {match.group(1)} 天学习记录" if match else path.stem
         rel = path.relative_to(ROOT).as_posix()
-        items.append({"kind": kind_for(path), "label": label_for(path), "title": title, "content": clean(" ".join(parser.parts)), "file": rel})
+        content = clean(" ".join(parser.parts))
+        date = extract_date(" ".join(parser.title_parts) + " " + content)
+        items.append({"kind": kind_for(path), "label": label_for(path), "title": title, "date": date, "content": content, "file": rel})
         print(f"完成: {rel}")
     items.sort(key=lambda item: (item["label"], item["title"]))
     OUTPUT.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
