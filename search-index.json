@@ -545,6 +545,14 @@
   },
   {
     "kind": "daily",
+    "label": "Day 71",
+    "title": "📝 每日学习记录",
+    "date": "2026年11月26日",
+    "content": "2026年11月26日 每日学习记录 📝 每日学习记录 📅 日期：2026年11月26日 ⏱️ 时长：4小时 算法 动态规划（ 方案总和（棋盘路径方案，包括一维二维、有障碍的），路径最优化（从搜索角度找最短）） day03note agent SDK是一套现成的代码工具，让程序能方便地调用某个服务 storage 节点：1，参数校验 2，处理后的原文md传到minio 3，文档元数据存到MongoDB state： 输入：file_title、md_content、item_name、chunks、chunk_ids、item_id 输出：minio_url、mongo_doc_id mdimageminio: state输入：md_path 从md中找到图片，并提取图片附近的上下文 调用VLM，根据图片和上下文生成图片摘要 将图片文件上传到MinIO 把md里的图片引用替换成MinIO图片链接，并把生成的摘要作为图片的alt文本 更新state[\"md_content\"]和state[\"md_path\"] ➡️ 明日计划 1，agent查询 2，基础知识 3，算法：dp实操例题 4,part2 u16 复习 part1 u21 ← 返回学习主页",
+    "file": "daily-study/day71note.html"
+  },
+  {
+    "kind": "daily",
     "label": "Day 8",
     "title": "📝 刷题记录 · 第八天",
     "date": "2026-05-14",
@@ -694,6 +702,14 @@
     "date": "2026年11月22日",
     "content": "二分法 | 算法复习 Algorithm Practice / Day 1 二刷lc704 难度：简单 日期：2026年11月22日 标签：数组、二分查找 给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target ，写一个函数搜索 nums 中的 target，如果 target 存在返回下标，否则返回 -1 示例 示例 1: 输入: nums = [-1,0,3,5,9,12], target = 9 输出: 4 解释: 9 出现在 nums 中并且下标为 4 示例 2: 输入: nums = [-1,0,3,5,9,12], target = 2 输出: -1 解释: 2 不存在 nums 中因此返回 -1 解题思路 观察到有序（升序）数组，可以使用二分查找算法来提高效率。很纯正的二分查找法。 代码实现 #include #include using namespace std; int search(const vector & nums, int target) { int left = 0; int right = static_cast (nums.size()) - 1; while (left < = right) { int middle = left + (right - left) / 2; if (target < nums[middle]) { right = middle - 1; } else if (target > nums[middle]) { left = middle + 1; } else { return middle; } } return -1; } int main() { int n, target; cin >> n >> target; vector nums(n); for (int i = 0; i < n; i++) { cin >> nums[i]; } cout < < search(nums, target) < < '\\n'; return 0; } 复杂度分析 时间复杂度：O(log n) 空间复杂度：O(1) 复盘与总结 1，middle是在循环中不断更新的。 2,分清下标和数值以及题目需要返回的类型 3，注意区间和边界 4，left+（right-left）/2 ← 返回算法练习",
     "file": "algorithm/day01note.html"
+  },
+  {
+    "kind": "algorithm",
+    "label": "算法练习",
+    "title": "动态规划（DP）——棋盘路径问题",
+    "date": "2026年11月26日",
+    "content": "动态规划（DP）——棋盘路径问题 | 算法理论 Algorithm Practice / Day 3· 理论学习 动态规划（DP）——棋盘路径问题 日期：2026年11月26日 专题：动态规划 内容：理论梳理 一、方案总数 这类问题关注从起点到终点，一共有多少种可行路径 一维路径： 当前状态由前面的状态累加得到 二维路径： 如果每次只能向右或向下，通常由上方和左方的状态转移而来 有障碍的路径： 遇到障碍格时，将该格的方案数设为0 方案总数的核心操作通常是累加：把所有可以到达当前状态的路径数加起。 二、路径最优化 这类问题关注到达终点时的最小或最大路径代价 最小路径代价 从上方和左方的结果中选择较小值，再加上当前格子的代价 核心是利用已经求出的状态，逐步计算当前状态的最优结果 三、两类问题的区别 方案总数：累加可行路径数 路径最优化：选择min/max 看到棋盘路径问题时，先判断题目问的是“有多少种走法”，还是“最小/最大代价是多少”，再确定状态转移时使用加法还是取最优值 今日总结 棋盘路径类动态规划通常从已知的相邻状态推导当前状态。方案计数问题做累加，最优化问题取min/max；障碍格则无法到达，状态值设为0 明日计划 通过实际题目练习棋盘路径问题，动手写出状态定义、转移关系和边界条件 ← 返回算法练习",
+    "file": "algorithm/day03note.html"
   },
   {
     "kind": "algorithm",

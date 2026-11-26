@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f2f6fb">
+  <title>2026年11月26日 每日学习记录</title>
+
+  <link rel="stylesheet" href="../assets/daily-study.css">
+</head>
+
+<body>
+  <main class="container">
+    <article class="card">
+      <header class="article-header">
+        <h1>📝 每日学习记录</h1>
+
+        <div class="meta">
+          <span>📅 日期：2026年11月26日</span>
+          <span>⏱️ 时长：4小时</span>
+        </div>
+      </header>
+
+      <section class="section">
+        <h2 class="section-title">算法</h2>
+        <div class="content-box">
+          <p>
+            <li>动态规划（ 方案总和（棋盘路径方案，包括一维二维、有障碍的），路径最优化（从搜索角度找最短）） day03note</li>
+        </p>
+        </div>
+      </section>
+
+
+         <section class="section">
+        <h2 class="section-title">agent</h2>
+        <div class="content-box">
+          <p>
+
+            SDK是一套现成的代码工具，让程序能方便地调用某个服务<br>
+        storage 节点：1，参数校验 2，处理后的原文md传到minio 3，文档元数据存到MongoDB<br>
+            state：<br>
+            输入：file_title、md_content、item_name、chunks、chunk_ids、item_id<br>
+            输出：minio_url、mongo_doc_id<br>
+        mdimageminio:<br>
+        state输入：md_path<br>
+            从md中找到图片，并提取图片附近的上下文<br>
+            调用VLM，根据图片和上下文生成图片摘要<br>
+            将图片文件上传到MinIO<br>
+            把md里的图片引用替换成MinIO图片链接，并把生成的摘要作为图片的alt文本<br>
+            更新state["md_content"]和state["md_path"]
+
+        </div>
+      </section>
+
+      
+      <section class="section">
+        <h2 class="section-title">➡️ 明日计划</h2>
+        <div class="content-box">
+           <p>
+                    1，agent查询<br>
+                    2，基础知识<br>
+                    3，算法：dp实操例题<br>
+                    4,part2 u16 复习 part1 u21
+                    </p>
+        </div>
+      </section>
+
+      <a href="../index.html" class="back-link">← 返回学习主页</a>
+    </article>
+  </main>
+</body>
+</html>

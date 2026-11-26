@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f2f6fb">
+  <title>动态规划（DP）——棋盘路径问题 | 算法理论</title>
+  <link rel="stylesheet" href="algorithm.css">
+</head>
+
+<body>
+  <main class="alg-wrap alg-panel alg-detail">
+    <header class="alg-detail-head">
+      <div class="alg-kicker">Algorithm Practice / Day 3· 理论学习</div>
+      <h1>动态规划（DP）——棋盘路径问题</h1>
+      <div class="alg-stats">
+        <span class="alg-stat">日期：2026年11月26日</span>
+        <span class="alg-stat">专题：动态规划</span>
+        <span class="alg-stat">内容：理论梳理</span>
+      </div>
+    </header>
+
+    <section class="alg-detail-section">
+      <h2>一、方案总数</h2>
+      <p>这类问题关注从起点到终点，一共有多少种可行路径</p>
+      <ul>
+        <li><strong>一维路径：</strong>当前状态由前面的状态累加得到</li>
+        <li><strong>二维路径：</strong>如果每次只能向右或向下，通常由上方和左方的状态转移而来</li>
+        <li><strong>有障碍的路径：</strong>遇到障碍格时，将该格的方案数设为0</li>
+      </ul>
+      <div class="alg-note">
+        方案总数的核心操作通常是累加：把所有可以到达当前状态的路径数加起。
+      </div>
+    </section>
+
+    <section class="alg-detail-section">
+      <h2>二、路径最优化</h2>
+      <p>这类问题关注到达终点时的最小或最大路径代价</p>
+      <div class="alg-example">
+        <strong>最小路径代价</strong><br>
+        从上方和左方的结果中选择较小值，再加上当前格子的代价
+      </div>
+      <p>核心是利用已经求出的状态，逐步计算当前状态的最优结果</p>
+    </section>
+
+    <section class="alg-detail-section">
+      <h2>三、两类问题的区别</h2>
+      <div class="alg-complexity">
+        <span>方案总数：累加可行路径数</span>
+        <span>路径最优化：选择min/max</span>
+      </div>
+      <p>看到棋盘路径问题时，先判断题目问的是“有多少种走法”，还是“最小/最大代价是多少”，再确定状态转移时使用加法还是取最优值</p>
+    </section>
+
+    <section class="alg-detail-section">
+      <h2>今日总结</h2>
+      <div class="alg-note">
+        棋盘路径类动态规划通常从已知的相邻状态推导当前状态。方案计数问题做累加，最优化问题取min/max；障碍格则无法到达，状态值设为0
+      </div>
+    </section>
+
+    <section class="alg-detail-section">
+      <h2>明日计划</h2>
+      <p>通过实际题目练习棋盘路径问题，动手写出状态定义、转移关系和边界条件</p>
+    </section>
+
+    <a class="alg-back" href="index.html">← 返回算法练习</a>
+  </main>
+</body>
+</html>
