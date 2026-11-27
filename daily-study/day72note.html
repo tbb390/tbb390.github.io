@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f2f6fb">
+  <title>2026年11月27日 每日学习记录</title>
+
+  <link rel="stylesheet" href="../assets/daily-study.css">
+</head>
+
+<body>
+  <main class="container">
+    <article class="card">
+      <header class="article-header">
+        <h1>📝 每日学习记录</h1>
+
+        <div class="meta">
+          <span>📅 日期：2026年11月27日</span>
+          <span>⏱️ 时长：5小时</span>
+        </div>
+      </header>
+
+      <section class="section">
+        <h2 class="section-title">算法练习</h2>
+        <div class="content-box">
+          <p>
+            <li>动态规划（ 方案总和（棋盘路径方案，包括一维二维、有障碍的），路径最优化（从搜索角度找最短）） day04note</li>
+        </p>
+        </div>
+      </section>
+
+
+         <section class="section">
+        <h2 class="section-title">agent</h2>
+        <div class="content-box">
+          <p>
+查询处理骨架：<br>
+查询主线：<br>
+<li>商品名确认后判断是否已有直接答案，</li>
+若有答案：直接进入答案输出<br>
+没有答案：进入多路检索(向量检索、HyDE检索、网页搜索并行执行)<br>
+之后汇合检索结果、RRF融合、Rerank重排、答案生成、结束<br>
+LangGraph并行：<br>
+multi_search负责把流程分发到向量检索、HyDE检索、网页搜索三条分支<br>
+三条分支结束后汇合，再进行RRF和Rerank<br>
+RRF：<br>
+按照文档在不同检索结果中的 排名 计算 融合分数<br>
+多个检索来源都排得靠前的文档，融合后通常会更靠前<br>
+条件路由：<br>
+商品名确认节点后检查state里的answer<br>
+answer有内容：跳过检索，直接到answer_output<br>
+answer为空：继续multi_search<br>
+QueryGraphState：<br>
+保存整个查询流程要传递的数据（会话和任务标识、用户原始问题、商品名和历史对话）<br>
+也包括（向量检索结果、HyDE结果、网页搜索结果、RRF结果、Rerank结果）<br>
+最后保存prompt、answer、rewritten_query和is_stream等输出或控制信息<br>
+main_graph：<br>
+用StateGraph(QueryGraphState)创建工作流<br>
+注册各节点，设置商品名确认节点为入口<br>
+添加条件边、并行分发边、结果汇合边和顺序边<br>
+最后compile()得到可运行的查询图<br>
+骨架代码的作用：<br>
+先定义state、节点基类和流程连接方式，让整条查询链路有统一的数据结构和执行框架<br>
+之后再逐个实现商品名确认、检索、融合、重排和答案生成节点<br>
+           
+        </div>
+      </section>
+
+      
+      <section class="section">
+        <h2 class="section-title">➡️ 明日计划</h2>
+        <div class="content-box">
+           <p>
+                    1，agent<br>
+                    2，基础知识问答<br>
+                    3，算法：前缀和<br>
+                    4,part2 u16 复习 part1 u21
+                    </p>
+        </div>
+      </section>
+
+      <a href="../index.html" class="back-link">← 返回学习主页</a>
+    </article>
+  </main>
+</body>
+</html>

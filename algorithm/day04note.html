@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f2f6fb">
+  <title>动态规划：路径问题 | 算法练习</title>
+  <link rel="stylesheet" href="algorithm.css">
+</head>
+<body>
+  <main class="alg-wrap alg-panel alg-detail">
+    <header class="alg-detail-head">
+      <div class="alg-kicker">Algorithm Practice / Dynamic Programming</div>
+      <h1>动态规划：路径问题</h1>
+      <div class="alg-stats">
+        <span class="alg-difficulty medium">难度：中等</span>
+        <span class="alg-stat">日期：2026年11月27日</span>
+        <span class="alg-stat">标签：动态规划、一维DP、二维DP、路径问题</span>
+      </div>
+    </header>
+
+    <section class="alg-detail-section">
+      <h2>今日学习内容</h2>
+      <p>
+        今天主要练习动态规划中的路径问题，从一维 DP 的爬楼梯，
+        逐渐过渡到二维网格路径，再学习如何处理障碍物。
+      </p>
+      <ul>
+        <li>LC70：爬楼梯——一维动态规划，统计方案总数。</li>
+        <li>LC62：不同路径——二维动态规划，统计路径总数。</li>
+        <li>LC63：不同路径 II——在二维 DP 的基础上增加障碍物判断。</li>
+      </ul>
+    </section>
+
+    <section class="alg-detail-section">
+      <h2>一、LC70 爬楼梯</h2>
+
+      <h3>题目描述</h3>
+      <p>
+        假设正在爬楼梯，需要爬到第 n 阶。每次可以爬 1 阶或 2 阶，
+        求到达楼顶一共有多少种不同的方法。
+      </p>
+
+      <div class="alg-example">
+        <strong>示例</strong><br>
+        输入：n = 3<br>
+        输出：3<br>
+        解释：有三种方法：1+1+1、1+2、2+1。
+      </div>
+
+      <h3>解题思路</h3>
+      <p>
+        这道题使用一维动态规划。
+        dp[i] 表示爬到第 i 阶楼梯的不同方案数。
+      </p>
+      <p>
+        到达第 i 阶，可以从第 i-1 阶爬 1 阶上来，
+        也可以从第 i-2 阶爬 2 阶上来。
+        把这两种情况相加
+      </p>
+      <div class="alg-note">
+        状态转移方程：<br>
+        dp[i] = dp[i-1] + dp[i-2]<br><br>
+        初始条件：dp[1] = 1，dp[2] = 2。<br>
+        遍历顺序：从 i = 3 开始递推。
+      </div>
+
+      <h3>代码实现</h3>
+      <pre class="alg-code"><code>class Solution {
+public:
+    int climbStairs(int n) {
+        if (n <= 2) return n;
+
+        vector&lt;int&gt; dp(n + 1, 0);
+
+        dp[1] = 1;
+        dp[2] = 2;
+
+        for (int i = 3; i &lt;= n; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+
+        return dp[n];
+    }
+};</code></pre>
+
+      <h3>复杂度分析</h3>
+      <div class="alg-complexity">
+        <span>时间复杂度：O(n)</span>
+        <span>空间复杂度：O(n)</span>
+      </div>
+
+      <div class="alg-note">
+        <strong>今天遇到的问题：</strong><br>
+        1. dp 数组需要先定义，不能直接使用 dp[n]<br>
+        2. 前两项已经初始化，循环应该从i=3开始<br>
+        3. 每次应该更新 dp[i]，而不是一直覆盖 dp[n]<br>
+        4. 最后返回 dp[n]，表示到达第 n 阶的方案。
+      </div>
+    </section>
+
+    <section class="alg-detail-section">
+      <h2>二、LC62 不同路径</h2>
+
+      <h3>题目描述</h3>
+      <p>
+        一个机器人位于 m × n 网格的左上角，
+        每次只能向下或者向右移动一步。
+        求机器人到达右下角一共有多少条不同的路径。
+      </p>
+
+      <div class="alg-example">
+        <strong>示例</strong><br>
+        输入：m = 3, n = 7<br>
+        输出：28
+      </div>
+
+      <h3>解题思路</h3>
+      <p>
+        这道题从一维 DP 过渡到了二维 DP。
+        dp[i][j] 表示从左上角出发，到达第 i 行、第 j 列位置的路径总数。
+      </p>
+      <p>
+        因为机器人只能向右或者向下移动，
+        所以到达当前位置，只能从上方或者左方过来。
+      </p>
+
+      <div class="alg-note">
+        状态转移方程：<br>
+        dp[i][j] = dp[i-1][j] + dp[i][j-1]<br><br>
+        初始化：<br>
+        第一行全部初始化为 1。<br>
+        第一列全部初始化为 1。<br><br>
+        遍历顺序：从 i = 1、j = 1 开始，
+        逐行逐列计算。<br><br>
+        最终返回：dp[m-1][n-1]。
+      </div>
+
+      <h3>代码实现</h3>
+      <pre class="alg-code"><code>class Solution {
+public:
+    int uniquePaths(int m, int n) {
+
+        vector&lt;vector&lt;int&gt;&gt; dp(m, vector&lt;int&gt;(n, 0));
+
+        for (int i = 0; i &lt; m; i++) {
+            dp[i][0] = 1;
+        }
+        //初始化第一列
+
+
+        for (int j = 0; j &lt; n; j++) {
+            dp[0][j] = 1;
+        }        //初始化第一行
+
+        for (int i = 1; i &lt; m; i++) {
+            for (int j = 1; j &lt; n; j++) {
+                dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+            }
+        }
+
+        return dp[m - 1][n - 1];
+    }
+};</code></pre>
+
+      <h3>复杂度分析</h3>
+      <div class="alg-complexity">
+        <span>时间复杂度：O(m × n)</span>
+        <span>空间复杂度：O(m × n)</span>
+      </div>
+
+      <div class="alg-note">
+        <strong>今天遇到的问题：</strong><br>
+        1. 二维数组使用 vector&lt;vector&lt;int&gt;&gt; 定义。<br>
+        2. C++ 数组下标从 0 开始，所以右下角是 dp[m-1][n-1]，
+        不能写成 dp[m][n]。<br>
+        3. 第一行和第一列已经初始化，因此循环从 1 开始，
+        不是从 2 开始。<br>
+        4. 左边的位置应该是 dp[i][j-1]，
+        不能把行和列下标写反。<br>
+        5. 最后返回右下角的 DP 值，而不是循环变量 i、j。
+      </div>
+    </section>
+
+    <section class="alg-detail-section">
+      <h2>三、LC63 不同路径 II</h2>
+
+      <h3>题目描述</h3>
+      <p>
+        在 LC62 的基础上，网格中增加了障碍物。
+        机器人仍然只能向右或者向下移动，
+        但是不能经过障碍物，求到达右下角的不同路径数量。
+      </p>
+
+      <div class="alg-example">
+        <strong>示例</strong><br>
+        输入：<br>
+        obstacleGrid = [[0,0,0],[0,1,0],[0,0,0]]<br>
+        输出：2<br>
+        其中 0 表示可以通过，1 表示障碍物。
+      </div>
+
+      <h3>解题思路</h3>
+      <p>
+        这道题沿用了 LC62 的二维 DP 思路，
+        但是增加了障碍物判断。
+      </p>
+      <p>
+        dp[i][j] 表示从起点到达当前位置的有效路径数量。
+      </p>
+
+      <div class="alg-note">
+        核心规则：<br><br>
+        1. 如果当前位置是障碍物，dp[i][j] = 0。<br>
+        2. 如果当前位置不是障碍物，路径数仍然是上方加左方。<br><br>
+        状态转移：<br>
+        障碍物：dp[i][j] = 0<br>
+        普通位置：dp[i][j] = dp[i-1][j] + dp[i][j-1]<br><br>
+        起点如果是障碍物，直接返回 0。
+      </div>
+
+      <h3>边界初始化</h3>
+      <p>
+        LC62 中第一行和第一列都可以直接初始化为 1，
+        但是 LC63 不行，因为障碍物会阻断后续路径。
+      </p>
+      <p>
+        第一行只能从左边过来，所以当前格子的路径数继承左边的值。
+        第一列只能从上边过来，所以当前格子的路径数继承上边的值。
+      </p>
+
+      <div class="alg-example">
+        <strong>第一行示例</strong><br>
+        obstacleGrid：[0, 0, 1, 0, 0]<br>
+        dp：[1, 1, 0, 0, 0]<br><br>
+        障碍物后面的格子虽然本身可以通过，
+        但是已经无法从起点到达，所以路径数量仍然为 0。
+      </div>
+
+      <h3>代码实现</h3>
+      <pre class="alg-code"><code>class Solution {
+public:
+    int uniquePathsWithObstacles(vector&lt;vector&lt;int&gt;&gt;&amp; obstacleGrid) {
+
+        int m = obstacleGrid.size();
+        int n = obstacleGrid[0].size();
+
+        vector&lt;vector&lt;int&gt;&gt; dp(m, vector&lt;int&gt;(n, 0));
+
+        if (obstacleGrid[0][0] == 1) {
+            return 0;
+        }
+
+        dp[0][0] = 1;
+
+        for (int i = 1; i &lt; m; i++) {
+            if (obstacleGrid[i][0] == 1) {
+                dp[i][0] = 0;
+            } else {
+                dp[i][0] = dp[i - 1][0];
+            }
+        }
+
+        for (int j = 1; j &lt; n; j++) {
+            if (obstacleGrid[0][j] == 1) {
+                dp[0][j] = 0;
+            } else {
+                dp[0][j] = dp[0][j - 1];
+            }
+        }
+
+        for (int i = 1; i &lt; m; i++) {
+            for (int j = 1; j &lt; n; j++) {
+
+                if (obstacleGrid[i][j] == 1) {
+                    dp[i][j] = 0;
+                } else {
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+                }
+            }
+        }
+
+        return dp[m - 1][n - 1];
+    }
+};</code></pre>
+
+      <h3>复杂度分析</h3>
+      <div class="alg-complexity">
+        <span>时间复杂度：O(m × n)</span>
+        <span>空间复杂度：O(m × n)</span>
+      </div>
+
+      <div class="alg-note">
+        <strong>今天遇到的问题：</strong><br>
+        1. 障碍物位置的 DP 值是 0，不是 1。<br>
+        2. 障碍物会阻断后续路径，不能只把障碍物本身设为 0。<br>
+        3. 第一行要根据左边的位置初始化。<br>
+        4. 第一列要根据上边的位置初始化。<br>
+        5. 中间位置先判断是否为障碍物，再决定是否执行状态转移。
+      </div>
+    </section>
+
+    <section class="alg-detail-section">
+      <h2>四、三道题的联系与区别</h2>
+
+      <div class="alg-example">
+        <strong>LC70：一维 DP</strong><br>
+        当前状态由前面两个状态推导出来。<br><br>
+
+        <strong>LC62：二维 DP</strong><br>
+        当前格子的路径数由上方和左方两个状态推导出来。<br><br>
+
+        <strong>LC63：带障碍物的二维 DP</strong><br>
+        保留 LC62 的基本转移思路，增加障碍物判断和边界处理。
+      </div>
+    </section>
+
+    <a class="alg-back" href="index.html">← 返回算法练习</a>
+  </main>
+</body>
+</html>
